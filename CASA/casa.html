@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lifty - App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="casa.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <!-- Fila superior: Logo y Menú Hamburguesa -->
+    <div class="header-top">
+      <img src="/img/lifty2 blanco.png" alt="Lifty Logo" class="logo">
+      <div class="menu-hamburguesa" id="menuHamburguesa">
+        <div class="linea"></div>
+        <div class="linea"></div>
+        <div class="linea"></div>
+      </div>
+    </div>
+    <!-- Fila inferior: Cohete de Progreso y Corazón Emocional -->
+    <div class="header-bottom">
+      <div class="progreso">
+        <img src="/img/lifty cohete.png" alt="Cohete Progreso" class="cohete">
+        <span class="progreso-numero">75/100</span>
+      </div>
+      <div class="corazon" id="corazon">
+        <img src="/img/corazon app.svg" alt="Corazón Emocional">
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenido principal (placeholder) -->
+  <main class="contenido">
+    <!-- Aquí iría el contenido de la página -->
+    <p>Contenido de la página (placeholder)</p>
+  </main>
+
+  <!-- Navegación inferior: Sistema Solar Interactivo -->
+  <nav class="navegacion-solar">
+    <div class="cuerpo-celeste casa" data-seccion="casa">
+      <img src="/img/icono-casa.svg" alt="Casa">
+    </div>
+    <div class="cuerpo-celeste perfil" data-seccion="perfil">
+      <img src="/img/icono-perfil.svg" alt="Perfil">
+    </div>
+    <div class="cuerpo-celeste progreso" data-seccion="progreso">
+      <img src="/img/icono-estrella.svg" alt="Progreso">
+    </div>
+    <div class="cuerpo-celeste config-historial" data-seccion="config-historial">
+      <img src="/img/icono-flecha-circular.svg" alt="Configuración e Historial">
+    </div>
+    <!-- Lifty como guía espacial -->
+    <img src="/img/lifty cohete.png" alt="Lifty Guía" class="lifty-guia" id="liftyGuia">
+  </nav>
+
+  <!-- Script para animaciones e interacciones -->
+  <script>
+    // Menú hamburguesa
+    const menuHamburguesa = document.getElementById("menuHamburguesa");
+    menuHamburguesa.addEventListener("click", () => {
+      menuHamburguesa.classList.toggle("activo");
+      // Aquí podrías añadir un menú desplegable (no implementado en este ejemplo)
+    });
+
+    // Corazón emocional (simulación de emociones)
+    const corazon = document.getElementById("corazon");
+    let emocionActual = "feliz"; // Simulación (podría venir de una pulsera)
+    corazon.classList.add(emocionActual);
+
+    // Navegación solar
+    const cuerposCelestes = document.querySelectorAll(".cuerpo-celeste");
+    const liftyGuia = document.getElementById("liftyGuia");
+
+    cuerposCelestes.forEach(cuerpo => {
+      cuerpo.addEventListener("click", () => {
+        // Quitar clase "activo" de todos los cuerpos celestes
+        cuerposCelestes.forEach(c => c.classList.remove("activo"));
+        // Añadir clase "activo" al cuerpo seleccionado
+        cuerpo.classList.add("activo");
+
+        // Mover a Lifty hacia el cuerpo celeste seleccionado
+        const rect = cuerpo.getBoundingClientRect();
+        liftyGuia.style.left = `${rect.left + rect.width / 2 - 15}px`; // Ajustar posición
+        liftyGuia.classList.add("viajar");
+
+        // Si se selecciona Progreso, animar el cohete del header
+        if (cuerpo.dataset.seccion === "progreso") {
+          document.querySelector(".cohete").classList.add("despegar");
+        }
+      });
+    });
+
+    // Simulación de cambio de emoción (para pruebas)
+    setInterval(() => {
+      const emociones = ["feliz", "ansioso", "triste", "enojado"];
+      emocionActual = emociones[Math.floor(Math.random() * emociones.length)];
+      corazon.classList.remove("feliz", "ansioso", "triste", "enojado");
+      corazon.classList.add(emocionActual);
+    }, 5000);
+  </script>
+</body>
+</html>
