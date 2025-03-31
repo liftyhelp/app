@@ -64,14 +64,16 @@
     const introVideo = document.getElementById("introVideo");
     const contenidoPrincipal = document.getElementById("contenidoPrincipal");
 
-    // Ocultar el contenido principal al inicio
     contenidoPrincipal.style.display = "none";
 
-    // Mostrar el contenido principal cuando el video termine
-    introVideo.addEventListener("ended", () => {
-      videoIntro.style.display = "none";
-      contenidoPrincipal.style.display = "block";
-    });
+    function mostrarContenido() {
+    videoIntro.style.display = "none";
+    contenidoPrincipal.style.display = "block";
+    }
+
+    introVideo.addEventListener("ended", mostrarContenido);
+    introVideo.addEventListener("error", mostrarContenido); // Si el vídeo falla
+    setTimeout(mostrarContenido, 5000); // Muestra el contenido tras 5 segundos si no pasa nada
   </script>
 </body>
 </html>
