@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Lifty</title>
+  <title>Lifty - Inici</title>
 
   <meta name="theme-color" content="blue">
     <meta name="msapplication-navbutton-color" content="blue">
@@ -20,8 +20,8 @@
 <body>
   <!-- Video introductorio -->
   <div class="video-intro" id="videoIntro">
-    <video id="introVideo" muted controls>
-      <source src="img/animacion_liftyfinakl.mp4" type="video/mp4">
+    <video id="introVideo" autoplay muted>
+      <source src="img/animacion_liftyfinal.mp4" type="video/mp4">
     </video>
   </div>
 
@@ -70,7 +70,7 @@
 
   <!-- Script para manejar el video -->
   <script>
-const videoIntro = document.getElementById("videoIntro");
+    const videoIntro = document.getElementById("videoIntro");
 const introVideo = document.getElementById("introVideo");
 const contenidoPrincipal = document.getElementById("contenidoPrincipal");
 
@@ -83,15 +83,12 @@ function mostrarContenido() {
 
 introVideo.addEventListener("ended", mostrarContenido);
 introVideo.addEventListener("error", mostrarContenido);
-setTimeout(mostrarContenido, 5000); // Fallback de 5 segundos
+setTimeout(mostrarContenido, 5000);
 
-// Intentar reproducir el vídeo
-introVideo.play().then(() => {
-  console.log("Vídeo reproduciéndose automáticamente");
-}).catch((error) => {
-  console.log("Autoplay falló: ", error);
-  // Si el autoplay falla, aún puedes dejar los controles para reproducirlo manualmente
-  introVideo.setAttribute("controls", ""); // Añade controles si falla
+// Forzar reproducción en móviles
+introVideo.play().catch(() => {
+  console.log("Autoplay bloqueado, requiere interacción");
+  mostrarContenido(); // Si falla, pasa al contenido
 });
   </script>
 </body>
