@@ -34,18 +34,14 @@ body {
 
 /* Video  */
 .video-intro {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   background-color: #000000;
-  z-index: 1001;
 }
 
 .video-intro video {
   width: 100%;
-  height: auto; /* O prueba height: 100% sin object-fit */
+  height: auto;
   display: block;
 }
 

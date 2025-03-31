@@ -86,9 +86,11 @@ introVideo.addEventListener("error", mostrarContenido);
 setTimeout(mostrarContenido, 5000);
 
 // Forzar reproducción en móviles
-introVideo.play().catch(() => {
-  console.log("Autoplay bloqueado, requiere interacción");
-  mostrarContenido(); // Si falla, pasa al contenido
+introVideo.play().then(() => {
+  console.log("Vídeo reproduciéndose automáticamente");
+}).catch((error) => {
+  console.log("Autoplay bloqueado: ", error);
+  introVideo.setAttribute("controls", ""); // Añade controles si falla
 });
   </script>
 </body>
