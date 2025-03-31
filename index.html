@@ -70,7 +70,7 @@
 
   <!-- Script para manejar el video -->
   <script>
-    const videoIntro = document.getElementById("videoIntro");
+const videoIntro = document.getElementById("videoIntro");
 const introVideo = document.getElementById("introVideo");
 const contenidoPrincipal = document.getElementById("contenidoPrincipal");
 
@@ -83,12 +83,15 @@ function mostrarContenido() {
 
 introVideo.addEventListener("ended", mostrarContenido);
 introVideo.addEventListener("error", mostrarContenido);
-setTimeout(mostrarContenido, 5000);
+setTimeout(mostrarContenido, 5000); // Fallback de 5 segundos
 
-// Forzar reproducción en móviles
-introVideo.play().catch(() => {
-  console.log("Autoplay bloqueado, requiere interacción");
-  mostrarContenido(); // Si falla, pasa al contenido
+// Intentar reproducir el vídeo
+introVideo.play().then(() => {
+  console.log("Vídeo reproduciéndose automáticamente");
+}).catch((error) => {
+  console.log("Autoplay falló: ", error);
+  // Si el autoplay falla, aún puedes dejar los controles para reproducirlo manualmente
+  introVideo.setAttribute("controls", ""); // Añade controles si falla
 });
   </script>
 </body>
