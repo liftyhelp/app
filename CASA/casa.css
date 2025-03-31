@@ -281,18 +281,17 @@ body {
 
 .contenido {
   flex: 1;
-  padding-top: 0; /* Quitamos el padding-top para ajustar dinámicamente */
+  padding-top: 0;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-  background: #FFFFFF; /* Fondo blanco */
+  background: #FFFFFF;
 }
 
 .contenido.chat-active #iaChatTab {
-  display: flex; /* Muestra el chat como pestaña completa */
+  display: flex;
 }
 
-/* Nueva navegación moderna */
 .navegacion-moderna {
   position: fixed;
   bottom: 20px;
@@ -359,7 +358,7 @@ body {
 
 .nav-item:hover .nav-icon img {
   transform: scale(1.1);
-  filter: brightness(0) invert(1); /* Ícono blanco al hacer hover */
+  filter: brightness(0) invert(1);
 }
 
 .nav-item:hover .nav-label {
@@ -374,7 +373,7 @@ body {
 }
 
 .nav-item.activo .nav-icon img {
-  filter: brightness(0) invert(1); /* Ícono blanco cuando está activo */
+  filter: brightness(0) invert(1);
 }
 
 .nav-item.activo .nav-label {
@@ -384,7 +383,6 @@ body {
   font-weight: 600;
 }
 
-/* Efecto de onda al hacer clic */
 .nav-item::before {
   content: '';
   position: absolute;
@@ -425,16 +423,16 @@ body {
 .pestanas {
   display: flex;
   justify-content: center;
-  gap: 0; /* Sin espacio entre pestañas */
-  margin: 10px; /* Ajustado para que quede justo debajo del header */
+  gap: 0;
+  margin: 10px;
   position: fixed;
   width: 500px;
-  z-index: 999; /* z-index menor que el chat */
-  background: transparent; /* Quitamos el fondo temporal */
+  z-index: 999;
+  background: transparent;
 }
 
 .pestana {
-  width: 150px; /* Dimensiones exactas de la imagen */
+  width: 150px;
   height: 50px;
   padding: 10px 20px;
   font-size: 18px;
@@ -463,13 +461,12 @@ body {
   color: #FFFFFF;
 }
 
-/* Estilos para el contenido de las pestañas */
 .contenido-pestanas {
-  margin-top: 240px; /* Espacio para las pestañas */
+  margin-top: 240px;
   padding: 20px;
   color: #000000;
   position: relative;
-  z-index: 998; /* z-index menor que el chat */
+  z-index: 998;
 }
 
 .contenido-tab {
@@ -480,7 +477,6 @@ body {
   font-size: 16px;
 }
 
-/* Estilos para las subpestañas (solo en Día) */
 .subpestanas {
   display: flex;
   flex-direction: column;
@@ -513,7 +509,6 @@ body {
   border-color: #2595CD;
 }
 
-/* Estilos para el contenido de las subpestañas */
 .contenido-subpestanas {
   padding: 15px;
   background: #F9F9F9;
@@ -557,14 +552,14 @@ body {
 
 .chat-tab#iaChatTab {
   display: none;
-  position: fixed; /* Cambiamos a fixed para que cubra toda la pantalla */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.95); /* Fondo más opaco para cubrir mejor */
+  background: rgba(255, 255, 255, 0.95);
   flex-direction: column;
-  z-index: 1001; /* z-index mayor que las pestañas y el contenido */
+  z-index: 1001;
 }
 
 .chat-header {
@@ -639,4 +634,312 @@ body {
 
 .chat-input button:hover {
   background: #1E7AB0;
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 15px 10px;
+  }
+
+  .header-top {
+    margin-bottom: 20px;
+  }
+
+  .logo {
+    width: 120px;
+  }
+
+  .logo-ia {
+    width: 50px;
+  }
+
+  .header-bottom {
+    gap: 50px;
+    padding: 8px;
+  }
+
+  .header-bottom.expandido {
+    height: 260px;
+  }
+
+  .header-bottom.expandido .progreso,
+  .header-bottom.expandido .corazon {
+    height: 120px;
+    padding: 10px;
+  }
+
+  .progreso-numero,
+  .corazon-numero {
+    font-size: 14px;
+  }
+
+  .racha-dias,
+  .racha-horas {
+    font-size: 10px;
+  }
+
+  .etiqueta {
+    font-size: 10px;
+  }
+
+  .dia {
+    width: 16px;
+    height: 16px;
+  }
+
+  .etiquetas-dias {
+    display: none;
+  }
+
+  .pestanas {
+    top: 180px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .pestana {
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    padding: 8px 15px;
+  }
+
+  .contenido-pestanas {
+    margin-top: 220px;
+    padding: 15px;
+  }
+
+  .subpestana {
+    height: 90px;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .contenido-subpestanas {
+    padding: 10px;
+    min-height: 150px;
+  }
+
+  .contenido-subtab h3 {
+    font-size: 16px;
+  }
+
+  .contenido-subtab p {
+    font-size: 12px;
+  }
+
+  .navegacion-moderna {
+    width: 95%;
+    height: 60px;
+    bottom: 10px;
+  }
+
+  .nav-item {
+    width: 50px;
+    height: 50px;
+  }
+
+  .nav-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .nav-icon img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .nav-label {
+    font-size: 10px;
+    bottom: -20px;
+  }
+
+  .lifty-guia {
+    bottom: 70px;
+    width: 25px;
+  }
+
+  .chat-tab#iaChatTab {
+    height: 100%;
+  }
+
+  .chat-header h2 {
+    font-size: 16px;
+  }
+
+  .chat-body {
+    padding: 8px;
+  }
+
+  .mensaje {
+    padding: 8px;
+    max-width: 85%;
+  }
+
+  .chat-input {
+    padding: 8px;
+  }
+
+  .chat-input input {
+    padding: 4px;
+    font-size: 14px;
+  }
+
+  .chat-input button {
+    padding: 4px 8px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 320px) {
+  .header {
+    padding: 10px 5px;
+  }
+
+  .header-top {
+    margin-bottom: 15px;
+  }
+
+  .logo {
+    width: 100px;
+  }
+
+  .logo-ia {
+    width: 40px;
+  }
+
+  .header-bottom {
+    gap: 30px;
+    padding: 5px;
+  }
+
+  .header-bottom.expandido {
+    height: 240px;
+  }
+
+  .header-bottom.expandido .progreso,
+  .header-bottom.expandido .corazon {
+    height: 110px;
+    padding: 8px;
+  }
+
+  .progreso-numero,
+  .corazon-numero {
+    font-size: 12px;
+  }
+
+  .racha-dias,
+  .racha-horas {
+    font-size: 9px;
+  }
+
+  .etiqueta {
+    font-size: 9px;
+  }
+
+  .dia {
+    width: 14px;
+    height: 14px;
+  }
+
+  .etiquetas-dias {
+    display: none;
+  }
+
+  .pestanas {
+    top: 160px;
+    max-width: 300px;
+  }
+
+  .pestana {
+    width: 100px;
+    height: 35px;
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  .contenido-pestanas {
+    margin-top: 200px;
+    padding: 10px;
+  }
+
+  .subpestana {
+    height: 80px;
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .contenido-subpestanas {
+    padding: 8px;
+    min-height: 120px;
+  }
+
+  .contenido-subtab h3 {
+    font-size: 14px;
+  }
+
+  .contenido-subtab p {
+    font-size: 10px;
+  }
+
+  .navegacion-moderna {
+    width: 98%;
+    height: 55px;
+    bottom: 5px;
+  }
+
+  .nav-item {
+    width: 45px;
+    height: 45px;
+  }
+
+  .nav-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .nav-icon img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .nav-label {
+    font-size: 9px;
+    bottom: -18px;
+  }
+
+  .lifty-guia {
+    bottom: 65px;
+    width: 20px;
+  }
+
+  .chat-header h2 {
+    font-size: 14px;
+  }
+
+  .chat-body {
+    padding: 5px;
+  }
+
+  .mensaje {
+    padding: 6px;
+    max-width: 90%;
+  }
+
+  .chat-input {
+    padding: 5px;
+  }
+
+  .chat-input input {
+    padding: 3px;
+    font-size: 12px;
+  }
+
+  .chat-input button {
+    padding: 3px 6px;
+    font-size: 12px;
+  }
 }
