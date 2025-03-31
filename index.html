@@ -2,8 +2,18 @@
 <html lang="ca">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Lifty - Inici</title>
+
+  <meta name="theme-color" content="blue">
+    <meta name="msapplication-navbutton-color" content="blue">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="blue">
+    
+    <link rel="icon" sizes="192x192" href="img/icon.png">
+    <link rel="icon" sizes="512x512" href="img/icon.png">
+    <link rel="apple-touch-icon" href="img/icon.png">
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -61,19 +71,25 @@
   <!-- Script para manejar el video -->
   <script>
     const videoIntro = document.getElementById("videoIntro");
-    const introVideo = document.getElementById("introVideo");
-    const contenidoPrincipal = document.getElementById("contenidoPrincipal");
+const introVideo = document.getElementById("introVideo");
+const contenidoPrincipal = document.getElementById("contenidoPrincipal");
 
-    contenidoPrincipal.style.display = "none";
+contenidoPrincipal.style.display = "none";
 
-    function mostrarContenido() {
-    videoIntro.style.display = "none";
-    contenidoPrincipal.style.display = "block";
-    }
+function mostrarContenido() {
+  videoIntro.style.display = "none";
+  contenidoPrincipal.style.display = "block";
+}
 
-    introVideo.addEventListener("ended", mostrarContenido);
-    introVideo.addEventListener("error", mostrarContenido); // Si el vídeo falla
-    setTimeout(mostrarContenido, 5000); // Muestra el contenido tras 5 segundos si no pasa nada
+introVideo.addEventListener("ended", mostrarContenido);
+introVideo.addEventListener("error", mostrarContenido);
+setTimeout(mostrarContenido, 5000);
+
+// Forzar reproducción en móviles
+introVideo.play().catch(() => {
+  console.log("Autoplay bloqueado, requiere interacción");
+  mostrarContenido(); // Si falla, pasa al contenido
+});
   </script>
 </body>
 </html>
