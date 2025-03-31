@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lifty - Inici de Sessió</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <!-- Fondo estelar animado -->
+  <div class="fondo-estelar">
+    <div class="estrella"></div>
+    <div class="estrella"></div>
+    <div class="estrella"></div>
+    <div class="estrella"></div>
+    <div class="estrella"></div>
+  </div>
+
+  <!-- Contenedor principal -->
+  <main class="contenedor-login">
+    <!-- Formulario de inicio de sesión -->
+    <form class="formulario-login">
+      <h1>INICI DE SESSIÓ</h1>
+      <div class="campo">
+        <label for="email">Correu electrònic</label>
+        <input type="email" id="email" name="email" placeholder="exemple@correu.com" required>
+      </div>
+      <div class="campo">
+        <label for="password">Contrasenya</label>
+        <input type="password" id="password" name="password" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="boton-login">Iniciar sessió</button>
+      <p class="registro">No tens compte? <a href="../INICIO/2_Hola/hola.html">Registra't</a></p>
+    </form>
+
+    <!-- Elemento decorativo: Cohete de Lifty -->
+    <img src="liftycohete.png" alt="Lifty Cohete" class="lifty-cohete">
+  </main>
+
+  <!-- Script para animaciones (opcional) -->
+  <script>
+    const botonLogin = document.querySelector(".boton-login");
+    const liftyCohete = document.querySelector(".lifty-cohete");
+  
+    botonLogin.addEventListener("click", (e) => {
+      e.preventDefault(); // Evita el envío del formulario
+      
+      // Añade la clase para iniciar la animación
+      liftyCohete.classList.add("despegar");
+      
+      // Escucha cuando la animación termine
+      liftyCohete.addEventListener("animationend", () => {
+        // Redirige a la otra página cuando la animación finalice
+        window.location.href = "../CASA/casa.html";
+      }, { once: true }); // El { once: true } asegura que el evento solo se dispare una vez
+    });
+  </script>
+</body>
+</html>
