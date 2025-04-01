@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Lifty - Progreso</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="progreso.css">
+</head>
+<body>
+  <!-- Contenedor de estrellas -->
+  <div class="stars-container">
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-top">
+      <img src="../img/lifty2blanco.png" alt="Lifty Logo" class="logo">
+      <img src="../img/liftyanimando.svg" alt="Lifty IA Chat" class="logo-ia" id="iaChatBtn">
+    </div>
+    <div class="header-bottom" id="headerBottom">
+      <div class="progreso">
+        <div class="icono-contenedor">
+          <img src="../img/cohete.svg" alt="Cohete Progreso" class="cohete">
+          <span class="etiqueta">Ratxa</span>
+        </div>
+        <div class="detalle-progreso">
+          <span class="progreso-numero">75 punts</span>
+          <div class="barra-progreso">
+            <div class="barra-llena"></div>
+          </div>
+          <span class="racha-dias">10 dies Ratxa de punts</span>
+          <div class="dias-semana">
+            <div class="circulos">
+              <span class="dia marcado"></span>
+              <span class="dia marcado"></span>
+              <span class="dia marcado"></span>
+              <span class="dia"></span>
+              <span class="dia"></span>
+              <span class="dia"></span>
+              <span class="dia"></span>
+            </div>
+            <div class="etiquetas-dias">
+              <span>L</span>
+              <span>M</span>
+              <span>X</span>
+              <span>J</span>
+              <span>V</span>
+              <span>S</span>
+              <span>D</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="corazon" id="corazon">
+        <div class="icono-contenedor">
+          <img src="../img/corazonapp.svg" alt="Corazón Emocional" class="corazon-img">
+          <span class="etiqueta">Nervios</span>
+        </div>
+        <div class="detalle-corazon">
+          <span class="corazon-numero">80 BPM</span>
+          <div class="barra-progreso">
+            <div class="barra-llena corazon-barra"></div>
+          </div>
+          <span class="racha-horas">5 hores Estat emocional</span>
+          <div class="dias-semana">
+            <div class="circulos">
+              <span class="dia marcado"></span>
+              <span class="dia marcado"></span>
+              <span class="dia marcado"></span>
+              <span class="dia"></span>
+              <span class="dia"></span>
+              <span class="dia"></span>
+              <span class="dia"></span>
+            </div>
+            <div class="etiquetas-dias">
+              <span>L</span>
+              <span>M</span>
+              <span>X</span>
+              <span>J</span>
+              <span>V</span>
+              <span>S</span>
+              <span>D</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenido">
+    <div class="progreso-container">
+      <!-- Cohete central con porcentaje -->
+      <div class="cohete-central">
+        <div class="circulo-porcentaje">
+          <svg class="progress-ring" width="200" height="200">
+            <circle class="progress-ring-circle" cx="100" cy="100" r="90" />
+            <circle class="progress-ring-circle-fill" cx="100" cy="100" r="90" />
+          </svg>
+          <span class="porcentaje">56%</span>
+        </div>
+        <img src="../img/cohete.svg" alt="Cohete" class="cohete-grande">
+      </div>
+
+      <!-- Pestañas Semanal/Mensual -->
+      <div class="pestanas">
+        <button class="pestana activa" data-periodo="semanal">Semanal</button>
+        <button class="pestana" data-periodo="mensual">Mensual</button>
+      </div>
+
+      <!-- Sección Logros y Recompensas -->
+      <div class="seccion-progreso">
+        <h2>Logros y Recompensas</h2>
+        <div class="logro">
+          <span class="logro-titulo">Semana Organizada</span>
+          <span class="logro-estado completado">Completado</span>
+        </div>
+        <div class="logro">
+          <span class="logro-titulo">Completaste tu Semana</span>
+          <span class="logro-estado completado">Completado</span>
+        </div>
+        <div class="logro">
+          <span class="logro-titulo">Autónomo</span>
+          <span class="logro-estado pendiente">Pendiente</span>
+        </div>
+      </div>
+
+      <!-- Sección Revisión de Objetivos -->
+      <div class="seccion-progreso">
+        <h2>Revisión de Objetivos</h2>
+        <div class="objetivo">
+          <span class="objetivo-titulo">Terminar proyecto</span>
+          <span class="objetivo-estado en-proceso">En proceso</span>
+        </div>
+        <div class="objetivo">
+          <span class="objetivo-titulo">Hacer ejercicio</span>
+          <span class="objetivo-estado completado">Completado</span>
+        </div>
+        <div class="objetivo">
+          <span class="objetivo-titulo">Leer un libro</span>
+          <span class="objetivo-estado pendiente">Pendiente</span>
+        </div>
+      </div>
+
+      <!-- Sección Estadísticas Personalizadas -->
+      <div class="seccion-progreso">
+        <h2>Estadísticas Personalizadas</h2>
+        <div class="estadistica">
+          <span class="estadistica-titulo">Tiempo de uso</span>
+          <span class="estadistica-valor">4h 30m</span>
+        </div>
+        <div class="estadistica">
+          <span class="estadistica-titulo">Patrones de comportamiento</span>
+          <span class="estadistica-valor">Más activo por la mañana</span>
+        </div>
+        <div class="estadistica">
+          <span class="estadistica-titulo">Tareas más completadas</span>
+          <span class="estadistica-valor">Tareas académicas</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat IA -->
+    <div class="chat-tab" id="iaChatTab">
+      <div class="chat-header">
+        <h2>Chat amb Lifty</h2>
+        <button class="close-btn" id="closeIaChat">X</button>
+      </div>
+      <div class="chat-body" id="iaChatBody">
+        <div class="mensaje lifty">Hola! Com et puc ajudar amb el teu progrés?</div>
+      </div>
+      <div class="chat-input">
+        <input type="text" id="iaUserInput" placeholder="Escriu aquí...">
+        <button id="iaSendMessage">Enviar</button>
+        <button id="iaVoiceBtn">🎙️</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Navegación moderna -->
+  <nav class="navegacion-moderna">
+    <div class="nav-item casa" data-seccion="casa">
+      <div class="nav-icon">
+        <img src="../img/Home.svg" alt="Home">
+      </div>
+      <span class="nav-label">Casa</span>
+    </div>
+    <div class="nav-item config" data-seccion="config">
+      <div class="nav-icon">
+        <img src="../img/settings.svg" alt="Configuración">
+      </div>
+      <span class="nav-label">Configuració</span>
+    </div>
+    <div class="nav-item progreso" data-seccion="progreso">
+      <div class="nav-icon">
+        <img src="../img/1 estrella.svg" alt="Progreso">
+      </div>
+      <span class="nav-label">Progres</span>
+    </div>
+    <div class="nav-item historial" data-seccion="historial">
+      <div class="nav-icon">
+        <img src="../img/historial.svg" alt="Historial">
+      </div>
+      <span class="nav-label">Historial</span>
+    </div>
+    <div class="nav-item perfil" data-seccion="perfil">
+      <div class="nav-icon">
+        <img src="../img/perfil.svg" alt="Perfil">
+      </div>
+      <span class="nav-label">Perfil</span>
+    </div>
+    <img src="../img/liftycohete.png" alt="Lifty Guía" class="lifty-guia" id="liftyGuia">
+  </nav>
+
+  <script>
+    // Animación del header-bottom
+    const headerBottom = document.getElementById("headerBottom");
+    const corazonImg = document.querySelector(".corazon-img");
+    headerBottom.addEventListener("click", () => {
+      headerBottom.classList.toggle("expandido");
+    });
+
+    // Corazón emocional (simulación de emociones)
+    let emocionActual = "feliz";
+    corazonImg.classList.add(emocionActual);
+    setInterval(() => {
+      const emociones = ["feliz", "ansioso", "triste", "enojado"];
+      emocionActual = emociones[Math.floor(Math.random() * emociones.length)];
+      corazonImg.classList.remove("feliz", "ansioso", "triste", "enojado");
+      corazonImg.classList.add(emocionActual);
+    }, 5000);
+
+    // Navegación moderna
+    const navItems = document.querySelectorAll(".nav-item");
+    const liftyGuia = document.getElementById("liftyGuia");
+    navItems.forEach(item => {
+      item.addEventListener("click", () => {
+        navItems.forEach(i => i.classList.remove("activo"));
+        item.classList.add("activo");
+        const rect = item.getBoundingClientRect();
+        liftyGuia.style.left = `${rect.left + rect.width / 2 - 15}px`;
+        liftyGuia.classList.add("viajar");
+        if (item.dataset.seccion === "progreso") {
+          document.querySelector(".cohete").classList.add("despegar");
+        }
+        if (item.dataset.seccion === "casa") window.location.href = "casa.html";
+        if (item.dataset.seccion === "config") window.location.href = "ajustes.html";
+      });
+    });
+
+    // Interactividad de los días
+    const dias = document.querySelectorAll(".dia");
+    dias.forEach(dia => {
+      dia.addEventListener("click", () => {
+        const parentCirculos = dia.closest(".circulos");
+        parentCirculos.querySelectorAll(".dia").forEach(d => d.classList.remove("seleccionado"));
+        dia.classList.add("seleccionado");
+      });
+    });
+
+    // Chat IA
+    const iaChatBtn = document.getElementById("iaChatBtn");
+    const iaChatTab = document.getElementById("iaChatTab");
+    const closeIaChat = document.getElementById("closeIaChat");
+    const iaSendMessage = document.getElementById("iaSendMessage");
+    const iaUserInput = document.getElementById("iaUserInput");
+    const iaChatBody = document.getElementById("iaChatBody");
+    const iaVoiceBtn = document.getElementById("iaVoiceBtn");
+
+    function adjustChatTabSize() {
+      iaChatTab.style.top = `0px`;
+      iaChatTab.style.height = `100vh`;
+    }
+
+    window.addEventListener("load", adjustChatTabSize);
+    window.addEventListener("resize", adjustChatTabSize);
+
+    iaChatBtn.addEventListener("click", () => {
+      iaChatTab.style.display = "block";
+      adjustChatTabSize();
+    });
+
+    closeIaChat.addEventListener("click", () => {
+      iaChatTab.style.display = "none";
+    });
+
+    iaSendMessage.addEventListener("click", sendIaMessage);
+    iaUserInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") sendIaMessage();
+    });
+
+    function sendIaMessage() {
+      const message = iaUserInput.value.trim();
+      if (message) {
+        const userMsg = document.createElement("div");
+        userMsg.classList.add("mensaje", "usuario");
+        userMsg.textContent = message;
+        iaChatBody.appendChild(userMsg);
+        iaUserInput.value = "";
+        setTimeout(() => {
+          const iaMsg = document.createElement("div");
+          iaMsg.classList.add("mensaje", "lifty");
+          iaMsg.textContent = "Aquesta és una resposta simulada!";
+          iaChatBody.appendChild(iaMsg);
+          iaChatBody.scrollTop = iaChatBody.scrollHeight;
+        }, 1000);
+      }
+    }
+
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = "ca-ES";
+    recognition.continuous = false;
+
+    iaVoiceBtn.addEventListener("click", () => {
+      recognition.start();
+      iaVoiceBtn.style.background = "#FF5E62";
+    });
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      iaUserInput.value = transcript;
+      sendIaMessage();
+    };
+
+    recognition.onend = () => {
+      iaVoiceBtn.style.background = "";
+    };
+
+    recognition.onerror = (event) => {
+      console.error("Error en el reconeixement de veu:", event.error);
+    };
+
+    // Pestañas Semanal/Mensual
+    const pestanas = document.querySelectorAll(".pestana");
+    pestanas.forEach(pestana => {
+      pestana.addEventListener("click", () => {
+        pestanas.forEach(p => p.classList.remove("activa"));
+        pestana.classList.add("activa");
+        // Aquí podrías actualizar las estadísticas según el periodo (simulado)
+        console.log(`Periodo seleccionado: ${pestana.dataset.periodo}`);
+      });
+    });
+
+    // Animación del cohete
+    const coheteGrande = document.querySelector(".cohete-grande");
+    coheteGrande.addEventListener("click", () => {
+      coheteGrande.classList.add("despegar");
+      setTimeout(() => coheteGrande.classList.remove("despegar"), 1000);
+    });
+  </script>
+</body>
+</html>

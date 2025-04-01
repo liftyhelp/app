@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Lifty - Ajustes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="ajustes.css">
+</head>
+<body>
+  <!-- Contenedor de estrellas (igual que en index.html) -->
+  <div class="stars-container">
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-top">
+      <img src="../img/lifty2blanco.png" alt="Lifty Logo" class="logo">
+      <img src="../img/liftyanimando.svg" alt="Lifty IA Chat" class="logo-ia" id="iaChatBtn">
+    </div>
+    <div class="header-bottom" id="headerBottom">
+      <div class="progreso">
+        <div class="icono-contenedor">
+          <img src="../img/cohete.svg" alt="Cohete Progreso" class="cohete">
+          <span class="etiqueta">Ratxa</span>
+        </div>
+        <div class="detalle-progreso">
+          <span class="progreso-numero">75 punts</span>
+          <div class="barra-progreso">
+            <div class="barra-llena"></div>
+          </div>
+          <span class="racha-dias">10 dies Ratxa de punts</span>
+          <div class="dias-semana">
+            <div class="circulos">
+              <span class="dia marcado"></span>
+              <span class="dia marcado"></span>
+              <span class="dia marcado"></span>
+              <span class="dia"></span>
+              <span class="dia"></span>
+              <span class="dia"></span>
+              <span class="dia"></span>
+            </div>
+            <div class="etiquetas-dias">
+              <span>L</span>
+              <span>M</span>
+              <span>X</span>
+              <span>J</span>
+              <span>V</span>
+              <span>S</span>
+              <span>D</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="corazon" id="corazon">
+        <div class="icono-contenedor">
+          <img src="../img/corazonapp.svg" alt="Corazón Emocional" class="corazon-img">
+          <span class="etiqueta">Nervios</span>
+        </div>
+        <div class="detalle-corazon">
+          <span class="corazon-numero">80 BPM</span>
+          <div class="barra-progreso">
+            <div class="barra-llena corazon-barra"></div>
+          </div>
+          <span class="racha-horas">5 hores Estat emocional</span>
+          <div class="dias-semana">
+            <div class="circulos">
+              <span class="dia marcado"></span>
+              <span class="dia marcado"></span>
+              <span class="dia marcado"></span>
+              <span class="dia"></span>
+              <span class="dia"></span>
+              <span class="dia"></span>
+              <span class="dia"></span>
+            </div>
+            <div class="etiquetas-dias">
+              <span>L</span>
+              <span>M</span>
+              <span>X</span>
+              <span>J</span>
+              <span>V</span>
+              <span>S</span>
+              <span>D</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenido">
+    <div class="ajustes-container">
+      <h1>Ajustes</h1>
+
+      <!-- Sección Notificaciones -->
+      <div class="ajuste-seccion">
+        <h2>Notificaciones</h2>
+        <div class="opcion">
+          <label>Color de notificaciones</label>
+          <input type="color" id="notif-color" value="#2595CD">
+        </div>
+        <div class="opcion">
+          <label>Sonido de notificaciones</label>
+          <select id="notif-sound">
+            <option value="default">Por defecto</option>
+            <option value="beep">Beep</option>
+            <option value="melody">Melodía</option>
+          </select>
+        </div>
+        <div class="opcion">
+          <label>Personalizar mensaje</label>
+          <input type="text" id="notif-custom" placeholder="Ej: '¡Tarea pendiente!'">
+        </div>
+      </div>
+
+      <!-- Sección Accesibilidad -->
+      <div class="ajuste-seccion">
+        <h2>Accesibilidad</h2>
+        <div class="opcion">
+          <label>Voz de Lifty</label>
+          <select id="lifty-voice">
+            <option value="femenina">Voz femenina</option>
+            <option value="masculina">Voz masculina</option>
+            <option value="neutra">Voz neutra</option>
+          </select>
+        </div>
+        <div class="opcion">
+          <label>Tamaño de letra</label>
+          <input type="range" id="font-size" min="12" max="24" value="16">
+        </div>
+        <div class="opcion">
+          <label>Contraste alto</label>
+          <input type="checkbox" id="high-contrast">
+        </div>
+      </div>
+
+      <!-- Sección Integraciones -->
+      <div class="ajuste-seccion">
+        <h2>Integraciones</h2>
+        <div class="opcion">
+          <label>Conectar dispositivos externos</label>
+          <button class="btn-conectar" id="connect-device">Conectar</button>
+        </div>
+        <div class="opcion">
+          <label>Conectar Google Calendar</label>
+          <button class="btn-conectar" id="connect-google">Conectar</button>
+        </div>
+      </div>
+
+      <!-- Sección Seguridad y Privacidad -->
+      <div class="ajuste-seccion">
+        <h2>Seguridad y Privacidad</h2>
+        <div class="opcion">
+          <label>Contraseña</label>
+          <input type="password" id="password" placeholder="Nueva contraseña">
+        </div>
+        <div class="opcion">
+          <label>Permitir datos anónimos</label>
+          <input type="checkbox" id="anonymous-data" checked>
+        </div>
+      </div>
+
+      <!-- Sección Info de la App (cambio realizado aquí) -->
+      <div class="ajuste-seccion">
+        <h2>Info de la App</h2>
+        <p>Versión: 1.0.0 (Beta)</p>
+        <p>Desarrollado por: xAI</p>
+        <button class="btn-info" id="more-info">Más información</button>
+      </div>
+
+      <!-- Sección Conozcámonos -->
+      <div class="ajuste-seccion">
+        <h2>Conozcámonos</h2>
+        <div class="opcion">
+          <label>¿Cuál es tu hobby favorito?</label>
+          <input type="text" id="hobby" placeholder="Ej: Leer, correr...">
+        </div>
+        <div class="opcion">
+          <label>¿Qué te motiva cada día?</label>
+          <textarea id="motivacion" placeholder="Escribe aquí..."></textarea>
+        </div>
+        <button class="btn-guardar" id="save-conozcamonos">Guardar</button>
+      </div>
+    </div>
+
+    <!-- Chat IA -->
+    <div class="chat-tab" id="iaChatTab">
+      <div class="chat-header">
+        <h2>Chat amb Lifty</h2>
+        <button class="close-btn" id="closeIaChat">X</button>
+      </div>
+      <div class="chat-body" id="iaChatBody">
+        <div class="mensaje lifty">Hola! Com et puc ajudar amb els ajustos?</div>
+      </div>
+      <div class="chat-input">
+        <input type="text" id="iaUserInput" placeholder="Escriu aquí...">
+        <button id="iaSendMessage">Enviar</button>
+        <button id="iaVoiceBtn">🎙️</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Navegación moderna -->
+  <nav class="navegacion-moderna">
+    <div class="nav-item casa" data-seccion="casa">
+      <div class="nav-icon">
+        <img src="../img/settings.svg" alt="Home">
+      </div>
+      <span class="nav-label">Configuració</span>
+    </div>
+    <div class="nav-item config" data-seccion="config">
+      <div class="nav-icon">
+        <img src="../img/1 estrella.svg" alt="Configuración">
+      </div>
+      <span class="nav-label">Progres</span>
+    </div>
+    <div class="nav-item progreso" data-seccion="progreso">
+      <div class="nav-icon">
+        <img src="../img/Home.svg" alt="Progreso">
+      </div>
+      <span class="nav-label">Casa</span>
+    </div>
+    <div class="nav-item historial" data-seccion="historial">
+      <div class="nav-icon">
+        <img src="../img/historial.svg" alt="Historial">
+      </div>
+      <span class="nav-label">Historial</span>
+    </div>
+    <div class="nav-item perfil" data-seccion="perfil">
+      <div class="nav-icon">
+        <img src="../img/perfil.svg" alt="Perfil">
+      </div>
+      <span class="nav-label">Perfil</span>
+    </div>
+    <img src="../img/liftycohete.png" alt="Lifty Guía" class="lifty-guia" id="liftyGuia">
+  </nav>
+
+  <script>
+    // Animación del header-bottom
+    const headerBottom = document.getElementById("headerBottom");
+    const corazonImg = document.querySelector(".corazon-img");
+    headerBottom.addEventListener("click", () => {
+      headerBottom.classList.toggle("expandido");
+    });
+
+    // Corazón emocional (simulación de emociones)
+    let emocionActual = "feliz";
+    corazonImg.classList.add(emocionActual);
+    setInterval(() => {
+      const emociones = ["feliz", "ansioso", "triste", "enojado"];
+      emocionActual = emociones[Math.floor(Math.random() * emociones.length)];
+      corazonImg.classList.remove("feliz", "ansioso", "triste", "enojado");
+      corazonImg.classList.add(emocionActual);
+    }, 5000);
+
+    // Navegación moderna
+    const navItems = document.querySelectorAll(".nav-item");
+    const liftyGuia = document.getElementById("liftyGuia");
+    navItems.forEach(item => {
+      item.addEventListener("click", () => {
+        navItems.forEach(i => i.classList.remove("activo"));
+        item.classList.add("activo");
+        const rect = item.getBoundingClientRect();
+        liftyGuia.style.left = `${rect.left + rect.width / 2 - 15}px`;
+        liftyGuia.classList.add("viajar");
+        if (item.dataset.seccion === "progreso") {
+          document.querySelector(".cohete").classList.add("despegar");
+        }
+        if (item.dataset.seccion === "casa") window.location.href = "casa.html";
+      });
+    });
+
+    // Interactividad de los días
+    const dias = document.querySelectorAll(".dia");
+    dias.forEach(dia => {
+      dia.addEventListener("click", () => {
+        const parentCirculos = dia.closest(".circulos");
+        parentCirculos.querySelectorAll(".dia").forEach(d => d.classList.remove("seleccionado"));
+        dia.classList.add("seleccionado");
+      });
+    });
+
+    // Chat IA
+    const iaChatBtn = document.getElementById("iaChatBtn");
+    const iaChatTab = document.getElementById("iaChatTab");
+    const closeIaChat = document.getElementById("closeIaChat");
+    const iaSendMessage = document.getElementById("iaSendMessage");
+    const iaUserInput = document.getElementById("iaUserInput");
+    const iaChatBody = document.getElementById("iaChatBody");
+    const iaVoiceBtn = document.getElementById("iaVoiceBtn");
+
+    function adjustChatTabSize() {
+      iaChatTab.style.top = `0px`;
+      iaChatTab.style.height = `100vh`;
+    }
+
+    window.addEventListener("load", adjustChatTabSize);
+    window.addEventListener("resize", adjustChatTabSize);
+
+    iaChatBtn.addEventListener("click", () => {
+      iaChatTab.style.display = "block";
+      adjustChatTabSize();
+    });
+
+    closeIaChat.addEventListener("click", () => {
+      iaChatTab.style.display = "none";
+    });
+
+    iaSendMessage.addEventListener("click", sendIaMessage);
+    iaUserInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") sendIaMessage();
+    });
+
+    function sendIaMessage() {
+      const message = iaUserInput.value.trim();
+      if (message) {
+        const userMsg = document.createElement("div");
+        userMsg.classList.add("mensaje", "usuario");
+        userMsg.textContent = message;
+        iaChatBody.appendChild(userMsg);
+        iaUserInput.value = "";
+        setTimeout(() => {
+          const iaMsg = document.createElement("div");
+          iaMsg.classList.add("mensaje", "lifty");
+          iaMsg.textContent = "Aquesta és una resposta simulada!";
+          iaChatBody.appendChild(iaMsg);
+          iaChatBody.scrollTop = iaChatBody.scrollHeight;
+        }, 1000);
+      }
+    }
+
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = "ca-ES";
+    recognition.continuous = false;
+
+    iaVoiceBtn.addEventListener("click", () => {
+      recognition.start();
+      iaVoiceBtn.style.background = "#FF5E62";
+    });
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      iaUserInput.value = transcript;
+      sendIaMessage();
+    };
+
+    recognition.onend = () => {
+      iaVoiceBtn.style.background = "";
+    };
+
+    recognition.onerror = (event) => {
+      console.error("Error en el reconeixement de veu:", event.error);
+    };
+
+    // Lógica básica para ajustes (simulada)
+    document.getElementById("connect-device").addEventListener("click", () => {
+      alert("Conectando dispositivo externo...");
+    });
+
+    document.getElementById("connect-google").addEventListener("click", () => {
+      alert("Conectando Google Calendar...");
+    });
+
+    document.getElementById("more-info").addEventListener("click", () => {
+      alert("Más información sobre la app: Lifty es una aplicación desarrollada por xAI para ayudarte en tu día a día.");
+    });
+
+    document.getElementById("save-conozcamonos").addEventListener("click", () => {
+      const hobby = document.getElementById("hobby").value;
+      const motivacion = document.getElementById("motivacion").value;
+      if (hobby && motivacion) {
+        alert(`Guardado!\nHobby: ${hobby}\nMotivación: ${motivacion}`);
+      } else {
+        alert("Por favor, completa ambos campos.");
+      }
+    });
+
+    // Accesibilidad: Tamaño de letra dinámico
+    const fontSizeSlider = document.getElementById("font-size");
+    fontSizeSlider.addEventListener("input", () => {
+      document.body.style.fontSize = `${fontSizeSlider.value}px`;
+    });
+
+    // Accesibilidad: Contraste alto
+    const highContrastCheckbox = document.getElementById("high-contrast");
+    highContrastCheckbox.addEventListener("change", () => {
+      document.body.classList.toggle("high-contrast", highContrastCheckbox.checked);
+    });
+  </script>
+</body>
+</html>
