@@ -2,30 +2,21 @@
 <html lang="ca">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lifty - Inici</title>
-
-  <meta name="theme-color" content="blue">
-    <meta name="msapplication-navbutton-color" content="blue">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="blue">
-    
-    <link rel="icon" sizes="192x192" href="img/icon.png">
-    <link rel="icon" sizes="512x512" href="img/icon.png">
-    <link rel="apple-touch-icon" href="img/icon.png">
-
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <!-- Video introductorio -->
   <div class="video-intro" id="videoIntro">
-    <video id="introVideo" autoplay muted>
+    <video id="introVideo" autoplay muted playsinline>
       <source src="img/animacion_liftyfinal.mp4" type="video/mp4">
+      Tu navegador no soporta videos.
     </video>
   </div>
 
-  <!-- Contenido principal (inicialmente oculto) -->
+  <!-- Contenido principal -->
   <div class="contenido-principal" id="contenidoPrincipal">
     <!-- Contenedor de estrellas -->
     <div class="stars-container">
@@ -70,27 +61,34 @@
 
   <!-- Script para manejar el video -->
   <script>
-    const videoIntro = document.getElementById("videoIntro");
-    const introVideo = document.getElementById("introVideo");
-    const contenidoPrincipal = document.getElementById("contenidoPrincipal");
-  
-    contenidoPrincipal.style.display = "none";
-  
-    function mostrarContenido() {
-      videoIntro.style.display = "none";
-      contenidoPrincipal.style.display = "block";
-    }
-  
-    introVideo.addEventListener("ended", mostrarContenido);
-    introVideo.addEventListener("error", mostrarContenido);
-    setTimeout(mostrarContenido, 2000); // 2 segundos como fallback
-  
-    // Forzar reproducción en móviles
-    introVideo.play().then(() => {
-      console.log("Vídeo reproduciéndose automáticamente");
-    }).catch((error) => {
-      console.log("Autoplay bloqueado: ", error);
-      introVideo.setAttribute("controls", ""); // Añade controles si falla
+    document.addEventListener("DOMContentLoaded", function() {
+      const videoIntro = document.getElementById("videoIntro");
+      const introVideo = document.getElementById("introVideo");
+      const contenidoPrincipal = document.getElementById("contenidoPrincipal");
+
+      // Ocultar el contenido principal al inicio
+      contenidoPrincipal.style.display = "none";
+      videoIntro.style.display = "flex";
+
+      // Cuando el video termine, ocultar el video y mostrar el contenido principal
+      introVideo.addEventListener("ended", function() {
+        videoIntro.style.display = "none";
+        contenidoPrincipal.style.display = "flex";
+      });
+
+      // Forzar reproducción en caso de que autoplay falle (móviles)
+      introVideo.play().catch(function(error) {
+        console.log("Error al intentar reproducir el video automáticamente:", error);
+        // Si falla, mostrar el contenido principal directamente
+        videoIntro.style.display = "none";
+        contenidoPrincipal.style.display = "flex";
+      });
+
+      // Forzar el cambio después de 6 segundos como respaldo
+      setTimeout(function() {
+        videoIntro.style.display = "none";
+        contenidoPrincipal.style.display = "flex";
+      }, 6000); // 6000 ms = 6 segundos
     });
   </script>
 </body>
