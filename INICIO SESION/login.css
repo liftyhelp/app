@@ -16,7 +16,6 @@ body {
   overflow: hidden;
 }
 
-/* Fondo estelar animado */
 .fondo-estelar {
   position: absolute;
   top: 0;
@@ -82,7 +81,7 @@ body {
 .contenedor-login {
   position: relative;
   z-index: 2;
-  background: rgba(10, 29, 86, 0.8); /* Fondo translúcido */
+  background: rgba(10, 29, 86, 0.8); 
   border-radius: 20px;
   padding: 40px;
   width: 90%;
@@ -195,21 +194,21 @@ body {
   width: 0;
   height: 2px;
   bottom: -4px;
-  left: 50%; /* Empieza desde el centro */
-  transform: translateX(-50%); /* Centra la línea */
+  left: 50%;
+  transform: translateX(-50%); 
   background-color: #2595CD;
   transition: width 0.2s ease;
 }
 
 .registro a:hover::after {
-  width: 100%; /* La línea se expande hacia los lados */
+  width: 100%; 
 }
 
 .registro a:hover {
-  color: #638aff; /* Opcional: cambia el color del texto */
+  color: #638aff;
 }
 
-/* Cohete de Lifty (elemento decorativo) */
+/* Cohete de Lifty */
 .lifty-cohete {
   position: absolute;
   width: 100px;

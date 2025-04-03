@@ -2,13 +2,21 @@
 <html lang="ca">
 <head>
   <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Lifty - App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Lifty Quantum - App</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="casa.css">
 </head>
 <body>
-  <!-- Header -->
+  <!-- TimeSphere (Pantalla de bloqueo) -->
+  <div class="timesphere-screen" id="timesphereScreen">
+    <div class="timesphere">
+      <div class="status-text">Estat: Estable</div>
+    </div>
+    <button class="unlock-btn" onclick="hideTimeSphere()">Desbloquejar</button>
+  </div>
+
+  <!-- Header (sin cambios) -->
   <header class="header">
     <div class="header-top">
       <img src="../img/lifty2blanco.png" alt="Lifty Logo" class="logo">
@@ -84,17 +92,38 @@
     </div>
   </header>
 
+  <!-- Main Content -->
   <main class="contenido">
-    <!-- Pestañas Ácademic y Día -->
+    <div class="quantum-dashboard" id="quantumDashboard">
+      <div class="score-section">
+        <p>¡Hola! Sóc Lifty, com et puc ajudar avui?</p>
+        <div class="score-circle lifty-circle">
+          <div class="lifty-animation"></div>
+        </div>
+      </div>
+
+      <!-- Stats Section (tarjetas clicables) -->
+      <div class="stats-section">
+        <div class="stat-card" onclick="openIaChat()">
+          <div class="icon ajuda-icon"></div>
+          <p>AJUDA</p>
+          <p class="status active">Activa</p>
+        </div>
+        <div class="stat-card" onclick="contactFamily()">
+          <div class="icon familia-icon"></div>
+          <p>CONTACTE AMB LA FAMÍLIA</p>
+          <p class="status pending">Pendent</p>
+        </div>
+      </div>
+    </div>
+
     <div class="pestanas" id="pestanas">
-      <button class="pestana pestana-activa" data-tab="academic">Ácademic</button>
+      <button class="pestana" data-tab="academic">Ácademic</button>
       <button class="pestana" data-tab="dia">Día</button>
     </div>
 
-    <!-- Contenedores para el contenido de cada pestaña -->
     <div class="contenido-pestanas">
-      <div class="contenido-tab" id="academic">
-        <!-- Subpestañas para la pestaña Académico -->
+      <div class="contenido-tab" id="academic" style="display: none;">
         <div class="subpestanas">
           <button class="subpestana subpestana-activa" data-subtab="horario">Horario</button>
           <button class="subpestana" data-subtab="agenda">Agenda</button>
@@ -103,7 +132,6 @@
         </div>
       </div>
       <div class="contenido-tab" id="dia" style="display: none;">
-        <!-- Subpestañas para la pestaña Día -->
         <div class="subpestanas">
           <button class="subpestana subpestana-activa" data-subtab="recordatorios">Recordatorios diarios</button>
           <button class="subpestana" data-subtab="apoyo">Apoyo emocional</button>
@@ -115,7 +143,7 @@
 
     <div class="chat-tab" id="iaChatTab">
       <div class="chat-header">
-        <h2>Chat amb Lifty </h2>
+        <h2>Chat amb Lifty</h2>
         <button class="close-btn" id="closeIaChat">X</button>
       </div>
       <div class="chat-body" id="iaChatBody">
@@ -129,7 +157,7 @@
     </div>
   </main>
 
-  <!-- Nueva navegación interactiva -->
+  <!-- Navegación (sin cambios) -->
   <nav class="navegacion-moderna">
     <div class="nav-item casa" data-seccion="casa">
       <div class="nav-icon">
@@ -164,20 +192,17 @@
     <img src="../img/liftycohete.png" alt="Lifty Guía" class="lifty-guia" id="liftyGuia">
   </nav>
 
+  <!-- Script (sin cambios adicionales) -->
   <script>
-    // Animació del header-bottom
     const headerBottom = document.getElementById("headerBottom");
     const corazonImg = document.querySelector(".corazon-img");
     headerBottom.addEventListener("click", () => {
       headerBottom.classList.toggle("expandido");
-      adjustPestanasPosition(); // Ajustar posición de pestañas al expandir/colapsar
+      adjustPestanasPosition();
     });
 
-    // Corazón emocional (simulació d'emocions)
     let emocionActual = "feliz";
     corazonImg.classList.add(emocionActual);
-
-    // Navegación moderna
     const navItems = document.querySelectorAll(".nav-item");
     const liftyGuia = document.getElementById("liftyGuia");
 
@@ -194,15 +219,15 @@
       });
     });
 
-    // Simulació de canvi d'emoció
     setInterval(() => {
       const emociones = ["feliz", "ansioso", "triste", "enojado"];
       emocionActual = emociones[Math.floor(Math.random() * emociones.length)];
       corazonImg.classList.remove("feliz", "ansioso", "triste", "enojado");
       corazonImg.classList.add(emocionActual);
+      document.querySelector(".emotion-icon")?.classList.remove("feliz", "ansioso", "triste", "enojado");
+      document.querySelector(".emotion-icon")?.classList.add(emocionActual);
     }, 5000);
 
-    // Interactivitat per als cercles dels dies
     const dias = document.querySelectorAll(".dia");
     dias.forEach(dia => {
       dia.addEventListener("click", () => {
@@ -212,7 +237,6 @@
       });
     });
 
-    // Ajustar posición de las pestañas dinámicamente
     function adjustPestanasPosition() {
       const header = document.querySelector(".header");
       const pestanas = document.getElementById("pestanas");
@@ -220,57 +244,43 @@
       pestanas.style.top = `${headerHeight}px`;
     }
 
-    // Ajustar posición inicial y al redimensionar
     window.addEventListener("load", adjustPestanasPosition);
     window.addEventListener("resize", adjustPestanasPosition);
 
-    // Interactividad de las pestañas principales
     const pestanas = document.querySelectorAll(".pestana");
     const contenidos = document.querySelectorAll(".contenido-tab");
+    const quantumDashboard = document.getElementById("quantumDashboard");
+
+    quantumDashboard.style.display = "block"; // Mostrar Quantum Dashboard por defecto
 
     pestanas.forEach(pestana => {
       pestana.addEventListener("click", () => {
-        // Cambiar pestaña activa
-        pestanas.forEach(p => p.classList.remove("pestana-activa"));
-        pestana.classList.add("pestana-activa");
-
-        // Mostrar contenido correspondiente
         const tabId = pestana.dataset.tab;
-        contenidos.forEach(contenido => {
-          if (contenido.id === tabId) {
-            contenido.style.display = "block";
-          } else {
-            contenido.style.display = "none";
-          }
-        });
+        const contenido = document.getElementById(tabId);
+
+        if (pestana.classList.contains("pestana-activa")) {
+          pestana.classList.remove("pestana-activa");
+          contenido.style.display = "none";
+          quantumDashboard.style.display = "block";
+        } else {
+          pestanas.forEach(p => p.classList.remove("pestana-activa"));
+          contenidos.forEach(c => c.style.display = "none");
+          pestana.classList.add("pestana-activa");
+          contenido.style.display = "block";
+          quantumDashboard.style.display = "none";
+        }
       });
     });
 
-    // Interactividad de las subpestañas (para ambas pestañas: Día y Académico)
     const subpestanas = document.querySelectorAll(".subpestana");
-    const contenidosSubpestanas = document.querySelectorAll(".contenido-subtab");
-
     subpestanas.forEach(subpestana => {
       subpestana.addEventListener("click", () => {
-        // Cambiar subpestaña activa dentro de su contenedor padre
         const parentSubpestanas = subpestana.closest(".subpestanas");
         parentSubpestanas.querySelectorAll(".subpestana").forEach(sp => sp.classList.remove("subpestana-activa"));
         subpestana.classList.add("subpestana-activa");
-
-        // Mostrar contenido correspondiente
-        const subtabId = subpestana.dataset.subtab;
-        const parentContenidoSubpestanas = subpestana.closest(".contenido-tab").querySelector(".contenido-subpestanas");
-        parentContenidoSubpestanas.querySelectorAll(".contenido-subtab").forEach(contenido => {
-          if (contenido.id === subtabId) {
-            contenido.style.display = "block";
-          } else {
-            contenido.style.display = "none";
-          }
-        });
       });
     });
 
-    // Chat IA con texto y voz
     const iaChatBtn = document.getElementById("iaChatBtn");
     const iaChatTab = document.getElementById("iaChatTab");
     const closeIaChat = document.getElementById("closeIaChat");
@@ -280,23 +290,22 @@
     const iaVoiceBtn = document.getElementById("iaVoiceBtn");
 
     function adjustChatTabSize() {
-      const chatTab = document.getElementById("iaChatTab");
-      chatTab.style.top = `0px`; // Cubre toda la pantalla desde el top
-      chatTab.style.height = `100vh`; // Cubre toda la altura de la pantalla
+      iaChatTab.style.top = `0px`;
+      iaChatTab.style.height = `100vh`;
     }
 
     window.addEventListener("load", adjustChatTabSize);
     window.addEventListener("resize", adjustChatTabSize);
 
-    iaChatBtn.addEventListener("click", () => {
+    iaChatBtn.addEventListener("click", openIaChat);
+
+    function openIaChat() {
       iaChatTab.style.display = "block";
       adjustChatTabSize();
-      // No ocultamos las pestañas, solo las dejamos detrás con z-index
-    });
+    }
 
     closeIaChat.addEventListener("click", () => {
       iaChatTab.style.display = "none";
-      // Las pestañas ya están en su lugar, no necesitamos hacer nada más
     });
 
     iaSendMessage.addEventListener("click", sendIaMessage);
@@ -312,7 +321,6 @@
         userMsg.textContent = message;
         iaChatBody.appendChild(userMsg);
         iaUserInput.value = "";
-
         setTimeout(() => {
           const iaMsg = document.createElement("div");
           iaMsg.classList.add("mensaje", "lifty");
@@ -345,7 +353,24 @@
     recognition.onerror = (event) => {
       console.error("Error en el reconeixement de veu:", event.error);
     };
+
+    function hideTimeSphere() {
+      document.getElementById("timesphereScreen").classList.add("hidden");
+    }
+
+    // Función para "Contacte amb la Família"
+    function contactFamily() {
+      alert("Contactant amb la família..."); // Simulación, puedes cambiar esto por la funcionalidad real
+    }
+
+    // Añadir evento de clic para las ondas de sonido
+const liftyCircle = document.querySelector('.score-circle.lifty-circle'); // Asegurarse de seleccionar el elemento correcto
+liftyCircle.addEventListener('click', () => {
+  liftyCircle.classList.remove('clicked'); // Reiniciar la animación
+  void liftyCircle.offsetWidth; // Forzar el reinicio de la animación
+  liftyCircle.classList.add('clicked'); // Activar las ondas
+});
+
   </script>
-  <script src="chat.js"></script>
 </body>
 </html>

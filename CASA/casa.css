@@ -14,6 +14,70 @@ body {
   overflow-x: hidden;
 }
 
+/* TimeSphere (Pantalla de bloqueo) */
+.timesphere-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #2595CD, #1E7AB0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  transition: opacity 0.5s ease;
+}
+
+.timesphere-screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.timesphere {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(37, 149, 205, 0.5));
+  box-shadow: 0 0 50px rgba(37, 149, 205, 0.7);
+  animation: pulse 2s infinite;
+}
+
+.timesphere::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px dashed #FFFFFF;
+  animation: spin 10s linear infinite;
+}
+
+.status-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #FFFFFF;
+  font-size: 20px;
+  text-shadow: 0 0 10px #2595CD;
+  animation: fade 3s infinite;
+}
+
+.unlock-btn {
+  position: absolute;
+  bottom: 20px;
+  padding: 10px 20px;
+  background: #FF5E62;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Header (sin cambios) */
 .header {
   width: 100%;
   padding: 20px 20px;
@@ -279,19 +343,379 @@ body {
   50% { transform: scale(1.2); filter: brightness(1.5) drop-shadow(0 0 5px #FF4500); }
 }
 
+/* Contenido principal */
 .contenido {
   flex: 1;
   padding-top: 0;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-  background: #FFFFFF;
+  background: linear-gradient(180deg, #FFFFFF 0%, #E6F0FA 50%, #2595CD 100%);
 }
 
-.contenido.chat-active #iaChatTab {
+/* Quantum Dashboard */
+.quantum-dashboard {
+  position: fixed;
+  top: 55%; /* Ajustado para bajar todo un poco (antes era 40%) */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 20px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  z-index: 1;
 }
 
+.score-section {
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* Estilo de bocadillo para el texto "Hola! Sóc Lifty..." */
+.score-section p {
+  font-size: 14px;
+  color: #333333;
+  background: #f0f0f0;
+  padding: 10px 20px;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: -60px;
+  max-width: 250px;
+  text-align: center;
+}
+
+.score-section p::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #f0f0f0;
+}
+
+.score-circle.lifty-circle {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border: 2px solid #f0f0f0;
+  cursor: pointer;
+}
+
+.lifty-animation {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, #2595CD 0%, #1E7AB0 50%, #2595CD 100%);
+  border-radius: 50%;
+  animation: siri-pulse 3s infinite ease-in-out;
+  box-shadow: 0 0 20px rgba(37, 149, 205, 0.7);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Añadir la imagen lifty cara.svg */
+.lifty-animation::before {
+  margin-top: 15px;
+  content: '';
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  background: url('../img/lifty cara.svg') no-repeat center center;
+  background-size: contain;
+  opacity: 0.5;
+  filter: blur(0px);
+  z-index: 1;
+}
+
+/* Ondas de sonido al hacer clic */
+.lifty-circle::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: -30px; /* Posicionar las ondas entre el círculo y el botón de "Ajuda" */
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: rgba(37, 149, 205, 0.3);
+  pointer-events: none;
+  z-index: 2; /* Asegurar que las ondas estén visibles */
+}
+
+.lifty-circle.clicked::after {
+  animation: sound-wave 1.5s ease-out forwards;
+}
+
+/* Segunda onda con retraso */
+.lifty-circle.clicked::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: rgba(37, 149, 205, 0.3);
+  pointer-events: none;
+  z-index: 2;
+  animation: sound-wave 1.5s ease-out 0.3s forwards;
+}
+
+/* Tercera onda con más retraso */
+.lifty-circle.clicked .lifty-animation::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: rgba(37, 149, 205, 0.3);
+  pointer-events: none;
+  z-index: 2;
+  animation: sound-wave 1.5s ease-out 0.6s forwards;
+}
+
+/* Animación de las ondas de sonido */
+@keyframes sound-wave {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+  }
+  100% {
+    width: 100px;
+    height: 100px;
+    opacity: 0;
+  }
+}
+
+@keyframes siri-pulse {
+  0% {
+    transform: scale(0.8);
+    background: radial-gradient(circle, #2595CD 0%, #1E7AB0 50%, #2595CD 100%);
+    box-shadow: 0 0 20px rgba(37, 149, 205, 0.7);
+  }
+  50% {
+    transform: scale(1);
+    background: radial-gradient(circle, #1E7AB0 0%, #2595CD 50%, #1E7AB0 100%);
+    box-shadow: 0 0 40px rgba(37, 149, 205, 1);
+  }
+  100% {
+    transform: scale(0.8);
+    background: radial-gradient(circle, #2595CD 0%, #1E7AB0 50%, #2595CD 100%);
+    box-shadow: 0 0 20px rgba(37, 149, 205, 0.7);
+  }
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 480px) {
+  .quantum-dashboard {
+    top: 50%; /* Ajustado para pantallas pequeñas (bajado un poco menos que en pantallas grandes) */
+  }
+
+  .score-circle.lifty-circle {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+  }
+
+  .score-section p {
+    font-size: 12px;
+    max-width: 200px;
+    top: -50px;
+  }
+}
+
+.stats-section {
+  display: flex;
+  flex-direction: column; /* Cambiado a columna para que los botones estén uno debajo del otro */
+  align-items: center; /* Centrado horizontalmente */
+  width: 100%;
+  margin-top: 30px;
+  gap: 15px; /* Espacio entre los botones */
+}
+
+.stat-card {
+  width: 80%; /* Aumentado para que los botones sean más largos */
+  max-width: 400px; /* Límite máximo para que no se vean demasiado anchos en pantallas grandes */
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card:active {
+  transform: scale(0.95);
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto 10px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.ajuda-icon {
+  background: url('../img/liftyanimando.svg');
+  background-color: #e6f0fa;
+  border-radius: 50%;
+}
+
+.familia-icon {
+  background: url('../img/1 estrella.svg');
+  background-color: #ffe6e6;
+  border-radius: 50%;
+}
+
+.stat-card p {
+  font-size: 14px;
+  color: #333333;
+}
+
+.status {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.active {
+  color: #28a745;
+}
+
+.pending {
+  color: #dc3545;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 480px) {
+  .score-circle.lifty-circle {
+    width: 150px;
+    height: 150px;
+  }
+  .stat-card {
+    width: 90%; /* Más ancho relativo en pantallas pequeñas */
+    padding: 10px;
+  }
+  .stat-card p {
+    font-size: 12px;
+  }
+  .status {
+    font-size: 10px;
+  }
+}
+
+/* Pestañas (sin cambios) */
+.pestanas {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin: 10px;
+  position: fixed;
+  width: 300px;
+  z-index: 999;
+  background: transparent;
+  margin-top: 20px;
+}
+
+.pestana {
+  width: 150px;
+  height: 50px;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  border: 1px solid #D3D3D3;
+  background: #FFFFFF;
+  color: #000000;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.pestana:first-child {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-right: none;
+}
+
+.pestana:last-child {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-left: none;
+}
+
+.pestana-activa {
+  background: #2595CD;
+  color: #FFFFFF;
+}
+
+.contenido-pestanas {
+  margin-top: 240px;
+  padding: 20px;
+  color: #000000;
+  position: relative;
+  z-index: 998;
+}
+
+.contenido-tab {
+  display: none;
+}
+
+.subpestanas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.subpestana {
+  width: 100%;
+  height: 110px;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid #D3D3D3;
+  border-radius: 10px;
+  background: #F5F5F5;
+  color: #000000;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+  text-align: left;
+}
+
+.subpestana:hover {
+  background: #2595CD;
+}
+
+.subpestana-activa {
+  background: #2595CD;
+  color: #FFFFFF;
+  border-color: #2595CD;
+}
+
+/* Navegación (sin cambios) */
 .navegacion-moderna {
   position: fixed;
   bottom: 20px;
@@ -420,138 +844,7 @@ body {
   100% { transform: translateX(-50%) scale(1); }
 }
 
-.pestanas {
-  display: flex;
-  justify-content: center;
-  gap: 0;
-  margin: 10px;
-  position: fixed;
-  width: 500px;
-  z-index: 999;
-  background: transparent;
-  /* Añadimos un margen adicional para bajar las pestañas */
-  margin-top: 20px; /* Ajusta este valor según cuánto quieras bajarlas */
-}
-
-.pestana {
-  width: 150px;
-  height: 50px;
-  padding: 10px 20px;
-  font-size: 18px;
-  font-weight: 600;
-  border: 1px solid #D3D3D3;
-  background: #FFFFFF;
-  color: #000000;
-  cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.pestana:first-child {
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-  border-right: none;
-}
-
-.pestana:last-child {
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  border-left: none;
-}
-
-.pestana-activa {
-  background: #2595CD;
-  color: #FFFFFF;
-}
-
-.contenido-pestanas {
-  margin-top: 240px;
-  padding: 20px;
-  color: #000000;
-  position: relative;
-  z-index: 998;
-}
-
-.contenido-tab {
-  display: none;
-}
-
-.contenido-tab p {
-  font-size: 16px;
-}
-
-.subpestanas {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-}
-
-.subpestana {
-  width: 100%;
-  height: 110px;
-  padding: 15px;
-  font-size: 16px;
-  font-weight: 500;
-  border: 1px solid #D3D3D3;
-  border-radius: 10px;
-  background: #F5F5F5;
-  color: #000000;
-  cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease;
-  text-align: left;
-}
-
-.subpestana:hover {
-  background: #E0E0E0;
-}
-
-.subpestana-activa {
-  background: #2595CD;
-  color: #FFFFFF;
-  border-color: #2595CD;
-}
-
-.contenido-subpestanas {
-  padding: 15px;
-  background: #F9F9F9;
-  border-radius: 10px;
-  min-height: 200px;
-}
-
-.contenido-subtab {
-  display: none;
-}
-
-.contenido-subtab h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-  color: #2595CD;
-}
-
-.contenido-subtab p {
-  font-size: 14px;
-  color: #333333;
-}
-
-.contenido-subtab ul {
-  list-style-type: disc;
-  margin-left: 20px;
-  color: #333333;
-}
-
-.contenido-subtab ul li {
-  margin-bottom: 5px;
-}
-
-.contenido-subtab a {
-  color: #2595CD;
-  text-decoration: none;
-}
-
-.contenido-subtab a:hover {
-  text-decoration: underline;
-}
-
+/* Chat (sin cambios) */
 .chat-tab#iaChatTab {
   display: none;
   position: fixed;
@@ -638,314 +931,26 @@ body {
   background: #1E7AB0;
 }
 
+/* Animaciones (sin cambios) */
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes fade { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+/* Media Queries (sin cambios) */
 @media (max-width: 480px) {
-  .header {
-    padding: 15px 10px;
-  }
-
-  .header-top {
-    margin-bottom: 20px;
-  }
-
-  .logo {
-    width: 120px;
-  }
-
-  .logo-ia {
-    width: 50px;
-  }
-
-  .header-bottom {
-    gap: 50px;
-    padding: 8px;
-  }
-
-  .header-bottom.expandido {
-    height: 260px;
-  }
-
-  .header-bottom.expandido .progreso,
-  .header-bottom.expandido .corazon {
-    height: 120px;
-    padding: 10px;
-  }
-
-  .progreso-numero,
-  .corazon-numero {
-    font-size: 14px;
-  }
-
-  .racha-dias,
-  .racha-horas {
-    font-size: 10px;
-  }
-
-  .etiqueta {
-    font-size: 10px;
-  }
-
-  .dia {
-    width: 16px;
-    height: 16px;
-  }
-
-  .etiquetas-dias {
-    display: none;
-  }
-
-  .pestanas {
-    top: 180px;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    left: 50%;
-    transform: translateX(-50%);
-    /* Añadimos un margen adicional para bajar las pestañas */
-    margin-top: 30px; /* Ajustado para pantallas más pequeñas */
-  }
-
-  .pestana {
-    width: 120px;
-    height: 40px;
-    font-size: 16px;
-    padding: 8px 15px;
-  }
-
-  .contenido-pestanas {
-    margin-top: 220px;
-    padding: 15px;
-  }
-
-  .subpestana {
-    height: 90px;
-    font-size: 14px;
-    padding: 10px;
-  }
-
-  .contenido-subpestanas {
-    padding: 10px;
-    min-height: 150px;
-  }
-
-  .contenido-subtab h3 {
-    font-size: 16px;
-  }
-
-  .contenido-subtab p {
-    font-size: 12px;
-  }
-
-  .navegacion-moderna {
-    width: 95%;
-    height: 60px;
-    bottom: 10px;
-  }
-
-  .nav-item {
-    width: 50px;
-    height: 50px;
-  }
-
-  .nav-icon {
-    width: 35px;
-    height: 35px;
-  }
-
-  .nav-icon img {
-    width: 20px;
-    height: 20px;
-  }
-
-  .nav-label {
-    font-size: 10px;
-    bottom: -20px;
-  }
-
-  .lifty-guia {
-    bottom: 70px;
-    width: 25px;
-  }
-
-  .chat-tab#iaChatTab {
-    height: 100%;
-  }
-
-  .chat-header h2 {
-    font-size: 16px;
-  }
-
-  .chat-body {
-    padding: 8px;
-  }
-
-  .mensaje {
-    padding: 8px;
-    max-width: 85%;
-  }
-
-  .chat-input {
-    padding: 8px;
-  }
-
-  .chat-input input {
-    padding: 4px;
-    font-size: 14px;
-  }
-
-  .chat-input button {
-    padding: 4px 8px;
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 320px) {
-  .header {
-    padding: 10px 5px;
-  }
-
-  .header-top {
-    margin-bottom: 15px;
-  }
-
-  .logo {
-    width: 100px;
-  }
-
-  .logo-ia {
-    width: 40px;
-  }
-
-  .header-bottom {
-    gap: 30px;
-    padding: 5px;
-  }
-
-  .header-bottom.expandido {
-    height: 240px;
-  }
-
-  .header-bottom.expandido .progreso,
-  .header-bottom.expandido .corazon {
-    height: 110px;
-    padding: 8px;
-  }
-
-  .progreso-numero,
-  .corazon-numero {
-    font-size: 12px;
-  }
-
-  .racha-dias,
-  .racha-horas {
-    font-size: 9px;
-  }
-
-  .etiqueta {
-    font-size: 9px;
-  }
-
-  .dia {
-    width: 14px;
-    height: 14px;
-  }
-
-  .etiquetas-dias {
-    display: none;
-  }
-
-  .pestanas {
-    top: 160px;
-    max-width: 300px;
-    /* Añadimos un margen adicional para bajar las pestañas */
-    margin-top: 40px; /* Ajustado para pantallas más pequeñas */
-  }
-
-  .pestana {
-    width: 100px;
-    height: 35px;
-    font-size: 14px;
-    padding: 6px 10px;
-  }
-
-  .contenido-pestanas {
-    margin-top: 200px;
-    padding: 10px;
-  }
-
-  .subpestana {
-    height: 80px;
-    font-size: 12px;
-    padding: 8px;
-  }
-
-  .contenido-subpestanas {
-    padding: 8px;
-    min-height: 120px;
-  }
-
-  .contenido-subtab h3 {
-    font-size: 14px;
-  }
-
-  .contenido-subtab p {
-    font-size: 10px;
-  }
-
-  .navegacion-moderna {
-    width: 98%;
-    height: 55px;
-    bottom: 5px;
-  }
-
-  .nav-item {
-    width: 45px;
-    height: 45px;
-  }
-
-  .nav-icon {
-    width: 30px;
-    height: 30px;
-  }
-
-  .nav-icon img {
-    width: 18px;
-    height: 18px;
-  }
-
-  .nav-label {
-    font-size: 9px;
-    bottom: -18px;
-  }
-
-  .lifty-guia {
-    bottom: 65px;
-    width: 20px;
-  }
-
-  .chat-header h2 {
-    font-size: 14px;
-  }
-
-  .chat-body {
-    padding: 5px;
-  }
-
-  .mensaje {
-    padding: 6px;
-    max-width: 90%;
-  }
-
-  .chat-input {
-    padding: 5px;
-  }
-
-  .chat-input input {
-    padding: 3px;
-    font-size: 12px;
-  }
-
-  .chat-input button {
-    padding: 3px 6px;
-    font-size: 12px;
-  }
+  .timesphere { width: 200px; height: 200px; }
+  .status-text { font-size: 18px; }
+  .header { padding: 15px 10px; }
+  .header-top { margin-bottom: 20px; }
+  .logo { width: 120px; }
+  .logo-ia { width: 50px; }
+  .header-bottom { gap: 50px; padding: 8px; }
+  .header-bottom.expandido { height: 260px; }
+  .quantum-dashboard { margin-top: 100px; padding: 15px; }
+  .score-circle.lifty-circle { width: 150px; height: 150px; }
+  .stat-card { padding: 10px; }
+  .stat-card p { font-size: 12px; }
+  .status { font-size: 10px; }
+  .pestanas { top: 180px; width: 100%; max-width: 300px; margin-top: 30px; }
+  .contenido-pestanas { margin-top: 220px; }
 }

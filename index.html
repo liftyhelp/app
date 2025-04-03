@@ -68,36 +68,29 @@
     </div>
   </div>
 
-  <!-- Script para manejar el video -->
+  <!-- Script video -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const videoIntro = document.getElementById("videoIntro");
       const introVideo = document.getElementById("introVideo");
       const contenidoPrincipal = document.getElementById("contenidoPrincipal");
-
-      // Ocultar el contenido principal al inicio
       contenidoPrincipal.style.display = "none";
       videoIntro.style.display = "flex";
-
-      // Cuando el video termine, ocultar el video y mostrar el contenido principal
       introVideo.addEventListener("ended", function() {
         videoIntro.style.display = "none";
         contenidoPrincipal.style.display = "flex";
       });
 
-      // Forzar reproducción en caso de que autoplay falle (móviles)
       introVideo.play().catch(function(error) {
         console.log("Error al intentar reproducir el video automáticamente:", error);
-        // Si falla, mostrar el contenido principal directamente
         videoIntro.style.display = "none";
         contenidoPrincipal.style.display = "flex";
       });
 
-      // Forzar el cambio después de 6 segundos como respaldo
       setTimeout(function() {
         videoIntro.style.display = "none";
         contenidoPrincipal.style.display = "flex";
-      }, 6000); // 6000 ms = 6 segundos
+      }, 6000);
     });
   </script>
 </body>
