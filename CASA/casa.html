@@ -8,13 +8,13 @@
   <link rel="stylesheet" href="casa.css">
 </head>
 <body>
-  <!-- TimeSphere (Pantalla de bloqueo) -->
-  <div class="timesphere-screen" id="timesphereScreen">
-    <div class="timesphere">
-      <div class="status-text">Estat: Estable</div>
-    </div>
-    <button class="unlock-btn" onclick="hideTimeSphere()">Desbloquejar</button>
+
+ <!-- TimeSphere (Pantalla de bloqueo) -->
+<div class="timesphere-screen" id="timesphereScreen">
+  <div class="timesphere" id="timesphere">
+    <div class="status-text">Estat: Estable</div>
   </div>
+</div>
 
   <!-- Header (sin cambios) -->
   <header class="header">
@@ -157,40 +157,40 @@
     </div>
   </main>
 
-  <!-- Navegación (sin cambios) -->
-  <nav class="navegacion-moderna">
-    <div class="nav-item casa" data-seccion="casa">
-      <div class="nav-icon">
-        <img src="../img/settings.svg" alt="Home">
-      </div>
-      <span class="nav-label">Configuració</span>
+  <!-- Navegación -->
+<nav class="navegacion-moderna">
+  <a href="../AJUSTES/ajustes.html" class="nav-item casa" data-seccion="casa">
+    <div class="nav-icon">
+      <img src="../img/settings.svg" alt="Ajustes">
     </div>
-    <div class="nav-item config" data-seccion="config">
-      <div class="nav-icon">
-        <img src="../img/1 estrella.svg" alt="Configuración">
-      </div>
-      <span class="nav-label">Progres</span>
+    <span class="nav-label">Configuració</span>
+  </a>
+  <a href="../PROGRESO/progreso.html" class="nav-item config" data-seccion="config">
+    <div class="nav-icon">
+      <img src="../img/1 estrella.svg" alt="Progreso">
     </div>
-    <div class="nav-item progreso" data-seccion="progreso">
-      <div class="nav-icon">
-        <img src="../img/Home.svg" alt="Progreso">
-      </div>
-      <span class="nav-label">Casa</span>
+    <span class="nav-label">Progres</span>
+  </a>
+  <a href="casa.html" class="nav-item progreso" data-seccion="progreso">
+    <div class="nav-icon">
+      <img src="../img/Home.svg" alt="Casa">
     </div>
-    <div class="nav-item historial" data-seccion="historial">
-      <div class="nav-icon">
-        <img src="../img/historial.svg" alt="Historial">
-      </div>
-      <span class="nav-label">Historial</span>
+    <span class="nav-label">Casa</span>
+  </a>
+  <a href="historial.html" class="nav-item historial" data-seccion="historial">
+    <div class="nav-icon">
+      <img src="../img/historial.svg" alt="Historial">
     </div>
-    <div class="nav-item perfil" data-seccion="perfil">
-      <div class="nav-icon">
-        <img src="../img/perfil.svg" alt="Perfil">
-      </div>
-      <span class="nav-label">Perfil</span>
+    <span class="nav-label">Historial</span>
+  </a>
+  <a href="perfil.html" class="nav-item perfil" data-seccion="perfil">
+    <div class="nav-icon">
+      <img src="../img/perfil.svg" alt="Perfil">
     </div>
-    <img src="../img/liftycohete.png" alt="Lifty Guía" class="lifty-guia" id="liftyGuia">
-  </nav>
+    <span class="nav-label">Perfil</span>
+  </a>
+  <img src="../img/liftycohete.png" alt="Lifty Guía" class="lifty-guia" id="liftyGuia">
+</nav>
 
   <!-- Script (sin cambios adicionales) -->
   <script>
@@ -371,6 +371,13 @@ liftyCircle.addEventListener('click', () => {
   liftyCircle.classList.add('clicked'); // Activar las ondas
 });
 
+// Añadir evento de clic a la bola central para ocultar el timesphere-screen
+const timesphere = document.getElementById('timesphere');
+const timesphereScreen = document.getElementById('timesphereScreen');
+
+timesphere.addEventListener('click', () => {
+  timesphereScreen.classList.add('hidden'); // Ocultar el timesphere-screen
+});
   </script>
 </body>
 </html>
