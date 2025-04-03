@@ -6,7 +6,10 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(180deg, #ffffff 0%, #ffffff 100%);
+  background-image: url('../img/fondo3.svg'); /* Ajusta la ruta y el nombre de tu imagen */
+  background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -116,6 +119,7 @@ body {
   50% { filter: brightness(1.5); }
 }
 
+/* Header-bottom (ajustar z-index cuando se expande) */
 .header-bottom {
   display: flex;
   justify-content: center;
@@ -126,6 +130,8 @@ body {
   padding: 10px;
   cursor: pointer;
   transition: height 0.3s ease, transform 0.3s ease;
+  position: relative; /* Asegurar que el z-index funcione */
+  z-index: 1000; /* Por defecto, igual que el header */
 }
 
 .header-bottom.expandido {
@@ -135,6 +141,7 @@ body {
   animation: clicar 0.3s ease forwards;
   width: 100%;
   margin: 0 auto;
+  z-index: 1001; /* Aumentar el z-index cuando se expande para que esté por encima de las pestañas */
 }
 
 @keyframes clicar {
@@ -345,12 +352,12 @@ body {
 
 /* Contenido principal */
 .contenido {
+  background: transparent; /* Hacer el fondo transparente para que se vea la imagen del body */
   flex: 1;
   padding-top: 0;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-  background: linear-gradient(180deg, #FFFFFF 0%, #E6F0FA 50%, #2595CD 100%);
 }
 
 /* Quantum Dashboard */
@@ -628,15 +635,19 @@ body {
   }
 }
 
-/* Pestañas (sin cambios) */
+/* Pestañas (centrar y ajustar z-index) */
 .pestanas {
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
   gap: 0;
-  margin: 10px;
+  margin: 10px auto; /* Centrado con auto para los márgenes laterales */
   position: fixed;
+  top: 180px; /* Ajustado según el header */
+  left: 50%;
+  transform: translateX(-50%); /* Centrado exacto */
   width: 300px;
-  z-index: 999;
+  z-index: 999; /* Menor que el header-bottom expandido */
   background: transparent;
   margin-top: 20px;
 }
@@ -669,6 +680,15 @@ body {
 .pestana-activa {
   background: #2595CD;
   color: #FFFFFF;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 480px) {
+  .pestanas {
+    top: 160px; /* Ajustado para pantallas pequeñas */
+    width: 100%;
+    max-width: 300px;
+  }
 }
 
 .contenido-pestanas {
