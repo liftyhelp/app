@@ -5,6 +5,7 @@
 }
 
 body {
+  height: 100vh;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(180deg, #2595CD 0%, #0A1D56 100%);
   min-height: 100vh;
