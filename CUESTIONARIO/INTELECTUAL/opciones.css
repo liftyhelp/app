@@ -12,17 +12,18 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    padding: 20px 0;
 }
 
 /* Encabezado */
 .encabezado {
+    margin-top: -10px;
     height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 375px; 
-    margin-bottom: 20px; 
+    max-width: 320px; 
 }
 
 .flecha-atras img {
@@ -49,17 +50,16 @@ body {
 
 /* Contenedor principal */
 .contenedor {
-    width: 800px;
-    height: 600px; 
+    width: 350px;
+    height: 530px;
     max-height: 1500px;
     max-width: 425px; 
     background-color: #FFFFFF;
     border-radius: 70px;
     box-shadow: 0 5px 10px #6D3C9D;
     position: relative;
-    overflow: hidden;
-    margin-top: 40px; 
-    margin-bottom: 100px; 
+    overflow: hidden; 
+    margin-bottom: 100px;  
 }
 
 /* Sección de estrellas */
@@ -76,8 +76,9 @@ body {
 }
 
 .estrellas img {
-    width: 324px;
+    width: 284px;
     height: 24px;
+    margin-top: -15px;
 }
 
 .etiqueta-datos {
@@ -93,15 +94,15 @@ body {
 }
 
 .pregunta {
+    margin-top:  -30px;
     font-size: 20px;
     font-weight: 600;
     color: #333;
     margin-bottom: 20px;
-    margin-top: -30px;
 }
 
 .mascota img {
-    width: 120px;
+    width: 80px;
     height: auto;
     margin-bottom: 20px;
 }
@@ -117,15 +118,15 @@ body {
 .opcion {
     background-color: #E6F0FA; 
     border-radius: 15px;
-    width: 120px;
-    height: 100px;
+    width: 100px;
+    height: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s, border 0.3s; 
-    margin-top: -30px;
+    margin-top: -40px;
 }
 
 .opcion:hover {
@@ -147,13 +148,13 @@ body {
 }
 
 .opcion img {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     margin-bottom: 10px;
 }
 
 .opcion p {
-    font-size: 14px;
+    font-size: 12px;
     color: #333;
     text-align: center;
 }
@@ -177,7 +178,7 @@ body {
     align-items: center;
     cursor: pointer;
     position: absolute;
-    bottom: 180px; 
+    bottom: 90px; 
     left: 50%;
     transform: translateX(-50%);
     background-color: #E6F0FA; 
@@ -217,10 +218,10 @@ body {
     border-radius: 25px;
     padding: 15px;
     width: 100%;
-    max-width: 405px; 
+    max-width: 350px; 
     cursor: pointer;
     text-align: center;
-    margin-top: -10px;
+    margin-top: -50px;
     text-decoration: none; 
     display: inline-block; 
 }

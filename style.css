@@ -133,7 +133,7 @@ body {
 }
 
 .lifty-hola {
-  width: 250px;
+  width: 9000px;
   filter: drop-shadow(-5px 10px 5px #063b56);
   height: auto;
   animation: lifty-move 6s infinite ease-in-out; 
@@ -180,6 +180,7 @@ body {
 
 /* Animación de texto "escribiendo" para Lifty */
 .slogan.typing {
+  margin-top: -10px;
   overflow: hidden;
   white-space: nowrap;
   border-right: 3px solid transparent;
@@ -187,7 +188,19 @@ body {
   font-family: 'Omnes SemiBold', sans-serif;
   font-weight: 600; 
   font-style: normal;
-  font-size: 30px;
+  font-size: 25px;
+}
+
+.slogan.typing2 {
+  margin-top: -22px;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid transparent;
+  animation: typing 2s steps(40, end), blink-caret 0.75s step-end infinite;
+  font-family: 'Omnes SemiBold', sans-serif;
+  font-weight: 600; 
+  font-style: normal;
+  font-size: 25px;
 }
 
 @keyframes typing {
@@ -283,8 +296,8 @@ body {
 
 .layout {
   display: grid;
-  grid-template-rows: repeat(3, 200px);
-  grid-template-columns: repeat(2, 200px);
+  grid-template-rows: repeat(2, 150px);
+  grid-template-columns: repeat(2, 150px);
   gap: 30px;
   justify-content: center;
   align-content: center;
@@ -375,15 +388,26 @@ body {
 /* Responsive pantalla media */
 @media (max-width: 480px) {
   .logo-img, .lifty-hola {
-    width: 120px;
+    width: 280px;
+    margin-top: 10px;
+  }
+
+  .lifty-hola2{
+    width: 280px;
+    margin-top: -10px;
   }
 
   .slogan {
     font-size: 20px;
   }
 
+  .slogan-typing {
+    font-size: 120px;
+  }
+
   .botones {
     max-width: 350px;
+    margin-top: -160px;
   }
 
   .boton {

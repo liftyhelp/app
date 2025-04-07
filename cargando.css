@@ -84,10 +84,10 @@ body {
 }
 
 .lifty-carga {
-  width: 250px;
+  width: 350px;
   filter: drop-shadow(-5px 10px 5px #063b56);
   height: auto;
-  animation: lifty-move 6s infinite ease-in-out;
+  animation: lifty-move 3s infinite ease-in-out;
 }
 
 @keyframes lifty-move {
@@ -152,7 +152,7 @@ body {
 /* Responsive pantalla media */
 @media (max-width: 480px) {
   .lifty-carga {
-    width: 120px;
+    width: 280px;
   }
 
   .loading-text {
@@ -172,7 +172,7 @@ body {
 /* Responsive pantalla pequeña */
 @media (max-width: 320px) {
   .lifty-carga {
-    width: 100px;
+    width: 280px;
   }
 
   .loading-text {
