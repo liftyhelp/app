@@ -146,6 +146,13 @@ body {
   animation: lifty-move 6s infinite ease-in-out; 
 }
 
+.logo-id {
+  width: 160px;
+  filter: drop-shadow(-5px 10px 5px #063b56);
+  height: auto;
+  animation: lifty-move 6s infinite ease-in-out; 
+}
+
 .logo-blanco {
   width: 200px;
   filter: drop-shadow(-5px 10px 5px #063b56);
@@ -216,6 +223,17 @@ body {
 .botones {
   display: flex;
   top: 140px;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 530px;
+  margin: 0 auto;
+  margin-bottom: 10px; 
+}
+
+.botones-id {
+  display: flex;
+  top: 100px;
   flex-direction: column;
   gap: 15px;
   width: 100%;
@@ -298,7 +316,7 @@ body {
   display: grid;
   grid-template-rows: repeat(2, 150px);
   grid-template-columns: repeat(2, 150px);
-  gap: 30px;
+  gap: 40px;
   justify-content: center;
   align-content: center;
   padding: 100px 0;
@@ -424,6 +442,10 @@ body {
 @media (max-width: 320px) {
   .logo-img, .lifty-hola {
     width: 100px;
+  }
+
+  .logo-id {
+    width: 60px;
   }
 
   .slogan {
