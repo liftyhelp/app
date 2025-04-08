@@ -17,13 +17,13 @@ body {
 
 /* Encabezado */
 .encabezado {
-    height: 100px;
+    height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 375px; 
-    margin-bottom: 20px; 
+    max-width: 300px; 
+    margin-bottom: 40px; 
 }
 
 .flecha-atras img {
@@ -31,7 +31,7 @@ body {
 }
 
 .logo {
-    width: 200px; 
+    width: 160px; 
     height: auto; 
 }
 
@@ -50,16 +50,15 @@ body {
 
 /* Contenedor principal */
 .contenedor {
-    width: 800px;
-    height: 500px;
+    width: 320px;
+    height: 420px;
     max-height: 1500px;
     max-width: 425px; 
     background-color: #FFFFFF;
     border-radius: 70px;
     box-shadow: 0 5px 10px #CD5C5C;
     position: relative;
-    overflow: hidden;
-    margin-top: 40px; 
+    overflow: hidden; 
     margin-bottom: 100px; 
 }
 
@@ -77,8 +76,9 @@ body {
 }
 
 .estrellas img {
-    width: 324px;
+    width: 254px;
     height: 24px;
+    margin-top: -15px;
 }
 
 .etiqueta-datos {
@@ -94,6 +94,7 @@ body {
 }
 
 .pregunta {
+    margin-top:  -30px;
     font-size: 20px;
     font-weight: 600;
     color: #333;
@@ -101,7 +102,7 @@ body {
 }
 
 .mascota img {
-    width: 100px;
+    width: 80px;
     height: auto;
     margin-bottom: 20px;
 }
@@ -122,7 +123,7 @@ body {
     align-items: center;
     cursor: pointer;
     position: absolute;
-    bottom: 250px; 
+    bottom: 130px; 
     left: 50%;
     transform: translateX(-50%);
     background-color: #E6F0FA; 
@@ -162,10 +163,10 @@ body {
     border-radius: 25px;
     padding: 15px;
     width: 100%;
-    max-width: 405px; 
+    max-width: 350px; 
     cursor: pointer;
     text-align: center;
-    margin-top: 50px;
+    margin-top: -20px;
     text-decoration: none; 
     display: inline-block; 
 }
