@@ -17,7 +17,23 @@ body {
   overflow-x: hidden;
 }
 
-/* Pantalla Negra (Pantalla 2) */
+/* Emotion Screen (Pantalla 3) */
+.emotion-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column; /* Cambiado para alinear verticalmente */
+  justify-content: center;
+  align-items: center;
+  z-index: 1600;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
 .black-screen {
   position: fixed;
   top: 0;
@@ -36,22 +52,6 @@ body {
   pointer-events: auto;
 }
 
-/* Emotion Screen (Pantalla 3) */
-.emotion-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1600;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s ease;
-}
-
 .emotion-screen.active {
   opacity: 1;
   pointer-events: auto;
@@ -66,22 +66,60 @@ body {
   box-shadow: 0 0 50px rgba(37, 149, 205, 0.7);
   animation: pulse 2s infinite;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Para que la imagen no se desborde */
+}
+
+.emotion-image {
+  width: 80%; /* Ajusta el tamaño de la imagen dentro del círculo */
+  height: 80%;
+  object-fit: contain; /* Mantiene las proporciones de la imagen */
+}
+
+.emotion-sphere::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px dashed #FFFFFF;
+  animation: spin 10s linear infinite;
+}
+
+.status-text {
+  margin-top: 20px; /* Espacio entre el círculo y el texto */
+  color: #FFFFFF;
+  font-size: 20px;
+  text-shadow: 0 0 10px rgba(37, 149, 205, 0.7);
+  animation: fade 3s infinite;
 }
 
 .emotion-screen.alegria {
-  background: linear-gradient(135deg, #FFC107, #FF9800); /* Amarillo para alegría */
+  background: linear-gradient(135deg, #FFC107, #FF9800);
 }
 
 .emotion-screen.tristeza {
-  background: linear-gradient(135deg, #1E3A8A, #3B82F6); /* Azul para tristeza */
+  background: linear-gradient(135deg, #1E3A8A, #3B82F6);
 }
 
 .emotion-screen.enfado {
-  background: linear-gradient(135deg, #DC2626, #F87171); /* Rojo para enfado */
+  background: linear-gradient(135deg, #DC2626, #F87171);
 }
 
 .emotion-screen.calma {
-  background: linear-gradient(135deg, #34D399, #6EE7B7); /* Verde para calma */
+  background: linear-gradient(135deg, #34D399, #6EE7B7);
+}
+
+/* Animaciones */
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes fade { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+@media (max-width: 480px) {
+  .emotion-sphere { width: 200px; height: 200px; }
+  .status-text { font-size: 18px; }
 }
 
 .emotion-sphere::before {
@@ -127,6 +165,8 @@ body {
   height: auto;
   animation: brillo-logo 3s infinite ease-in-out;
   cursor: pointer;
+  z-index: 1100; /* Afegit per assegurar que el logo estigui per sobre d'altres elements */
+  position: relative; /* Afegit perquè el z-index funcioni correctament */
 }
 
 .logo-ia {
@@ -605,6 +645,12 @@ body {
   .status { font-size: 10px; }
 }
 
+.wifi{
+  height: 60px;
+  width: 60px;
+  margin-top: -20px;
+}
+
 /* Pestañas */
 .pestanas {
   display: flex;
@@ -906,7 +952,154 @@ body {
   cursor: pointer;
 }
 
-.chat-input button:hover { background: #1E7AB0; }
+/* Pantalla de Bloqueo (Pantalla 4) - Estilo iPhone */
+.lock-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #A3BFFA, #60A5FA); /* Fondo azul suave como en la imagen */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1700;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  padding-top: 20px;
+}
+
+.lock-screen.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lock-status-bar {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 400px;
+  padding: 5px 10px;
+  color: #FFFFFF;
+  font-size: 14px;
+}
+
+.lock-status-icons {
+  display: flex;
+  gap: 5px;
+}
+
+.lock-date {
+  font-size: 18px;
+  color: #FFFFFF;
+  font-weight: 400;
+  margin-top: 10px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.lock-time {
+  font-size: 72px;
+  color: #FFFFFF;
+  font-weight: 300;
+  margin-top: 10px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.lifty-widget {
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 10px;
+  margin: 20px 0;
+  width: 90%;
+  max-width: 300px;
+}
+
+.lifty-widget-img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.lifty-widget-text {
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.notifications {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 90%;
+  max-width: 500px;
+  margin-top: 180px;
+}
+
+.notification {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  padding: 15px;
+  border-radius: 15px;
+  font-size: 16px;
+  color: #313131;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.notification::before {
+  content: "📱";
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.notification:hover {
+  transform: scale(1.02);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.lock-actions {
+  position: absolute;
+  bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  max-width: 400px;
+}
+
+.action-btn {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 480px) {
+  .lock-time { font-size: 60px; }
+  .lock-date { font-size: 16px; }
+  .lifty-widget { padding: 8px; }
+  .lifty-widget-img { width: 35px; height: 35px; }
+  .lifty-widget-text { font-size: 12px; }
+  .notification { font-size: 14px; padding: 10px; }
+  .action-btn { width: 45px; height: 45px; font-size: 20px; }
+}
 
 /* Animaciones */
 @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }

@@ -18,12 +18,36 @@
   <!-- Pantalla Negra (Pantalla 2) -->
   <div class="black-screen" id="blackScreen"></div>
 
-  <!-- Pantalla de Emociones (Pantalla 3) -->
-  <div class="emotion-screen" id="emotionScreen">
-    <div class="emotion-sphere" id="emotionSphere">
-      <div class="status-text" id="emotionText">Estat: Alegria</div>
+ <!-- Pantalla de Emociones (Pantalla 3) -->
+<div class="emotion-screen" id="emotionScreen">
+  <div class="emotion-sphere" id="emotionSphere">
+    <img src="../img/emotion-image.png" alt="Emotion Image" class="emotion-image">
+  </div>
+  <div class="status-text" id="emotionText">Estat: Alegria</div>
+</div>
+
+  <!-- Pantalla de Bloqueo con Notificaciones (Pantalla 4) -->
+<div class="lock-screen" id="lockScreen">
+  <div class="lock-status-bar">
+    <span>Orange</span>
+    <div class="lock-status-icons">
+    <img src="../img/wifi.svg" alt="wifi" class="wifi">
     </div>
   </div>
+  <div class="lock-date" id="lockDate"></div>
+  <div class="lock-time" id="lockTime"></div>
+  <div class="lifty-widget">
+    <img src="../img/widgetlifty.svg" alt="Lifty Widget" class="lifty-widget-img">
+  </div>
+  <div class="notifications">
+    <div class="notification" id="notif1" data-target="pantalla1">Notificación 1</div>
+    <div class="notification" id="notif2" data-target="pantalla1">Notificación 2</div>
+  </div>
+  <div class="lock-actions">
+    <img src="../img/linterna_bloqueo.svg" alt="wifi" class="wifi">
+    <img src="../img/camara_bloqueo.svg" alt="wifi" class="wifi">
+  </div>
+</div>
 
   <!-- Header -->
   <header class="header">
@@ -203,204 +227,289 @@
 
   <!-- Script -->
   <script>
-    const headerBottom = document.getElementById("headerBottom");
-    const corazonImg = document.querySelector(".corazon-img");
-    headerBottom.addEventListener("click", () => {
-      headerBottom.classList.toggle("expandido");
-      adjustPestanasPosition();
-    });
+    document.addEventListener("DOMContentLoaded", () => {
+  const headerBottom = document.getElementById("headerBottom");
+  const corazonImg = document.querySelector(".corazon-img");
+  headerBottom.addEventListener("click", () => {
+    headerBottom.classList.toggle("expandido");
+    adjustPestanasPosition();
+  });
 
-    let emocionActual = "feliz";
-    corazonImg.classList.add(emocionActual);
-    const navItems = document.querySelectorAll(".nav-item");
-    const liftyGuia = document.getElementById("liftyGuia");
+  let emocionActual = "feliz";
+  corazonImg.classList.add(emocionActual);
+  const navItems = document.querySelectorAll(".nav-item");
+  const liftyGuia = document.getElementById("liftyGuia");
 
-    navItems.forEach(item => {
-      item.addEventListener("click", () => {
-        navItems.forEach(i => i.classList.remove("activo"));
-        item.classList.add("activo");
-        const rect = item.getBoundingClientRect();
-        liftyGuia.style.left = `${rect.left + rect.width / 2 - 15}px`;
-        liftyGuia.classList.add("viajar");
-        if (item.dataset.seccion === "progreso") {
-          document.querySelector(".cohete").classList.add("despegar");
-        }
-      });
-    });
-
-    setInterval(() => {
-      const emociones = ["feliz", "ansioso", "triste", "enojado"];
-      emocionActual = emociones[Math.floor(Math.random() * emociones.length)];
-      corazonImg.classList.remove("feliz", "ansioso", "triste", "enojado");
-      corazonImg.classList.add(emocionActual);
-      document.querySelector(".emotion-icon")?.classList.remove("feliz", "ansioso", "triste", "enojado");
-      document.querySelector(".emotion-icon")?.classList.add(emocionActual);
-    }, 5000);
-
-    const dias = document.querySelectorAll(".dia");
-    dias.forEach(dia => {
-      dia.addEventListener("click", () => {
-        const parentCirculos = dia.closest(".circulos");
-        parentCirculos.querySelectorAll(".dia").forEach(d => d.classList.remove("seleccionado"));
-        dia.classList.add("seleccionado");
-      });
-    });
-
-    function adjustPestanasPosition() {
-      const header = document.querySelector(".header");
-      const pestanas = document.getElementById("pestanas");
-      const headerHeight = header.offsetHeight;
-      pestanas.style.top = `${headerHeight}px`;
-    }
-
-    window.addEventListener("load", adjustPestanasPosition);
-    window.addEventListener("resize", adjustPestanasPosition);
-
-    const pestanas = document.querySelectorAll(".pestana");
-    const contenidos = document.querySelectorAll(".contenido-tab");
-    const quantumDashboard = document.getElementById("quantumDashboard");
-
-    quantumDashboard.style.display = "block"; // Mostrar Quantum Dashboard por defecto
-
-    pestanas.forEach(pestana => {
-      pestana.addEventListener("click", () => {
-        const tabId = pestana.dataset.tab;
-        const contenido = document.getElementById(tabId);
-
-        if (pestana.classList.contains("pestana-activa")) {
-          pestana.classList.remove("pestana-activa");
-          contenido.style.display = "none";
-          quantumDashboard.style.display = "block";
-        } else {
-          pestanas.forEach(p => p.classList.remove("pestana-activa"));
-          contenidos.forEach(c => c.style.display = "none");
-          pestana.classList.add("pestana-activa");
-          contenido.style.display = "block";
-          quantumDashboard.style.display = "none";
-        }
-      });
-    });
-
-    const subpestanas = document.querySelectorAll(".subpestana");
-    subpestanas.forEach(subpestana => {
-      subpestana.addEventListener("click", () => {
-        const parentSubpestanas = subpestana.closest(".subpestanas");
-        parentSubpestanas.querySelectorAll(".subpestana").forEach(sp => sp.classList.remove("subpestana-activa"));
-        subpestana.classList.add("subpestana-activa");
-      });
-    });
-
-    const iaChatBtn = document.getElementById("iaChatBtn");
-    const iaChatTab = document.getElementById("iaChatTab");
-    const closeIaChat = document.getElementById("closeIaChat");
-    const iaSendMessage = document.getElementById("iaSendMessage");
-    const iaUserInput = document.getElementById("iaUserInput");
-    const iaChatBody = document.getElementById("iaChatBody");
-    const iaVoiceBtn = document.getElementById("iaVoiceBtn");
-
-    function adjustChatTabSize() {
-      iaChatTab.style.top = `0px`;
-      iaChatTab.style.height = `100vh`;
-    }
-
-    window.addEventListener("load", adjustChatTabSize);
-    window.addEventListener("resize", adjustChatTabSize);
-
-    iaChatBtn.addEventListener("click", openIaChat);
-
-    function openIaChat() {
-      iaChatTab.style.display = "block";
-      adjustChatTabSize();
-    }
-
-    closeIaChat.addEventListener("click", () => {
-      iaChatTab.style.display = "none";
-    });
-
-    iaSendMessage.addEventListener("click", sendIaMessage);
-    iaUserInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") sendIaMessage();
-    });
-
-    function sendIaMessage() {
-      const message = iaUserInput.value.trim();
-      if (message) {
-        const userMsg = document.createElement("div");
-        userMsg.classList.add("mensaje", "usuario");
-        userMsg.textContent = message;
-        iaChatBody.appendChild(userMsg);
-        iaUserInput.value = "";
-        setTimeout(() => {
-          const iaMsg = document.createElement("div");
-          iaMsg.classList.add("mensaje", "lifty");
-          iaMsg.textContent = "Aquesta és una resposta simulada de la IA!";
-          iaChatBody.appendChild(iaMsg);
-          iaChatBody.scrollTop = iaChatBody.scrollHeight;
-        }, 1000);
+  navItems.forEach(item => {
+    item.addEventListener("click", () => {
+      navItems.forEach(i => i.classList.remove("activo"));
+      item.classList.add("activo");
+      const rect = item.getBoundingClientRect();
+      liftyGuia.style.left = `${rect.left + rect.width / 2 - 15}px`;
+      liftyGuia.classList.add("viajar");
+      if (item.dataset.seccion === "progreso") {
+        document.querySelector(".cohete").classList.add("despegar");
       }
+    });
+  });
+
+  setInterval(() => {
+    const emociones = ["feliz", "ansioso", "triste", "enojado"];
+    emocionActual = emociones[Math.floor(Math.random() * emociones.length)];
+    corazonImg.classList.remove("feliz", "ansioso", "triste", "enojado");
+    corazonImg.classList.add(emocionActual);
+    document.querySelector(".emotion-icon")?.classList.remove("feliz", "ansioso", "triste", "enojado");
+    document.querySelector(".emotion-icon")?.classList.add(emocionActual);
+  }, 5000);
+
+  const dias = document.querySelectorAll(".dia");
+  dias.forEach(dia => {
+    dia.addEventListener("click", () => {
+      const parentCirculos = dia.closest(".circulos");
+      parentCirculos.querySelectorAll(".dia").forEach(d => d.classList.remove("seleccionado"));
+      dia.classList.add("seleccionado");
+    });
+  });
+
+  function adjustPestanasPosition() {
+    const header = document.querySelector(".header");
+    const pestanas = document.getElementById("pestanas");
+    const headerHeight = header.offsetHeight;
+    pestanas.style.top = `${headerHeight}px`;
+  }
+
+  window.addEventListener("load", adjustPestanasPosition);
+  window.addEventListener("resize", adjustPestanasPosition);
+
+  const pestanas = document.querySelectorAll(".pestana");
+  const contenidos = document.querySelectorAll(".contenido-tab");
+  const quantumDashboard = document.getElementById("quantumDashboard");
+
+  quantumDashboard.style.display = "block"; // Mostrar Quantum Dashboard por defecto
+
+  pestanas.forEach(pestana => {
+    pestana.addEventListener("click", () => {
+      const tabId = pestana.dataset.tab;
+      const contenido = document.getElementById(tabId);
+
+      if (pestana.classList.contains("pestana-activa")) {
+        pestana.classList.remove("pestana-activa");
+        contenido.style.display = "none";
+        quantumDashboard.style.display = "block";
+      } else {
+        pestanas.forEach(p => p.classList.remove("pestana-activa"));
+        contenidos.forEach(c => c.style.display = "none");
+        pestana.classList.add("pestana-activa");
+        contenido.style.display = "block";
+        quantumDashboard.style.display = "none";
+      }
+    });
+  });
+
+  const subpestanas = document.querySelectorAll(".subpestana");
+  subpestanas.forEach(subpestana => {
+    subpestana.addEventListener("click", () => {
+      const parentSubpestanas = subpestana.closest(".subpestanas");
+      parentSubpestanas.querySelectorAll(".subpestana").forEach(sp => sp.classList.remove("subpestana-activa"));
+      subpestana.classList.add("subpestana-activa");
+    });
+  });
+
+  const iaChatBtn = document.getElementById("iaChatBtn");
+  const iaChatTab = document.getElementById("iaChatTab");
+  const closeIaChat = document.getElementById("closeIaChat");
+  const iaSendMessage = document.getElementById("iaSendMessage");
+  const iaUserInput = document.getElementById("iaUserInput");
+  const iaChatBody = document.getElementById("iaChatBody");
+  const iaVoiceBtn = document.getElementById("iaVoiceBtn");
+
+  function adjustChatTabSize() {
+    iaChatTab.style.top = `0px`;
+    iaChatTab.style.height = `100vh`;
+  }
+
+  window.addEventListener("load", adjustChatTabSize);
+  window.addEventListener("resize", adjustChatTabSize);
+
+  iaChatBtn.addEventListener("click", openIaChat);
+
+  function openIaChat() {
+    iaChatTab.style.display = "block";
+    adjustChatTabSize();
+  }
+
+  closeIaChat.addEventListener("click", () => {
+    iaChatTab.style.display = "none";
+  });
+
+  iaSendMessage.addEventListener("click", sendIaMessage);
+  iaUserInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") sendIaMessage();
+  });
+
+  function sendIaMessage() {
+    const message = iaUserInput.value.trim();
+    if (message) {
+      const userMsg = document.createElement("div");
+      userMsg.classList.add("mensaje", "usuario");
+      userMsg.textContent = message;
+      iaChatBody.appendChild(userMsg);
+      iaUserInput.value = "";
+      setTimeout(() => {
+        const iaMsg = document.createElement("div");
+        iaMsg.classList.add("mensaje", "lifty");
+        iaMsg.textContent = "Aquesta és una resposta simulada de la IA!";
+        iaChatBody.appendChild(iaMsg);
+        iaChatBody.scrollTop = iaChatBody.scrollHeight;
+      }, 1000);
+    }
+  }
+
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.lang = "ca-ES";
+  recognition.continuous = false;
+
+  iaVoiceBtn.addEventListener("click", () => {
+    recognition.start();
+    iaVoiceBtn.style.background = "#FF5E62";
+  });
+
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    iaUserInput.value = transcript;
+    sendIaMessage();
+  };
+
+  recognition.onend = () => {
+    iaVoiceBtn.style.background = "";
+  };
+
+  recognition.onerror = (event) => {
+    console.error("Error en el reconeixement de veu:", event.error);
+  };
+
+  // Funcionalidad para Pantalla 2, 3 y 4
+  const blackScreen = document.getElementById("blackScreen");
+  const emotionScreen = document.getElementById("emotionScreen");
+  const emotionSphere = document.getElementById("emotionSphere");
+  const emotionText = document.getElementById("emotionText");
+  const lockScreen = document.getElementById("lockScreen");
+  const lockTime = document.getElementById("lockTime");
+  const lockDate = document.getElementById("lockDate");
+  const notif1 = document.getElementById("notif1");
+  const notif2 = document.getElementById("notif2");
+  const logoLifty = document.querySelector(".logo");
+  const emotionImage = document.querySelector(".emotion-image");
+
+  const emociones = ["alegria", "tristeza", "enfado", "calma"];
+  let emotionIndex = 0;
+
+  // Mapa de imágenes para cada emoción (ajusta las rutas según tus imágenes)
+  const emotionImages = {
+    alegria: "../img/alegria-image.png",
+    tristeza: "../img/tristeza-image.png",
+    enfado: "../img/enfado-image.png",
+    calma: "../img/calma-image.png"
+  };
+
+  // Función para obtener la fecha y hora ajustada a CET/CEST
+  function getCentralEuropeTime() {
+    const now = new Date();
+    const timeOptions = {
+      timeZone: "Europe/Paris",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false
+    };
+    const dateOptions = {
+      timeZone: "Europe/Paris",
+      weekday: "long",
+      day: "numeric",
+      month: "long"
+    };
+    const time = now.toLocaleTimeString("ca-ES", timeOptions);
+    const date = now.toLocaleDateString("ca-ES", dateOptions);
+    return { time, date };
+  }
+
+  // Actualizar la fecha y hora en la Pantalla 4
+  function updateLockTime() {
+    const { time, date } = getCentralEuropeTime();
+    lockTime.textContent = time;
+    lockDate.textContent = date.charAt(0).toUpperCase() + date.slice(1);
+  }
+
+  // Depuración: Verificar si el logo se selecciona correctamente
+  if (!logoLifty) {
+    console.error("No se encontró el elemento con la clase 'logo'. Verifica el HTML.");
+  } else {
+    console.log("Logo encontrado:", logoLifty);
+  }
+
+  // Mostrar pantalla negra al hacer clic en el logo
+  logoLifty.addEventListener("click", (e) => {
+    e.preventDefault(); // Evitar comportamientos por defecto
+    e.stopPropagation(); // Evitar que el clic es propagui a altres elements
+    console.log("Clic en el logo detectado"); // Depuración
+    console.log("Estado actual de blackScreen:", blackScreen.classList); // Depuración
+    blackScreen.classList.add("active");
+    console.log("Estado de blackScreen després d'afegir 'active':", blackScreen.classList); // Depuración
+  });
+
+  // Pantalla 2 → Pantalla 3
+  blackScreen.addEventListener("click", () => {
+    console.log("Clic en pantalla negra, mostrando Pantalla 3");
+    blackScreen.classList.remove("active");
+    emotionScreen.classList.add("active");
+    const emocionActual = emociones[emotionIndex];
+    emotionScreen.className = "emotion-screen active " + emocionActual;
+    emotionText.textContent = `Estat: ${emocionActual.charAt(0).toUpperCase() + emocionActual.slice(1)}`;
+    // Cambiar la imagen según la emoción
+    emotionImage.src = emotionImages[emocionActual];
+  });
+
+  // Pantalla 3 → Pantalla 4
+  emotionSphere.addEventListener("click", () => {
+    console.log("Clic en la esfera, mostrando Pantalla 4");
+    emotionScreen.classList.remove("active");
+    lockScreen.classList.add("active");
+    updateLockTime();
+    setInterval(updateLockTime, 1000);
+
+    const emocionActual = emociones[emotionIndex];
+    switch (emocionActual) {
+      case "alegria":
+        notif1.textContent = "¡Estás brillando hoy! Descubre más en Lifty.";
+        notif2.textContent = "¡Aprovecha tu energía en Académica!";
+        break;
+      case "tristeza":
+        notif1.textContent = "¿Un día gris? Lifty te acompaña.";
+        notif2.textContent = "Pequeños pasos pueden iluminar tu día.";
+        break;
+      case "enfado":
+        notif1.textContent = "¿Todo te saca de quicio? Respira con Lifty.";
+        notif2.textContent = "Descarga tu día, entra ahora.";
+        break;
+      case "calma":
+        notif1.textContent = "Fluye con tranquilidad, revisa Lifty.";
+        notif2.textContent = "Mantén la paz, tus tareas te esperan.";
+        break;
     }
 
-    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-    recognition.lang = "ca-ES";
-    recognition.continuous = false;
+    emotionIndex = (emotionIndex + 1) % emociones.length;
+  });
 
-    iaVoiceBtn.addEventListener("click", () => {
-      recognition.start();
-      iaVoiceBtn.style.background = "#FF5E62";
+  // Volver a Pantalla 1 desde las notificaciones
+  const notifications = document.querySelectorAll(".notification");
+  notifications.forEach(notif => {
+    notif.addEventListener("click", () => {
+      console.log("Clic en notificación, volviendo a Pantalla 1");
+      lockScreen.classList.remove("active");
     });
+  });
+});
 
-    recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript;
-      iaUserInput.value = transcript;
-      sendIaMessage();
-    };
-
-    recognition.onend = () => {
-      iaVoiceBtn.style.background = "";
-    };
-
-    recognition.onerror = (event) => {
-      console.error("Error en el reconeixement de veu:", event.error);
-    };
-
-    // Funcionalidad para Pantalla 2 y Pantalla 3
-    const blackScreen = document.getElementById("blackScreen");
-    const emotionScreen = document.getElementById("emotionScreen");
-    const emotionSphere = document.getElementById("emotionSphere");
-    const emotionText = document.getElementById("emotionText");
-    const logoLifty = document.querySelector(".logo");
-
-    const emociones = ["alegria", "tristeza", "enfado", "calma"];
-    let emotionIndex = 0;
-
-    logoLifty.addEventListener("click", () => {
-      blackScreen.classList.add("active");
-    });
-
-    blackScreen.addEventListener("click", () => {
-      blackScreen.classList.remove("active");
-      emotionScreen.classList.add("active");
-      const emocionActual = emociones[emotionIndex];
-      emotionScreen.className = "emotion-screen active " + emocionActual;
-      emotionText.textContent = `Estat: ${emocionActual.charAt(0).toUpperCase() + emocionActual.slice(1)}`;
-      emotionIndex = (emotionIndex + 1) % emociones.length;
-    });
-
-    emotionSphere.addEventListener("click", () => {
-      emotionScreen.classList.remove("active");
-    });
-
-    // Funciones adicionales
-    function contactFamily() {
-      alert("Contactant amb la família...");
-    }
-
-    const liftyCircle = document.querySelector('.score-circle.lifty-circle');
-    liftyCircle.addEventListener('click', () => {
-      liftyCircle.classList.remove('clicked');
-      void liftyCircle.offsetWidth;
-      liftyCircle.classList.add('clicked');
-    });
-  </script>
+    
+</script>
 </body>
 </html>
