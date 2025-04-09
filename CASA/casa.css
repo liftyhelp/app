@@ -6,10 +6,10 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-image: url('../img/fondo3.svg'); /* Ajusta la ruta y el nombre de tu imagen */
-  background-size: cover; /* Asegura que la imagen cubra todo el fondo */
-  background-position: center; /* Centra la imagen */
-  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-image: url('../img/fondo3.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -17,27 +17,47 @@ body {
   overflow-x: hidden;
 }
 
-/* TimeSphere (Pantalla de bloqueo) */
-.timesphere-screen {
+/* Pantalla Negra (Pantalla 2) */
+.black-screen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  background: linear-gradient(135deg, #2595CD, #1E7AB0);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
+  background: #000000;
+  z-index: 1500;
+  opacity: 0;
+  pointer-events: none;
   transition: opacity 0.5s ease;
 }
 
-.timesphere-screen.hidden {
-  opacity: 0;
-  pointer-events: none;
+.black-screen.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.timesphere {
+/* Emotion Screen (Pantalla 3) */
+.emotion-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1600;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.emotion-screen.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.emotion-sphere {
   position: relative;
   width: 250px;
   height: 250px;
@@ -45,9 +65,26 @@ body {
   background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(37, 149, 205, 0.5));
   box-shadow: 0 0 50px rgba(37, 149, 205, 0.7);
   animation: pulse 2s infinite;
+  cursor: pointer;
 }
 
-.timesphere::before {
+.emotion-screen.alegria {
+  background: linear-gradient(135deg, #FFC107, #FF9800); /* Amarillo para alegría */
+}
+
+.emotion-screen.tristeza {
+  background: linear-gradient(135deg, #1E3A8A, #3B82F6); /* Azul para tristeza */
+}
+
+.emotion-screen.enfado {
+  background: linear-gradient(135deg, #DC2626, #F87171); /* Rojo para enfado */
+}
+
+.emotion-screen.calma {
+  background: linear-gradient(135deg, #34D399, #6EE7B7); /* Verde para calma */
+}
+
+.emotion-sphere::before {
   content: '';
   position: absolute;
   width: 100%;
@@ -64,23 +101,11 @@ body {
   transform: translate(-50%, -50%);
   color: #FFFFFF;
   font-size: 20px;
-  text-shadow: 0 0 10px #2595CD;
+  text-shadow: 0 0 10px rgba(37, 149, 205, 0.7);
   animation: fade 3s infinite;
 }
 
-.unlock-btn {
-  position: absolute;
-  bottom: 20px;
-  padding: 10px 20px;
-  background: #FF5E62;
-  color: #FFFFFF;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: 'Poppins', sans-serif;
-}
-
-/* Header (sin cambios) */
+/* Header */
 .header {
   width: 100%;
   padding: 20px 20px;
@@ -101,6 +126,7 @@ body {
   width: 150px;
   height: auto;
   animation: brillo-logo 3s infinite ease-in-out;
+  cursor: pointer;
 }
 
 .logo-ia {
@@ -119,7 +145,6 @@ body {
   50% { filter: brightness(1.5); }
 }
 
-/* Header-bottom (ajustar z-index cuando se expande) */
 .header-bottom {
   display: flex;
   justify-content: center;
@@ -130,8 +155,8 @@ body {
   padding: 10px;
   cursor: pointer;
   transition: height 0.3s ease, transform 0.3s ease;
-  position: relative; /* Asegurar que el z-index funcione */
-  z-index: 1000; /* Por defecto, igual que el header */
+  position: relative;
+  z-index: 1000;
 }
 
 .header-bottom.expandido {
@@ -141,7 +166,7 @@ body {
   animation: clicar 0.3s ease forwards;
   width: 100%;
   margin: 0 auto;
-  z-index: 1001; /* Aumentar el z-index cuando se expande para que esté por encima de las pestañas */
+  z-index: 1001;
 }
 
 @keyframes clicar {
@@ -352,7 +377,7 @@ body {
 
 /* Contenido principal */
 .contenido {
-  background: transparent; /* Hacer el fondo transparente para que se vea la imagen del body */
+  background: transparent;
   flex: 1;
   padding-top: 0;
   position: relative;
@@ -363,7 +388,7 @@ body {
 /* Quantum Dashboard */
 .quantum-dashboard {
   position: fixed;
-  top: 55%; /* Ajustado para bajar todo un poco (antes era 40%) */
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
@@ -381,7 +406,6 @@ body {
   position: relative;
 }
 
-/* Estilo de bocadillo para el texto "Hola! Sóc Lifty..." */
 .score-section p {
   font-size: 14px;
   color: #333333;
@@ -434,7 +458,6 @@ body {
   align-items: center;
 }
 
-/* Añadir la imagen lifty cara.svg */
 .lifty-animation::before {
   margin-top: 15px;
   content: '';
@@ -448,26 +471,24 @@ body {
   z-index: 1;
 }
 
-/* Ondas de sonido al hacer clic */
 .lifty-circle::after {
   content: '';
   position: absolute;
   width: 0;
   height: 0;
-  bottom: -30px; /* Posicionar las ondas entre el círculo y el botón de "Ajuda" */
+  bottom: -30px;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 50%;
   background: rgba(37, 149, 205, 0.3);
   pointer-events: none;
-  z-index: 2; /* Asegurar que las ondas estén visibles */
+  z-index: 2;
 }
 
 .lifty-circle.clicked::after {
   animation: sound-wave 1.5s ease-out forwards;
 }
 
-/* Segunda onda con retraso */
 .lifty-circle.clicked::before {
   content: '';
   position: absolute;
@@ -483,7 +504,6 @@ body {
   animation: sound-wave 1.5s ease-out 0.3s forwards;
 }
 
-/* Tercera onda con más retraso */
 .lifty-circle.clicked .lifty-animation::after {
   content: '';
   position: absolute;
@@ -499,69 +519,35 @@ body {
   animation: sound-wave 1.5s ease-out 0.6s forwards;
 }
 
-/* Animación de las ondas de sonido */
 @keyframes sound-wave {
-  0% {
-    width: 0;
-    height: 0;
-    opacity: 0.5;
-  }
-  100% {
-    width: 100px;
-    height: 100px;
-    opacity: 0;
-  }
+  0% { width: 0; height: 0; opacity: 0.5; }
+  100% { width: 100px; height: 100px; opacity: 0; }
 }
 
 @keyframes siri-pulse {
-  0% {
-    transform: scale(0.8);
-    background: radial-gradient(circle, #2595CD 0%, #1E7AB0 50%, #2595CD 100%);
-    box-shadow: 0 0 20px rgba(37, 149, 205, 0.7);
-  }
-  50% {
-    transform: scale(1);
-    background: radial-gradient(circle, #1E7AB0 0%, #2595CD 50%, #1E7AB0 100%);
-    box-shadow: 0 0 40px rgba(37, 149, 205, 1);
-  }
-  100% {
-    transform: scale(0.8);
-    background: radial-gradient(circle, #2595CD 0%, #1E7AB0 50%, #2595CD 100%);
-    box-shadow: 0 0 20px rgba(37, 149, 205, 0.7);
-  }
+  0% { transform: scale(0.8); background: radial-gradient(circle, #2595CD 0%, #1E7AB0 50%, #2595CD 100%); box-shadow: 0 0 20px rgba(37, 149, 205, 0.7); }
+  50% { transform: scale(1); background: radial-gradient(circle, #1E7AB0 0%, #2595CD 50%, #1E7AB0 100%); box-shadow: 0 0 40px rgba(37, 149, 205, 1); }
+  100% { transform: scale(0.8); background: radial-gradient(circle, #2595CD 0%, #1E7AB0 50%, #2595CD 100%); box-shadow: 0 0 20px rgba(37, 149, 205, 0.7); }
 }
 
-/* Ajustes para pantallas pequeñas */
 @media (max-width: 480px) {
-  .quantum-dashboard {
-    top: 50%; /* Ajustado para pantallas pequeñas (bajado un poco menos que en pantallas grandes) */
-  }
-
-  .score-circle.lifty-circle {
-    width: 150px;
-    height: 150px;
-    margin: 0 auto;
-  }
-
-  .score-section p {
-    font-size: 12px;
-    max-width: 200px;
-    top: -50px;
-  }
+  .quantum-dashboard { top: 50%; }
+  .score-circle.lifty-circle { width: 150px; height: 150px; margin: 0 auto; }
+  .score-section p { font-size: 12px; max-width: 200px; top: -50px; }
 }
 
 .stats-section {
   display: flex;
-  flex-direction: column; /* Cambiado a columna para que los botones estén uno debajo del otro */
-  align-items: center; /* Centrado horizontalmente */
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   margin-top: 30px;
-  gap: 15px; /* Espacio entre los botones */
+  gap: 15px;
 }
 
 .stat-card {
-  width: 80%; /* Aumentado para que los botones sean más largos */
-  max-width: 400px; /* Límite máximo para que no se vean demasiado anchos en pantallas grandes */
+  width: 80%;
+  max-width: 400px;
   background-color: #f9f9f9;
   border-radius: 10px;
   padding: 15px;
@@ -609,45 +595,29 @@ body {
   margin-top: 5px;
 }
 
-.active {
-  color: #28a745;
-}
+.active { color: #28a745; }
+.pending { color: #dc3545; }
 
-.pending {
-  color: #dc3545;
-}
-
-/* Ajustes para pantallas pequeñas */
 @media (max-width: 480px) {
-  .score-circle.lifty-circle {
-    width: 150px;
-    height: 150px;
-  }
-  .stat-card {
-    width: 90%; /* Más ancho relativo en pantallas pequeñas */
-    padding: 10px;
-  }
-  .stat-card p {
-    font-size: 12px;
-  }
-  .status {
-    font-size: 10px;
-  }
+  .score-circle.lifty-circle { width: 150px; height: 150px; }
+  .stat-card { width: 90%; padding: 10px; }
+  .stat-card p { font-size: 12px; }
+  .status { font-size: 10px; }
 }
 
-/* Pestañas (centrar y ajustar z-index) */
+/* Pestañas */
 .pestanas {
   display: flex;
-  justify-content: center; /* Centrado horizontal */
-  align-items: center; /* Centrado vertical */
+  justify-content: center;
+  align-items: center;
   gap: 0;
-  margin: 10px auto; /* Centrado con auto para los márgenes laterales */
+  margin: 10px auto;
   position: fixed;
-  top: 180px; /* Ajustado según el header */
+  top: 180px;
   left: 50%;
-  transform: translateX(-50%); /* Centrado exacto */
+  transform: translateX(-50%);
   width: 300px;
-  z-index: 999; /* Menor que el header-bottom expandido */
+  z-index: 999;
   background: transparent;
   margin-top: 20px;
 }
@@ -682,13 +652,8 @@ body {
   color: #FFFFFF;
 }
 
-/* Ajustes para pantallas pequeñas */
 @media (max-width: 480px) {
-  .pestanas {
-    top: 160px; /* Ajustado para pantallas pequeñas */
-    width: 100%;
-    max-width: 300px;
-  }
+  .pestanas { top: 160px; width: 100%; max-width: 300px; }
 }
 
 .contenido-pestanas {
@@ -699,9 +664,7 @@ body {
   z-index: 998;
 }
 
-.contenido-tab {
-  display: none;
-}
+.contenido-tab { display: none; }
 
 .subpestanas {
   display: flex;
@@ -725,9 +688,7 @@ body {
   text-align: left;
 }
 
-.subpestana:hover {
-  background: #2595CD;
-}
+.subpestana:hover { background: #2595CD; }
 
 .subpestana-activa {
   background: #2595CD;
@@ -735,7 +696,7 @@ body {
   border-color: #2595CD;
 }
 
-/* Navegación (sin cambios) */
+/* Navegación */
 .navegacion-moderna {
   position: fixed;
   bottom: 20px;
@@ -864,7 +825,7 @@ body {
   100% { transform: translateX(-50%) scale(1); }
 }
 
-/* Chat (sin cambios) */
+/* Chat */
 .chat-tab#iaChatTab {
   display: none;
   position: fixed;
@@ -886,9 +847,7 @@ body {
   align-items: center;
 }
 
-.chat-header h2 {
-  font-size: 18px;
-}
+.chat-header h2 { font-size: 18px; }
 
 .close-btn {
   background: none;
@@ -947,18 +906,16 @@ body {
   cursor: pointer;
 }
 
-.chat-input button:hover {
-  background: #1E7AB0;
-}
+.chat-input button:hover { background: #1E7AB0; }
 
-/* Animaciones (sin cambios) */
+/* Animaciones */
 @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 @keyframes fade { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
-/* Media Queries (sin cambios) */
+/* Media Queries */
 @media (max-width: 480px) {
-  .timesphere { width: 200px; height: 200px; }
+  .emotion-sphere { width: 200px; height: 200px; }
   .status-text { font-size: 18px; }
   .header { padding: 15px 10px; }
   .header-top { margin-bottom: 20px; }

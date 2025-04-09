@@ -15,14 +15,17 @@
 </head>
 <body>
 
- <!-- TimeSphere (Pantalla de bloqueo) -->
-<div class="timesphere-screen" id="timesphereScreen">
-  <div class="timesphere" id="timesphere">
-    <div class="status-text">Estat: Estable</div>
-  </div>
-</div>
+  <!-- Pantalla Negra (Pantalla 2) -->
+  <div class="black-screen" id="blackScreen"></div>
 
-  <!-- Header (sin cambios) -->
+  <!-- Pantalla de Emociones (Pantalla 3) -->
+  <div class="emotion-screen" id="emotionScreen">
+    <div class="emotion-sphere" id="emotionSphere">
+      <div class="status-text" id="emotionText">Estat: Alegria</div>
+    </div>
+  </div>
+
+  <!-- Header -->
   <header class="header">
     <div class="header-top">
       <img src="../img/lifty2blanco.png" alt="Lifty Logo" class="logo">
@@ -164,41 +167,41 @@
   </main>
 
   <!-- Navegación -->
-<nav class="navegacion-moderna">
-  <a href="../AJUSTES/ajustes.html" class="nav-item casa" data-seccion="casa">
-    <div class="nav-icon">
-      <img src="../img/settings.svg" alt="Ajustes">
-    </div>
-    <span class="nav-label">Configuració</span>
-  </a>
-  <a href="../PROGRESO/progreso.html" class="nav-item config" data-seccion="config">
-    <div class="nav-icon">
-      <img src="../img/1 estrella.svg" alt="Progreso">
-    </div>
-    <span class="nav-label">Progres</span>
-  </a>
-  <a href="casa.html" class="nav-item progreso" data-seccion="progreso">
-    <div class="nav-icon">
-      <img src="../img/Home.svg" alt="Casa">
-    </div>
-    <span class="nav-label">Casa</span>
-  </a>
-  <a href="historial.html" class="nav-item historial" data-seccion="historial">
-    <div class="nav-icon">
-      <img src="../img/historial.svg" alt="Historial">
-    </div>
-    <span class="nav-label">Historial</span>
-  </a>
-  <a href="perfil.html" class="nav-item perfil" data-seccion="perfil">
-    <div class="nav-icon">
-      <img src="../img/perfil.svg" alt="Perfil">
-    </div>
-    <span class="nav-label">Perfil</span>
-  </a>
-  <img src="../img/liftycohete.png" alt="Lifty Guía" class="lifty-guia" id="liftyGuia">
-</nav>
+  <nav class="navegacion-moderna">
+    <a href="../AJUSTES/ajustes.html" class="nav-item casa" data-seccion="casa">
+      <div class="nav-icon">
+        <img src="../img/settings.svg" alt="Ajustes">
+      </div>
+      <span class="nav-label">Configuració</span>
+    </a>
+    <a href="../PROGRESO/progreso.html" class="nav-item config" data-seccion="config">
+      <div class="nav-icon">
+        <img src="../img/1 estrella.svg" alt="Progreso">
+      </div>
+      <span class="nav-label">Progres</span>
+    </a>
+    <a href="casa.html" class="nav-item progreso" data-seccion="progreso">
+      <div class="nav-icon">
+        <img src="../img/Home.svg" alt="Casa">
+      </div>
+      <span class="nav-label">Casa</span>
+    </a>
+    <a href="historial.html" class="nav-item historial" data-seccion="historial">
+      <div class="nav-icon">
+        <img src="../img/historial.svg" alt="Historial">
+      </div>
+      <span class="nav-label">Historial</span>
+    </a>
+    <a href="perfil.html" class="nav-item perfil" data-seccion="perfil">
+      <div class="nav-icon">
+        <img src="../img/perfil.svg" alt="Perfil">
+      </div>
+      <span class="nav-label">Perfil</span>
+    </a>
+    <img src="../img/liftycohete.png" alt="Lifty Guía" class="lifty-guia" id="liftyGuia">
+  </nav>
 
-  <!-- Script (sin cambios adicionales) -->
+  <!-- Script -->
   <script>
     const headerBottom = document.getElementById("headerBottom");
     const corazonImg = document.querySelector(".corazon-img");
@@ -360,30 +363,44 @@
       console.error("Error en el reconeixement de veu:", event.error);
     };
 
-    function hideTimeSphere() {
-      document.getElementById("timesphereScreen").classList.add("hidden");
-    }
+    // Funcionalidad para Pantalla 2 y Pantalla 3
+    const blackScreen = document.getElementById("blackScreen");
+    const emotionScreen = document.getElementById("emotionScreen");
+    const emotionSphere = document.getElementById("emotionSphere");
+    const emotionText = document.getElementById("emotionText");
+    const logoLifty = document.querySelector(".logo");
 
-    // Función para "Contacte amb la Família"
+    const emociones = ["alegria", "tristeza", "enfado", "calma"];
+    let emotionIndex = 0;
+
+    logoLifty.addEventListener("click", () => {
+      blackScreen.classList.add("active");
+    });
+
+    blackScreen.addEventListener("click", () => {
+      blackScreen.classList.remove("active");
+      emotionScreen.classList.add("active");
+      const emocionActual = emociones[emotionIndex];
+      emotionScreen.className = "emotion-screen active " + emocionActual;
+      emotionText.textContent = `Estat: ${emocionActual.charAt(0).toUpperCase() + emocionActual.slice(1)}`;
+      emotionIndex = (emotionIndex + 1) % emociones.length;
+    });
+
+    emotionSphere.addEventListener("click", () => {
+      emotionScreen.classList.remove("active");
+    });
+
+    // Funciones adicionales
     function contactFamily() {
-      alert("Contactant amb la família..."); // Simulación, puedes cambiar esto por la funcionalidad real
+      alert("Contactant amb la família...");
     }
 
-    // Añadir evento de clic para las ondas de sonido
-const liftyCircle = document.querySelector('.score-circle.lifty-circle'); // Asegurarse de seleccionar el elemento correcto
-liftyCircle.addEventListener('click', () => {
-  liftyCircle.classList.remove('clicked'); // Reiniciar la animación
-  void liftyCircle.offsetWidth; // Forzar el reinicio de la animación
-  liftyCircle.classList.add('clicked'); // Activar las ondas
-});
-
-// Añadir evento de clic a la bola central para ocultar el timesphere-screen
-const timesphere = document.getElementById('timesphere');
-const timesphereScreen = document.getElementById('timesphereScreen');
-
-timesphere.addEventListener('click', () => {
-  timesphereScreen.classList.add('hidden'); // Ocultar el timesphere-screen
-});
+    const liftyCircle = document.querySelector('.score-circle.lifty-circle');
+    liftyCircle.addEventListener('click', () => {
+      liftyCircle.classList.remove('clicked');
+      void liftyCircle.offsetWidth;
+      liftyCircle.classList.add('clicked');
+    });
   </script>
 </body>
 </html>
