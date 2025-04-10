@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayuda Lifty - App</title>
+  <link rel="stylesheet" href="../ACADEMICO/academico.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../casa.html" class="volver"><i class="fas fa-arrow-left"></i> Volver</a>
+    <h1>Ayuda Lifty</h1>
+    <div class="chat-container">
+      <!-- Área de mensajes -->
+      <div class="chat-messages" id="chat-messages">
+        <!-- Mensaje inicial de Lifty -->
+        <div class="message lifty-message">
+          <div class="message-content">
+            <p>¡Hola! Soy Lifty. ¿En qué te ayudo? <i class="fas fa-smile"></i></p>
+            <p>Puedes escribir, hablar o enviar una foto.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Área de entrada -->
+      <div class="chat-input">
+        <!-- Botones de acción -->
+        <div class="chat-actions">
+          <button class="action-btn" id="voice-btn" title="Hablar">
+            <i class="fas fa-microphone"></i>
+          </button>
+          <button class="action-btn" id="photo-btn" title="Enviar foto">
+            <i class="fas fa-camera"></i>
+          </button>
+        </div>
+        <!-- Campo de texto -->
+        <div class="text-input">
+          <input type="text" id="user-input" placeholder="Escribe tu duda aquí...">
+          <button class="send-btn" id="send-btn">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="academico.js">
+    </script>
+</body>
+</html>

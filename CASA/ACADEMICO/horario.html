@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horario - App</title>
+  <link rel="stylesheet" href="academico.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <a href="../casa.html" class="volver"><i class="fas fa-arrow-left"></i> Volver</a>
+    <h1>Mi Horario</h1>
+    <div class="schedule-wrapper">
+      <div class="schedule">
+        <!-- Días y clases -->
+        <div class="days-grid">
+          <!-- Lunes -->
+          <div class="day-block">
+            <div class="day-header">LUN</div>
+            <div class="class-block mate">
+              <i class="fas fa-calculator"></i> Matemáticas<br>8:00-9:00
+            </div>
+            <div class="class-block lengua">
+              <i class="fas fa-book"></i> Lengua<br>9:00-10:00
+            </div>
+            <div class="class-block recreo">
+              <i class="fas fa-coffee"></i> Recreo<br>10:00-10:30
+            </div>
+            <div class="class-block ingles">
+              <i class="fas fa-globe"></i> Inglés<br>10:30-11:30
+            </div>
+            <div class="class-block historia">
+              <i class="fas fa-landmark"></i> Historia<br>11:30-12:30
+            </div>
+          </div>
+
+          <!-- Martes -->
+          <div class="day-block">
+            <div class="day-header">MAR</div>
+            <div class="class-block ciencias">
+              <i class="fas fa-flask"></i> Ciencias<br>8:00-9:00
+            </div>
+            <div class="class-block mate">
+              <i class="fas fa-calculator"></i> Matemáticas<br>9:00-10:00
+            </div>
+            <div class="class-block recreo">
+              <i class="fas fa-coffee"></i> Recreo<br>10:00-10:30
+            </div>
+            <div class="class-block geo">
+              <i class="fas fa-map"></i> Geografía<br>10:30-11:30
+            </div>
+            <div class="class-block quimica">
+              <i class="fas fa-vial"></i> Química<br>11:30-12:30
+            </div>
+          </div>
+
+          <!-- Miércoles -->
+          <div class="day-block">
+            <div class="day-header">MIÉ</div>
+            <div class="class-block lengua">
+              <i class="fas fa-book"></i> Lengua<br>8:00-9:00
+            </div>
+            <div class="class-block tecnologia">
+              <i class="fas fa-laptop"></i> Tecnología<br>9:00-10:00
+            </div>
+            <div class="class-block recreo">
+              <i class="fas fa-coffee"></i> Recreo<br>10:00-10:30
+            </div>
+            <div class="class-block mate">
+              <i class="fas fa-calculator"></i> Matemáticas<br>10:30-11:30
+            </div>
+            <div class="class-block edfi">
+              <i class="fas fa-futbol"></i> Educación Física<br>11:30-12:30
+            </div>
+          </div>
+
+          <!-- Jueves -->
+          <div class="day-block">
+            <div class="day-header">JUE</div>
+            <div class="class-block historia">
+              <i class="fas fa-landmark"></i> Historia<br>8:00-9:00
+            </div>
+            <div class="class-block ingles">
+              <i class="fas fa-globe"></i> Inglés<br>9:00-10:00
+            </div>
+            <div class="class-block recreo">
+              <i class="fas fa-coffee"></i> Recreo<br>10:00-10:30
+            </div>
+            <div class="class-block ciencias">
+              <i class="fas fa-flask"></i> Ciencias<br>10:30-11:30
+            </div>
+            <div class="class-block fisica">
+              <i class="fas fa-atom"></i> Física<br>11:30-12:30
+            </div>
+          </div>
+
+          <!-- Viernes -->
+          <div class="day-block">
+            <div class="day-header">VIE</div>
+            <div class="class-block arte">
+              <i class="fas fa-paint-brush"></i> Arte<br>8:00-9:00
+            </div>
+            <div class="class-block musica">
+              <i class="fas fa-music"></i> Música<br>9:00-10:00
+            </div>
+            <div class="class-block recreo">
+              <i class="fas fa-coffee"></i> Recreo<br>10:00-10:30
+            </div>
+            <div class="class-block tecnologia">
+              <i class="fas fa-laptop"></i> Tecnología<br>10:30-11:30
+            </div>
+            <div class="class-block mate">
+              <i class="fas fa-calculator"></i> Matemáticas<br>11:30-12:30
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Recordatorios -->
+    <div class="reminders">
+      <h2>Mis Tareas</h2>
+      <div class="reminder-item pending">
+        <i class="fas fa-exclamation-circle"></i>
+        <span class="reminder-title">Matemáticas: Hacer ejercicios</span>
+        <span class="reminder-status">Falta - Para: 12/04/2025</span>
+      </div>
+      <div class="reminder-item completed">
+        <i class="fas fa-check-circle"></i>
+        <span class="reminder-title">Lengua: Escribir cuento</span>
+        <span class="reminder-status">Hecho - 09/04/2025</span>
+      </div>
+      <div class="reminder-item pending">
+        <i class="fas fa-exclamation-circle"></i>
+        <span class="reminder-title">Ciencias: Proyecto</span>
+        <span class="reminder-status">Falta - Para: 15/04/2025</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

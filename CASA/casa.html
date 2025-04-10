@@ -155,20 +155,25 @@
       <button class="pestana" data-tab="dia">Día</button>
     </div>
 
-    <div class="contenido-pestanas">
-      <div class="contenido-tab" id="academic" style="display: none;">
-        <div class="subpestanas">
-          <button class="subpestana subpestana-activa" data-subtab="horario">Horario</button>
-          <button class="subpestana" data-subtab="agenda">Agenda</button>
-          <button class="subpestana" data-subtab="ayuda-lifty">Ayuda Lifty</button>
-          <button class="subpestana" data-subtab="recursos">Recursos académicos</button>
-        </div>
-      </div>
+    <!-- Contenedores para el contenido de cada pestaña -->
+<div class="contenido-pestanas">
+  <div class="contenido-tab" id="academic">
+    <!-- Subpestañas para la pestaña Académico -->
+    <div class="subpestanas">
+      <a href="../CASA/ACADEMICO/horario.html" class="subpestana subpestana-activa">Horario</a>
+      <a href="../CASA/ACADEMICO/agenda.html" class="subpestana">Agenda</a> 
+      <a href="../CASA/ACADEMICO/ayudalifty.html" class="subpestana">Ayuda Lifty</a> 
+      <a href="../CASA/ACADEMICO/recursos.html" class="subpestana">Recursos académicos</a>
+    </div>
+    </div>
+  </div>
+</div>
       <div class="contenido-tab" id="dia" style="display: none;">
+        <!-- Subpestañas para la pestaña Día -->
         <div class="subpestanas">
-          <button class="subpestana subpestana-activa" data-subtab="recordatorios">Recordatorios diarios</button>
-          <button class="subpestana" data-subtab="apoyo">Apoyo emocional</button>
-          <button class="subpestana" data-subtab="tareas">Tareas hogar</button>
+          <a href="../CASA/DIA/recordatorios.html" class="subpestana subpestana-activa">Recordtorios Diarios</a>
+          <a href="../CASA/DIA/apoyoemocional.html" class="subpestana subpestana-activa">Apoyo emocional</a>
+          <a href="../CASA/DIA/tareas.html" class="subpestana subpestana-activa">Tareas diarias</a>
           <button class="subpestana" data-subtab="objetivos">Objetivos diarios</button>
         </div>
       </div>
@@ -408,7 +413,7 @@
   const emotionImages = {
     alegria: "../img/alegria-image.png",
     tristeza: "../img/tristeza-image.png",
-    enfado: "../img/enfado-image.png",
+    enfado: "../img/lifty_enfadado.svg",
     calma: "../img/calma-image.png"
   };
 
