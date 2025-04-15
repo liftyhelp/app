@@ -25,7 +25,7 @@ body {
   width: 100%;
   height: 100vh;
   display: flex;
-  flex-direction: column; /* Cambiado para alinear verticalmente */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 1600;
@@ -69,13 +69,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* Para que la imagen no se desborde */
+  overflow: hidden;
 }
 
 .emotion-image {
-  width: 80%; /* Ajusta el tamaño de la imagen dentro del círculo */
+  width: 80%;
   height: 80%;
-  object-fit: contain; /* Mantiene las proporciones de la imagen */
+  object-fit: contain;
 }
 
 .emotion-sphere::before {
@@ -89,7 +89,7 @@ body {
 }
 
 .status-text {
-  margin-top: 20px; /* Espacio entre el círculo y el texto */
+  margin-top: 20px;
   color: #FFFFFF;
   font-size: 20px;
   text-shadow: 0 0 10px rgba(37, 149, 205, 0.7);
@@ -113,9 +113,18 @@ body {
 }
 
 /* Animaciones */
-@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-@keyframes fade { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes fade {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
 
 @media (max-width: 480px) {
   .emotion-sphere { width: 200px; height: 200px; }
@@ -150,7 +159,7 @@ body {
   background: #2595CD;
   position: fixed;
   top: 0;
-  z-index: 1000;
+  z-index: 1200; /* Canvi: Augmentat per assegurar que estigui per sobre de tot */
 }
 
 .header-top {
@@ -165,8 +174,8 @@ body {
   height: auto;
   animation: brillo-logo 3s infinite ease-in-out;
   cursor: pointer;
-  z-index: 1100; /* Afegit per assegurar que el logo estigui per sobre d'altres elements */
-  position: relative; /* Afegit perquè el z-index funcioni correctament */
+  z-index: 1100;
+  position: relative;
 }
 
 .logo-ia {
@@ -196,7 +205,7 @@ body {
   cursor: pointer;
   transition: height 0.3s ease, transform 0.3s ease;
   position: relative;
-  z-index: 1000;
+  z-index: 1100; /* Canvi: Augmentat per sobre de pestanas */
 }
 
 .header-bottom.expandido {
@@ -206,7 +215,13 @@ body {
   animation: clicar 0.3s ease forwards;
   width: 100%;
   margin: 0 auto;
-  z-index: 1001;
+  z-index: 1150; /* Canvi: Augmentat per assegurar que estigui per sobre de pestanas */
+}
+
+/* Nova regla per reforçar la superposició */
+.header-bottom.expandido ~ .contenido .pestanas,
+.header-bottom.expandido ~ .contenido .contenido-pestanas {
+  z-index: 850; /* Canvi: Assegurem que pestanas i contingut estiguin sota el header-bottom.expandido */
 }
 
 @keyframes clicar {
@@ -437,7 +452,7 @@ body {
   flex-direction: column;
   align-items: center;
   background: transparent;
-  z-index: 1;
+  z-index: 1; /* Mantenim baix perquè no interfereixi */
 }
 
 .score-section {
@@ -645,7 +660,7 @@ body {
   .status { font-size: 10px; }
 }
 
-.wifi{
+.wifi {
   height: 60px;
   width: 60px;
   margin-top: -20px;
@@ -663,7 +678,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 300px;
-  z-index: 999;
+  z-index: 900; /* Canvi: Reduït perquè estigui sota el header-bottom.expandido */
   background: transparent;
   margin-top: 20px;
 }
@@ -698,16 +713,12 @@ body {
   color: #FFFFFF;
 }
 
-@media (max-width: 480px) {
-  .pestanas { top: 160px; width: 100%; max-width: 300px; }
-}
-
 .contenido-pestanas {
   margin-top: 240px;
   padding: 20px;
   color: #000000;
   position: relative;
-  z-index: 998;
+  z-index: 800; /* Canvi: Reduït perquè estigui sota el header-bottom.expandido */
 }
 
 .contenido-tab { display: none; }
@@ -959,7 +970,7 @@ body {
   left: 0;
   width: 100%;
   height: 100vh;
-  background: linear-gradient(135deg, #A3BFFA, #60A5FA); /* Fondo azul suave como en la imagen */
+  background: linear-gradient(135deg, #A3BFFA, #60A5FA);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1121,6 +1132,20 @@ body {
   .stat-card { padding: 10px; }
   .stat-card p { font-size: 12px; }
   .status { font-size: 10px; }
-  .pestanas { top: 180px; width: 100%; max-width: 300px; margin-top: 30px; }
-  .contenido-pestanas { margin-top: 220px; }
+  .pestanas {
+    top: 180px;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 30px;
+    z-index: 900; /* Canvi: Assegurem que segueixi sota el header-bottom.expandido */
+  }
+  .contenido-pestanas {
+    margin-top: 220px;
+    z-index: 800; /* Canvi: Assegurem que segueixi sota el header-bottom.expandido */
+  }
+  /* Nova regla per a mòbils */
+  .header-bottom.expandido ~ .contenido .pestanas,
+  .header-bottom.expandido ~ .contenido .contenido-pestanas {
+    z-index: 850; /* Canvi: Assegurem que pestanas i contingut estiguin sota el header-bottom.expandido */
+  }
 }

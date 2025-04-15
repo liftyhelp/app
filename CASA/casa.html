@@ -277,11 +277,11 @@
   });
 
   function adjustPestanasPosition() {
-    const header = document.querySelector(".header");
-    const pestanas = document.getElementById("pestanas");
-    const headerHeight = header.offsetHeight;
-    pestanas.style.top = `${headerHeight}px`;
-  }
+  const header = document.querySelector(".header");
+  const pestanas = document.getElementById("pestanas");
+  const headerHeight = header.offsetHeight;
+  pestanas.style.top = `${headerHeight}px`;
+}
 
   window.addEventListener("load", adjustPestanasPosition);
   window.addEventListener("resize", adjustPestanasPosition);
