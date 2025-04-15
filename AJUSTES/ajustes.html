@@ -226,38 +226,38 @@
     </div>
   </main>
 
-  <!-- Navegación moderna -->
-  <nav class="navegacion-moderna">
-    <div class="nav-item casa" data-seccion="casa">
+   <!-- Navegación -->
+   <nav class="navegacion-moderna">
+    <a href="../AJUSTES/ajustes.html" class="nav-item casa" data-seccion="casa">
       <div class="nav-icon">
-        <img src="../img/settings.svg" alt="Home">
+        <img src="../img/settings.svg" alt="Ajustes">
       </div>
       <span class="nav-label">Configuració</span>
-    </div>
-    <div class="nav-item config" data-seccion="config">
+    </a>
+    <a href="../PROGRESO/progreso.html" class="nav-item config" data-seccion="config">
       <div class="nav-icon">
-        <img src="../img/1 estrella.svg" alt="Configuración">
+        <img src="../img/1 estrella.svg" alt="Progreso">
       </div>
-      <span class="nav-label">Progres</span>
-    </div>
-    <div class="nav-item progreso" data-seccion="progreso">
+      <span class="nav-label">Progrès</span>
+    </a>
+    <a href="../CASA/casa.html" class="nav-item progreso" data-seccion="progreso">
       <div class="nav-icon">
-        <img src="../img/Home.svg" alt="Progreso">
+        <img src="../img/Home.svg" alt="Casa">
       </div>
       <span class="nav-label">Casa</span>
-    </div>
-    <div class="nav-item historial" data-seccion="historial">
+    </a>
+    <a href="../HISTORIAL/historial.html" class="nav-item historial" data-seccion="historial">
       <div class="nav-icon">
         <img src="../img/historial.svg" alt="Historial">
       </div>
       <span class="nav-label">Historial</span>
-    </div>
-    <div class="nav-item perfil" data-seccion="perfil">
+    </a>
+    <a href="../PERFIL/perfil.html" class="nav-item perfil" data-seccion="perfil">
       <div class="nav-icon">
         <img src="../img/perfil.svg" alt="Perfil">
       </div>
       <span class="nav-label">Perfil</span>
-    </div>
+    </a>
     <img src="../img/liftycohete.png" alt="Lifty Guía" class="lifty-guia" id="liftyGuia">
   </nav>
 
@@ -292,7 +292,7 @@
         if (item.dataset.seccion === "progreso") {
           document.querySelector(".cohete").classList.add("despegar");
         }
-        if (item.dataset.seccion === "casa") window.location.href = "casa.html";
+        if (item.dataset.seccion === "casa") window.location.href = "../CASA/casa.html";
       });
     });
 
