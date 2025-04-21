@@ -743,15 +743,32 @@ body {
   cursor: pointer;
   transition: background 0.3s ease, color 0.3s ease;
   text-align: left;
+  display: flex; /* Asegura que el contenido se alinee igual */
+  align-items: center; /* Centra verticalmente el texto */
+  text-decoration: none; /* Elimina el subrayado de <a> */
+  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño */
 }
 
-.subpestana:hover { background: #2595CD; }
+.subpestana:hover {
+  background: #2595CD;
+  color: #FFFFFF;
+}
 
 .subpestana-activa {
   background: #2595CD;
   color: #FFFFFF;
   border-color: #2595CD;
 }
+
+.subpestana, .subpestana:visited, .subpestana:active {
+  text-decoration: none;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+
 
 /* Navegación */
 .navegacion-moderna {

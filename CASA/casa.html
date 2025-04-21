@@ -168,15 +168,15 @@
     </div>
   </div>
 </div>
-      <div class="contenido-tab" id="dia" style="display: none;">
-        <!-- Subpestañas para la pestaña Día -->
-        <div class="subpestanas">
-          <a href="../CASA/DIA/recordatorios.html" class="subpestana subpestana-activa">Recordatoris diaris</a>
-          <a href="../CASA/DIA/apoyoemocional.html" class="subpestana subpestana-activa">Suport emocional</a>
-          <a href="../CASA/DIA/tareas.html" class="subpestana subpestana-activa">Tasques diaries</a>
-          <button class="subpestana" data-subtab="objetivos">Objectius diaris</button>
-        </div>
-      </div>
+<div class="contenido-tab" id="dia" style="display: none;">
+  <!-- Subpestañas para la pestaña Día -->
+  <div class="subpestanas">
+    <a href="../CASA/DIA/recordatorios.html" class="subpestana subpestana-activa">Recordatorios diarios</a>
+    <a href="../CASA/DIA/apoyoemocional.html" class="subpestana">Soporte emocional</a>
+    <a href="../CASA/DIA/tareas.html" class="subpestana">Tareas diarias</a>
+    <a href="../CASA/DIA/objetivos.html" class="subpestana">Objetivos diarios</a>
+  </div>
+</div>
     </div>
 
     <div class="chat-tab" id="iaChatTab">
@@ -312,13 +312,13 @@
   });
 
   const subpestanas = document.querySelectorAll(".subpestana");
-  subpestanas.forEach(subpestana => {
-    subpestana.addEventListener("click", () => {
-      const parentSubpestanas = subpestana.closest(".subpestanas");
-      parentSubpestanas.querySelectorAll(".subpestana").forEach(sp => sp.classList.remove("subpestana-activa"));
-      subpestana.classList.add("subpestana-activa");
-    });
+subpestanas.forEach(subpestana => {
+  subpestana.addEventListener("click", () => {
+    const parentSubpestanas = subpestana.closest(".subpestanas");
+    parentSubpestanas.querySelectorAll(".subpestana").forEach(sp => sp.classList.remove("subpestana-activa"));
+    subpestana.classList.add("subpestana-activa");
   });
+});
 
   const iaChatBtn = document.getElementById("iaChatBtn");
   const iaChatTab = document.getElementById("iaChatTab");
