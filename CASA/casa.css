@@ -996,6 +996,94 @@ body {
   background: rgba(255, 255, 255, 0.3);
 }
 
+/* Estilos para las barras de sonido */
+.voice-waves {
+  position: absolute;
+  bottom: -50px; /* Ajustado para asegurar visibilidad debajo del círculo */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px; /* Espacio entre barras */
+  z-index: 20; /* Alto z-index para evitar superposiciones */
+  pointer-events: none;
+  align-items: flex-end; /* Alinear barras desde la parte inferior */
+  background: transparent; /* Fondo transparente para depuración */
+}
+
+.wave {
+  width: 10px; /* Ancho de cada barra */
+  height: 20px; /* Altura base */
+  background: #2595CD; /* Color azul sólido para mayor visibilidad */
+  pointer-events: none;
+  border-radius: 3px; /* Bordes redondeados */
+  transform-origin: bottom;
+}
+
+.wave.active {
+  animation: sound-bar 1s ease-in-out infinite; /* Animación repetitiva */
+}
+
+/* Retrasos para las barras */
+.lifty-circle.listening .voice-waves .wave.active:nth-child(2) { animation-delay: 0.2s; }
+.lifty-circle.listening .voice-waves .wave.active:nth-child(3) { animation-delay: 0.4s; }
+.lifty-circle.listening .voice-waves .wave.active:nth-child(4) { animation-delay: 0.6s; }
+.lifty-circle.listening .voice-waves .wave.active:nth-child(5) { animation-delay: 0.8s; }
+.lifty-circle.listening .voice-waves .wave.active:nth-child(6) { animation-delay: 0.10s; }
+.lifty-circle.listening .voice-waves .wave.active:nth-child(7) { animation-delay: 0.12s; }
+.lifty-circle.listening .voice-waves .wave.active:nth-child(8) { animation-delay: 0.14s; }
+.lifty-circle.listening .voice-waves .wave.active:nth-child(9) { animation-delay: 0.16s; }
+/* Animación de barras */
+@keyframes sound-bar {
+  0%, 100% { height: 20px; } /* Altura mínima */
+  50% { height: 60px; } /* Altura máxima */
+}
+
+/* Asegurar interactividad del círculo */
+.score-circle.lifty-circle {
+  z-index: 10;
+  position: relative;
+  overflow: visible; /* Evitar que las barras se corten */
+  cursor: pointer;
+}
+
+.lifty-animation {
+  z-index: 5;
+}
+
+.lifty-animation::before,
+.lifty-animation::after,
+.lifty-circle::before,
+.lifty-circle::after {
+  pointer-events: none; /* Evitar que pseudo-elementos intercepten clics */
+}
+
+/* Eliminar estilos de burbujas para evitar conflictos */
+.lifty-circle.clicked::after,
+.lifty-circle.clicked::before,
+.lifty-circle.clicked .lifty-animation::after {
+  display: none; /* Desactivar animaciones de burbujas */
+}
+
+/* Asegurar visibilidad en pantallas pequeñas */
+@media (max-width: 480px) {
+  .voice-waves {
+    bottom: -40px;
+    gap: 6px;
+  }
+  .wave {
+    width: 8px;
+    height: 15px;
+  }
+  @keyframes sound-bar {
+    0%, 100% { height: 15px; }
+    50% { height: 45px; }
+  }
+  .score-circle.lifty-circle {
+    width: 150px;
+    height: 150px;
+  }
+}
+
 @media (max-width: 480px) {
   .lock-time { font-size: 60px; }
   .lock-date { font-size: 16px; }

@@ -212,7 +212,9 @@
 
   <!-- Script -->
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM cargado, inicializando scripts");
+
   const headerBottom = document.getElementById("headerBottom");
   const corazonImg = document.querySelector(".corazon-img");
   headerBottom.addEventListener("click", () => {
@@ -316,7 +318,7 @@
   const emociones = ["alegria", "tristeza", "enfado", "calma"];
   let emotionIndex = 0;
 
-  // Mapa de imágenes para cada emoción (ajusta las rutas según tus imágenes)
+  // Mapa de imágenes para cada emoción
   const emotionImages = {
     alegria: "../img/alegre_emocion.svg",
     tristeza: "../img/triste_emocion.svg",
@@ -360,12 +362,12 @@
 
   // Mostrar pantalla negra al hacer clic en el logo
   logoLifty.addEventListener("click", (e) => {
-    e.preventDefault(); // Evitar comportamientos por defecto
-    e.stopPropagation(); // Evitar que el clic se propague a otros elementos
-    console.log("Clic en el logo detectado"); // Depuración
-    console.log("Estado actual de blackScreen:", blackScreen.classList); // Depuración
+    e.preventDefault();
+    e.stopPropagation();
+    console.log("Clic en el logo detectado");
+    console.log("Estado actual de blackScreen:", blackScreen.classList);
     blackScreen.classList.add("active");
-    console.log("Estado de blackScreen después de añadir 'active':", blackScreen.classList); // Depuración
+    console.log("Estado de blackScreen después de añadir 'active':", blackScreen.classList);
   });
 
   // Pantalla 2 → Pantalla 3
@@ -376,7 +378,6 @@
     const emocionActual = emociones[emotionIndex];
     emotionScreen.className = "emotion-screen active " + emocionActual;
     emotionText.textContent = `Estat: ${emocionActual.charAt(0).toUpperCase() + emocionActual.slice(1)}`;
-    // Cambiar la imagen según la emoción
     emotionImage.src = emotionImages[emocionActual];
   });
 
@@ -420,30 +421,161 @@
     });
   });
 
-  // Nueva función para manejar el contacto con la familia
+  // Funcionalidad para Contacte amb la família
   function contactFamily() {
     console.log("Clic en Contacte amb la família");
-    // Mostrar la pantalla negra
     blackScreen.classList.add("active");
-    
-    // Iniciar la llamada después de un breve retraso para mostrar la pantalla negra
     setTimeout(() => {
       try {
-        // Iniciar la llamada usando el esquema tel:
-        window.location.href = "tel:625811395";
-        // Desactivar la pantalla negra después de iniciar la llamada
+        window.location.href = "tel:667557610";
         blackScreen.classList.remove("active");
       } catch (error) {
         console.error("Error al iniciar la llamada:", error);
-        // En caso de error (por ejemplo, en escritorio), desactivar la pantalla negra
         blackScreen.classList.remove("active");
         alert("No es pot iniciar la trucada des d'aquest dispositiu.");
       }
-    }, 500); // Retraso de 500ms para el efecto visual
+    }, 500);
+  }
+  window.contactFamily = contactFamily;
+
+  // Nueva funcionalidad para la voz de Lifty y barras de sonido
+  const liftyCircle = document.querySelector(".score-circle.lifty-circle");
+  let isListening = false;
+
+  // Depuración: Verificar si liftyCircle existe
+  if (!liftyCircle) {
+    console.error("No se encontró el elemento .score-circle.lifty-circle. Verifica el HTML.");
+  } else {
+    console.log("liftyCircle encontrado:", liftyCircle);
   }
 
-  // Asegurar que la función contactFamily esté disponible globalmente
-  window.contactFamily = contactFamily;
+  // Crear contenedor para las barras de sonido
+  const voiceWaves = document.createElement("div");
+  voiceWaves.className = "voice-waves";
+  for (let i = 0; i < 5; i++) {
+    const wave = document.createElement("div");
+    wave.className = "wave";
+    voiceWaves.appendChild(wave);
+  }
+  liftyCircle.appendChild(voiceWaves);
+  console.log("Barras de sonido creadas y añadidas al DOM:", voiceWaves);
+
+  // Verificar que las barras existen
+  const waves = voiceWaves.querySelectorAll(".wave");
+  console.log("Número de barras creadas:", waves.length);
+
+  // Función para hablar con síntesis de voz
+  function speak(text) {
+    if (!window.SpeechSynthesis) {
+      console.error("La API SpeechSynthesis no está soportada en este navegador.");
+      alert("Este navegador no soporta la síntesis de voz. Prueba con Chrome o Firefox.");
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "ca-ES";
+    utterance.volume = 1;
+    utterance.rate = 1;
+    utterance.pitch = 1;
+
+    const voices = speechSynthesis.getVoices();
+    console.log("Voces disponibles al intentar hablar:", voices);
+    if (voices.length === 0) {
+      console.warn("No hay voces disponibles aún. Esperando carga de voces...");
+      speechSynthesis.onvoiceschanged = () => {
+        const loadedVoices = speechSynthesis.getVoices();
+        console.log("Voces cargadas:", loadedVoices);
+        const catalanVoice = loadedVoices.find(voice => voice.lang === "ca-ES") || loadedVoices.find(voice => voice.lang.includes("es")) || loadedVoices[0];
+        utterance.voice = catalanVoice;
+        try {
+          speechSynthesis.speak(utterance);
+          console.log("Reproduciendo voz con texto:", text);
+        } catch (error) {
+          console.error("Error al reproducir la voz después de cargar voces:", error);
+        }
+      };
+    } else {
+      const catalanVoice = voices.find(voice => voice.lang === "ca-ES") || voices.find(voice => voice.lang.includes("es")) || voices[0];
+      utterance.voice = catalanVoice;
+      try {
+        speechSynthesis.speak(utterance);
+        console.log("Reproduciendo voz con texto:", text);
+      } catch (error) {
+        console.error("Error al reproducir la voz:", error);
+      }
+    }
+
+    // Mostrar barras de sonido mientras habla
+    console.log("Añadiendo clase listening para mostrar barras");
+    liftyCircle.classList.add("listening");
+    waves.forEach((wave, index) => {
+      wave.classList.add("active");
+      console.log(`Barra ${index + 1} activada`);
+    });
+
+    utterance.onend = () => {
+      console.log("Voz terminada, simulando escucha");
+      liftyCircle.classList.remove("listening");
+      waves.forEach((wave, index) => {
+        wave.classList.remove("active");
+        console.log(`Barra ${index + 1} desactivada`);
+      });
+      setTimeout(() => {
+        console.log("Simulando fase de escucha");
+        liftyCircle.classList.add("listening");
+        waves.forEach((wave, index) => {
+          wave.classList.add("active");
+          console.log(`Barra ${index + 1} activada en fase de escucha`);
+        });
+        setTimeout(() => {
+          console.log("Finalizando fase de escucha");
+          liftyCircle.classList.remove("listening");
+          waves.forEach((wave, index) => {
+            wave.classList.remove("active");
+            console.log(`Barra ${index + 1} desactivada`);
+          });
+        }, 2000);
+      }, 500);
+    };
+
+    utterance.onerror = (event) => {
+      console.error("Error en la síntesis de voz:", event.error);
+    };
+  }
+
+  console.log("Voces disponibles al cargar la página:", speechSynthesis.getVoices());
+  speechSynthesis.onvoiceschanged = () => {
+    console.log("Voces disponibles actualizadas:", speechSynthesis.getVoices());
+  };
+
+  if (liftyCircle) {
+    liftyCircle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      console.log("Clic detectado en score-circle.lifty-circle", e.target);
+      liftyCircle.classList.add("clicked");
+      isListening = !isListening;
+
+      if (isListening) {
+        console.log("Iniciando conversación");
+        speak("Hola, sóc en Lifty, com et puc ajudar avui?");
+      } else {
+        console.log("Deteniendo conversación");
+        speechSynthesis.cancel();
+        liftyCircle.classList.remove("listening");
+        waves.forEach((wave, index) => {
+          wave.classList.remove("active");
+          console.log(`Barra ${index + 1} desactivada al detener`);
+        });
+      }
+
+      setTimeout(() => {
+        liftyCircle.classList.remove("clicked");
+      }, 1500);
+    });
+    console.log("Evento de clic asignado a score-circle.lifty-circle");
+  } else {
+    console.error("No se pudo asignar el evento de clic porque liftyCircle es null");
+  }
 });
   </script>
 </body>
