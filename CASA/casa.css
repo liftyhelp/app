@@ -62,8 +62,7 @@ body {
   width: 250px;
   height: 250px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(37, 149, 205, 0.5));
-  box-shadow: 0 0 50px rgba(37, 149, 205, 0.7);
+  /* Hacemos el gradiente más blanco y opaco para que sea más intenso */
   animation: pulse 2s infinite;
   cursor: pointer;
   display: flex;
@@ -72,28 +71,52 @@ body {
   overflow: hidden;
 }
 
+
+/* Definimos un box-shadow diferente para cada emoción */
+.emotion-screen.alegria .emotion-sphere {
+  box-shadow: 0 0 50px rgba(255, 193, 7, 0.7); /* Amarillo para alegria */
+  
+}
+
+.emotion-screen.tristeza .emotion-sphere {
+  box-shadow: 0 0 50px rgba(59, 130, 246, 0.7); /* Azul para tristeza */
+}
+
+.emotion-screen.enfado .emotion-sphere {
+  box-shadow: 0 0 50px rgba(220, 38, 38, 0.7); /* Rojo para enfado */
+}
+
+.emotion-screen.calma .emotion-sphere {
+  box-shadow: 0 0 50px rgba(52, 211, 153, 0.7); /* Verde para calma */
+}
+
+
 .emotion-image {
   width: 80%;
   height: 80%;
   object-fit: contain;
+  position: relative;
+  z-index: 1; /* Aseguramos que la imagen esté por encima del fondo borroso */
+  filter: drop-shadow(100px 100px 120px rgba(237, 17, 17, 0.8));
 }
 
+/* Eliminamos el pseudo-elemento ::after, ya que no necesitamos el círculo blanco */
+.emotion-sphere::after {
+  display: none;
+}
+
+/* Eliminamos el pseudo-elemento ::before para quitar el borde discontinuo */
 .emotion-sphere::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 2px dashed #FFFFFF;
-  animation: spin 10s linear infinite;
+  display: none; /* O simplemente eliminamos esta sección si no se necesita */
 }
 
 .status-text {
-  margin-top: 20px;
+  margin-top: 30px;
   color: #FFFFFF;
   font-size: 20px;
   text-shadow: 0 0 10px rgba(37, 149, 205, 0.7);
   animation: fade 3s infinite;
+  text-align: center;
 }
 
 .emotion-screen.alegria {
@@ -101,7 +124,7 @@ body {
 }
 
 .emotion-screen.tristeza {
-  background: linear-gradient(135deg, #1E3A8A, #3B82F6);
+  background: linear-gradient(135deg, #3B82F6);
 }
 
 .emotion-screen.enfado {
@@ -127,7 +150,14 @@ body {
 }
 
 @media (max-width: 480px) {
-  .emotion-sphere { width: 200px; height: 200px; }
+  .emotion-sphere { 
+    width: 200px; 
+    height: 200px;
+  }
+  .emotion-sphere::after {
+    filter: blur(2px); /* Ajustamos el blur en pantallas pequeñas */
+    box-shadow: 0 0 30px 15px rgba(255, 255, 255, 0.3); /* Ajustamos el box-shadow */
+  }
   .status-text { font-size: 18px; }
 }
 
@@ -139,17 +169,6 @@ body {
   border-radius: 50%;
   border: 2px dashed #FFFFFF;
   animation: spin 10s linear infinite;
-}
-
-.status-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #FFFFFF;
-  font-size: 20px;
-  text-shadow: 0 0 10px rgba(37, 149, 205, 0.7);
-  animation: fade 3s infinite;
 }
 
 /* Header */
