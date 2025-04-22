@@ -18,42 +18,42 @@
   <!-- Pantalla Negra (Pantalla 2) -->
   <div class="black-screen" id="blackScreen"></div>
 
- <!-- Pantalla de Emociones (Pantalla 3) -->
-<div class="emotion-screen" id="emotionScreen">
-  <div class="emotion-sphere" id="emotionSphere">
-    <img src="../img/emotion-image.png" alt="Emotion Image" class="emotion-image">
+  <!-- Pantalla de Emociones (Pantalla 3) -->
+  <div class="emotion-screen" id="emotionScreen">
+    <div class="emotion-sphere" id="emotionSphere">
+      <img src="../img/emotion-image.png" alt="Emotion Image" class="emotion-image">
+    </div>
+    <div class="status-text" id="emotionText">Estat: Alegria</div>
   </div>
-  <div class="status-text" id="emotionText">Estat: Alegria</div>
-</div>
 
   <!-- Pantalla de Bloqueo con Notificaciones (Pantalla 4) -->
-<div class="lock-screen" id="lockScreen">
-  <div class="lock-status-bar">
-    <span>Orange</span>
-    <div class="lock-status-icons">
-    <img src="../img/wifi.svg" alt="wifi" class="wifi">
+  <div class="lock-screen" id="lockScreen">
+    <div class="lock-status-bar">
+      <span>Orange</span>
+      <div class="lock-status-icons">
+        <img src="../img/wifi.svg" alt="wifi" class="wifi">
+      </div>
+    </div>
+    <div class="lock-date" id="lockDate"></div>
+    <div class="lock-time" id="lockTime"></div>
+    <div class="lifty-widget">
+      <img src="../img/widgetlifty.svg" alt="Lifty Widget" class="lifty-widget-img">
+    </div>
+    <div class="notifications">
+      <div class="notification" id="notif1" data-target="pantalla1">Notificación 1</div>
+      <div class="notification" id="notif2" data-target="pantalla1">Notificación 2</div>
+    </div>
+    <div class="lock-actions">
+      <img src="../img/linterna_bloqueo.svg" alt="wifi" class="wifi">
+      <img src="../img/camara_bloqueo.svg" alt="wifi" class="wifi">
     </div>
   </div>
-  <div class="lock-date" id="lockDate"></div>
-  <div class="lock-time" id="lockTime"></div>
-  <div class="lifty-widget">
-    <img src="../img/widgetlifty.svg" alt="Lifty Widget" class="lifty-widget-img">
-  </div>
-  <div class="notifications">
-    <div class="notification" id="notif1" data-target="pantalla1">Notificación 1</div>
-    <div class="notification" id="notif2" data-target="pantalla1">Notificación 2</div>
-  </div>
-  <div class="lock-actions">
-    <img src="../img/linterna_bloqueo.svg" alt="wifi" class="wifi">
-    <img src="../img/camara_bloqueo.svg" alt="wifi" class="wifi">
-  </div>
-</div>
 
   <!-- Header -->
   <header class="header">
     <div class="header-top">
       <img src="../img/lifty2blanco.png" alt="Lifty Logo" class="logo">
-      <img src="../img/liftyanimando.svg" alt="Lifty IA Chat" class="logo-ia" id="iaChatBtn">
+      <!-- Eliminamos el botón de IA (logo-ia) -->
     </div>
     <div class="header-bottom" id="headerBottom">
       <div class="progreso">
@@ -111,13 +111,13 @@
               <span class="dia"></span>
             </div>
             <div class="etiquetas-dias">
-              <span>Di</span>
-              <span>Dm</span>
-              <span>X</span>
-              <span>Dj</span>
-              <span>Dv</span>
-              <span>Ds</span>
-              <span>D</span>
+              <span>8:00</span>
+              <span>10:00</span>
+              <span>14:00</span>
+              <span>17:00</span>
+              <span>20:00</span>
+              <span>22:00</span>
+              <span>00:00</span>
             </div>
           </div>
         </div>
@@ -137,11 +137,6 @@
 
       <!-- Stats Section (tarjetas clicables) -->
       <div class="stats-section">
-        <div class="stat-card" onclick="openIaChat()">
-          <div class="icon ajuda-icon"></div>
-          <p>AJUDA</p>
-          <p class="status active">Activa</p>
-        </div>
         <div class="stat-card" onclick="contactFamily()">
           <div class="icon familia-icon"></div>
           <p>CONTACTE AMB LA FAMÍLIA</p>
@@ -156,43 +151,28 @@
     </div>
 
     <!-- Contenedores para el contenido de cada pestaña -->
-<div class="contenido-pestanas">
-  <div class="contenido-tab" id="academic">
-    <!-- Subpestañas para la pestaña Académico -->
-    <div class="subpestanas">
-      <a href="../CASA/ACADEMICO/horario.html" class="subpestana subpestana-activa">Horari</a>
-      <a href="../CASA/ACADEMICO/agenda.html" class="subpestana">Agenda</a> 
-      <a href="../CASA/ACADEMICO/ayudalifty.html" class="subpestana">Ajuda Lifty</a> 
-      <a href="../CASA/ACADEMICO/recursos.html" class="subpestana">Recursos acadèmics</a>
-    </div>
-    </div>
-  </div>
-</div>
-<div class="contenido-tab" id="dia" style="display: none;">
-  <!-- Subpestañas para la pestaña Día -->
-  <div class="subpestanas">
-    <a href="../CASA/DIA/recordatorios.html" class="subpestana subpestana-activa">Recordatorios diarios</a>
-    <a href="../CASA/DIA/apoyoemocional.html" class="subpestana">Soporte emocional</a>
-    <a href="../CASA/DIA/tareas.html" class="subpestana">Tareas diarias</a>
-    <a href="../CASA/DIA/objetivos.html" class="subpestana">Objetivos diarios</a>
-  </div>
-</div>
+    <div class="contenido-pestanas">
+      <div class="contenido-tab" id="academic">
+        <!-- Subpestañas para la pestaña Académico -->
+        <div class="subpestanas">
+          <a href="../CASA/ACADEMICO/horario.html" class="subpestana subpestana-activa">Horari</a>
+          <a href="../CASA/ACADEMICO/agenda.html" class="subpestana">Agenda</a> 
+          <a href="../CASA/ACADEMICO/ayudalifty.html" class="subpestana">Ajuda Lifty</a> 
+          <a href="../CASA/ACADEMICO/recursos.html" class="subpestana">Recursos acadèmics</a>
+        </div>
+      </div>
+      <div class="contenido-tab" id="dia" style="display: none;">
+        <!-- Subpestañas para la pestaña Día -->
+        <div class="subpestanas">
+          <a href="../CASA/DIA/recordatorios.html" class="subpestana subpestana-activa">Recordatorios diarios</a>
+          <a href="../CASA/DIA/apoyoemocional.html" class="subpestana">Soporte emocional</a>
+          <a href="../CASA/DIA/tareas.html" class="subpestana">Tareas diarias</a>
+          <a href="../CASA/DIA/objetivos.html" class="subpestana">Objetivos diarios</a>
+        </div>
+      </div>
     </div>
 
-    <div class="chat-tab" id="iaChatTab">
-      <div class="chat-header">
-        <h2>Chat amb Lifty</h2>
-        <button class="close-btn" id="closeIaChat">X</button>
-      </div>
-      <div class="chat-body" id="iaChatBody">
-        <div class="mensaje lifty">Hola! Com et puc ajudar avui? Pots escriure o parlar-me!</div>
-      </div>
-      <div class="chat-input">
-        <input type="text" id="iaUserInput" placeholder="Escriu aquí...">
-        <button id="iaSendMessage">Enviar</button>
-        <button id="iaVoiceBtn">🎙️</button>
-      </div>
-    </div>
+    <!-- Eliminamos el chat-tab ya que ya no se necesita -->
   </main>
 
   <!-- Navegación -->
@@ -277,11 +257,11 @@
   });
 
   function adjustPestanasPosition() {
-  const header = document.querySelector(".header");
-  const pestanas = document.getElementById("pestanas");
-  const headerHeight = header.offsetHeight;
-  pestanas.style.top = `${headerHeight}px`;
-}
+    const header = document.querySelector(".header");
+    const pestanas = document.getElementById("pestanas");
+    const headerHeight = header.offsetHeight;
+    pestanas.style.top = `${headerHeight}px`;
+  }
 
   window.addEventListener("load", adjustPestanasPosition);
   window.addEventListener("resize", adjustPestanasPosition);
@@ -312,86 +292,13 @@
   });
 
   const subpestanas = document.querySelectorAll(".subpestana");
-subpestanas.forEach(subpestana => {
-  subpestana.addEventListener("click", () => {
-    const parentSubpestanas = subpestana.closest(".subpestanas");
-    parentSubpestanas.querySelectorAll(".subpestana").forEach(sp => sp.classList.remove("subpestana-activa"));
-    subpestana.classList.add("subpestana-activa");
+  subpestanas.forEach(subpestana => {
+    subpestana.addEventListener("click", () => {
+      const parentSubpestanas = subpestana.closest(".subpestanas");
+      parentSubpestanas.querySelectorAll(".subpestana").forEach(sp => sp.classList.remove("subpestana-activa"));
+      subpestana.classList.add("subpestana-activa");
+    });
   });
-});
-
-  const iaChatBtn = document.getElementById("iaChatBtn");
-  const iaChatTab = document.getElementById("iaChatTab");
-  const closeIaChat = document.getElementById("closeIaChat");
-  const iaSendMessage = document.getElementById("iaSendMessage");
-  const iaUserInput = document.getElementById("iaUserInput");
-  const iaChatBody = document.getElementById("iaChatBody");
-  const iaVoiceBtn = document.getElementById("iaVoiceBtn");
-
-  function adjustChatTabSize() {
-    iaChatTab.style.top = `0px`;
-    iaChatTab.style.height = `100vh`;
-  }
-
-  window.addEventListener("load", adjustChatTabSize);
-  window.addEventListener("resize", adjustChatTabSize);
-
-  iaChatBtn.addEventListener("click", openIaChat);
-
-  function openIaChat() {
-    iaChatTab.style.display = "block";
-    adjustChatTabSize();
-  }
-
-  closeIaChat.addEventListener("click", () => {
-    iaChatTab.style.display = "none";
-  });
-
-  iaSendMessage.addEventListener("click", sendIaMessage);
-  iaUserInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") sendIaMessage();
-  });
-
-  function sendIaMessage() {
-    const message = iaUserInput.value.trim();
-    if (message) {
-      const userMsg = document.createElement("div");
-      userMsg.classList.add("mensaje", "usuario");
-      userMsg.textContent = message;
-      iaChatBody.appendChild(userMsg);
-      iaUserInput.value = "";
-      setTimeout(() => {
-        const iaMsg = document.createElement("div");
-        iaMsg.classList.add("mensaje", "lifty");
-        iaMsg.textContent = "Aquesta és una resposta simulada de la IA!";
-        iaChatBody.appendChild(iaMsg);
-        iaChatBody.scrollTop = iaChatBody.scrollHeight;
-      }, 1000);
-    }
-  }
-
-  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-  recognition.lang = "ca-ES";
-  recognition.continuous = false;
-
-  iaVoiceBtn.addEventListener("click", () => {
-    recognition.start();
-    iaVoiceBtn.style.background = "#FF5E62";
-  });
-
-  recognition.onresult = (event) => {
-    const transcript = event.results[0][0].transcript;
-    iaUserInput.value = transcript;
-    sendIaMessage();
-  };
-
-  recognition.onend = () => {
-    iaVoiceBtn.style.background = "";
-  };
-
-  recognition.onerror = (event) => {
-    console.error("Error en el reconeixement de veu:", event.error);
-  };
 
   // Funcionalidad para Pantalla 2, 3 y 4
   const blackScreen = document.getElementById("blackScreen");
@@ -454,11 +361,11 @@ subpestanas.forEach(subpestana => {
   // Mostrar pantalla negra al hacer clic en el logo
   logoLifty.addEventListener("click", (e) => {
     e.preventDefault(); // Evitar comportamientos por defecto
-    e.stopPropagation(); // Evitar que el clic es propagui a altres elements
+    e.stopPropagation(); // Evitar que el clic se propague a otros elementos
     console.log("Clic en el logo detectado"); // Depuración
     console.log("Estado actual de blackScreen:", blackScreen.classList); // Depuración
     blackScreen.classList.add("active");
-    console.log("Estado de blackScreen després d'afegir 'active':", blackScreen.classList); // Depuración
+    console.log("Estado de blackScreen después de añadir 'active':", blackScreen.classList); // Depuración
   });
 
   // Pantalla 2 → Pantalla 3
@@ -512,9 +419,32 @@ subpestanas.forEach(subpestana => {
       lockScreen.classList.remove("active");
     });
   });
-});
 
+  // Nueva función para manejar el contacto con la familia
+  function contactFamily() {
+    console.log("Clic en Contacte amb la família");
+    // Mostrar la pantalla negra
+    blackScreen.classList.add("active");
     
-</script>
+    // Iniciar la llamada después de un breve retraso para mostrar la pantalla negra
+    setTimeout(() => {
+      try {
+        // Iniciar la llamada usando el esquema tel:
+        window.location.href = "tel:625811395";
+        // Desactivar la pantalla negra después de iniciar la llamada
+        blackScreen.classList.remove("active");
+      } catch (error) {
+        console.error("Error al iniciar la llamada:", error);
+        // En caso de error (por ejemplo, en escritorio), desactivar la pantalla negra
+        blackScreen.classList.remove("active");
+        alert("No es pot iniciar la trucada des d'aquest dispositiu.");
+      }
+    }, 500); // Retraso de 500ms para el efecto visual
+  }
+
+  // Asegurar que la función contactFamily esté disponible globalmente
+  window.contactFamily = contactFamily;
+});
+  </script>
 </body>
 </html>

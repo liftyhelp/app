@@ -62,7 +62,6 @@ body {
   width: 250px;
   height: 250px;
   border-radius: 50%;
-  /* Hacemos el gradiente más blanco y opaco para que sea más intenso */
   animation: pulse 2s infinite;
   cursor: pointer;
   display: flex;
@@ -71,43 +70,20 @@ body {
   overflow: hidden;
 }
 
-
-/* Definimos un box-shadow diferente para cada emoción */
-.emotion-screen.alegria .emotion-sphere {
-  box-shadow: 0 0 50px rgba(255, 193, 7, 0.7); /* Amarillo para alegria */
-  
-}
-
-.emotion-screen.tristeza .emotion-sphere {
-  box-shadow: 0 0 50px rgba(59, 130, 246, 0.7); /* Azul para tristeza */
-}
-
-.emotion-screen.enfado .emotion-sphere {
-  box-shadow: 0 0 50px rgba(220, 38, 38, 0.7); /* Rojo para enfado */
-}
-
-.emotion-screen.calma .emotion-sphere {
-  box-shadow: 0 0 50px rgba(52, 211, 153, 0.7); /* Verde para calma */
-}
-
-
 .emotion-image {
   width: 80%;
   height: 80%;
   object-fit: contain;
   position: relative;
-  z-index: 1; /* Aseguramos que la imagen esté por encima del fondo borroso */
-  filter: drop-shadow(100px 100px 120px rgba(237, 17, 17, 0.8));
+  z-index: 1;
 }
 
-/* Eliminamos el pseudo-elemento ::after, ya que no necesitamos el círculo blanco */
 .emotion-sphere::after {
   display: none;
 }
 
-/* Eliminamos el pseudo-elemento ::before para quitar el borde discontinuo */
 .emotion-sphere::before {
-  display: none; /* O simplemente eliminamos esta sección si no se necesita */
+  display: none;
 }
 
 .status-text {
@@ -140,10 +116,7 @@ body {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.1); }
 }
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+
 @keyframes fade {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
@@ -154,21 +127,7 @@ body {
     width: 200px; 
     height: 200px;
   }
-  .emotion-sphere::after {
-    filter: blur(2px); /* Ajustamos el blur en pantallas pequeñas */
-    box-shadow: 0 0 30px 15px rgba(255, 255, 255, 0.3); /* Ajustamos el box-shadow */
-  }
   .status-text { font-size: 18px; }
-}
-
-.emotion-sphere::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 2px dashed #FFFFFF;
-  animation: spin 10s linear infinite;
 }
 
 /* Header */
@@ -178,12 +137,12 @@ body {
   background: #2595CD;
   position: fixed;
   top: 0;
-  z-index: 1200; /* Canvi: Augmentat per assegurar que estigui per sobre de tot */
+  z-index: 1200;
 }
 
 .header-top {
   display: flex;
-  justify-content: space-between;
+  justify-content: CENTER;
   align-items: center;
   margin-bottom: 30px;
 }
@@ -195,17 +154,6 @@ body {
   cursor: pointer;
   z-index: 1100;
   position: relative;
-}
-
-.logo-ia {
-  width: 70px;
-  height: auto;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.logo-ia:hover {
-  transform: scale(1.1);
 }
 
 @keyframes brillo-logo {
@@ -224,7 +172,7 @@ body {
   cursor: pointer;
   transition: height 0.3s ease, transform 0.3s ease;
   position: relative;
-  z-index: 1100; /* Canvi: Augmentat per sobre de pestanas */
+  z-index: 1100;
 }
 
 .header-bottom.expandido {
@@ -234,13 +182,12 @@ body {
   animation: clicar 0.3s ease forwards;
   width: 100%;
   margin: 0 auto;
-  z-index: 1150; /* Canvi: Augmentat per assegurar que estigui per sobre de pestanas */
+  z-index: 1150;
 }
 
-/* Nova regla per reforçar la superposició */
 .header-bottom.expandido ~ .contenido .pestanas,
 .header-bottom.expandido ~ .contenido .contenido-pestanas {
-  z-index: 850; /* Canvi: Assegurem que pestanas i contingut estiguin sota el header-bottom.expandido */
+  z-index: 850;
 }
 
 @keyframes clicar {
@@ -471,7 +418,7 @@ body {
   flex-direction: column;
   align-items: center;
   background: transparent;
-  z-index: 1; /* Mantenim baix perquè no interfereixi */
+  z-index: 1;
 }
 
 .score-section {
@@ -647,12 +594,6 @@ body {
   background-repeat: no-repeat;
 }
 
-.ajuda-icon {
-  background: url('../img/liftyanimando.svg');
-  background-color: #e6f0fa;
-  border-radius: 50%;
-}
-
 .familia-icon {
   background: url('../img/1 estrella.svg');
   background-color: #ffe6e6;
@@ -697,7 +638,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 300px;
-  z-index: 900; /* Canvi: Reduït perquè estigui sota el header-bottom.expandido */
+  z-index: 900;
   background: transparent;
   margin-top: 20px;
 }
@@ -737,7 +678,7 @@ body {
   padding: 20px;
   color: #000000;
   position: relative;
-  z-index: 800; /* Canvi: Reduït perquè estigui sota el header-bottom.expandido */
+  z-index: 800;
 }
 
 .contenido-tab { display: none; }
@@ -762,10 +703,10 @@ body {
   cursor: pointer;
   transition: background 0.3s ease, color 0.3s ease;
   text-align: left;
-  display: flex; /* Asegura que el contenido se alinee igual */
-  align-items: center; /* Centra verticalmente el texto */
-  text-decoration: none; /* Elimina el subrayado de <a> */
-  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño */
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 
 .subpestana:hover {
@@ -786,8 +727,6 @@ body {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
-
-
 
 /* Navegación */
 .navegacion-moderna {
@@ -916,87 +855,6 @@ body {
   0% { transform: translateX(-50%) scale(1); }
   50% { transform: translateX(-50%) scale(1.2); }
   100% { transform: translateX(-50%) scale(1); }
-}
-
-/* Chat */
-.chat-tab#iaChatTab {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  flex-direction: column;
-  z-index: 1001;
-}
-
-.chat-header {
-  background: #2595CD;
-  color: #FFFFFF;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.chat-header h2 { font-size: 18px; }
-
-.close-btn {
-  background: none;
-  border: none;
-  color: #FFFFFF;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.chat-body {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
-}
-
-.mensaje {
-  margin: 5px 0;
-  padding: 10px;
-  border-radius: 10px;
-  max-width: 80%;
-}
-
-.mensaje.lifty {
-  background: #2595CD;
-  color: #FFFFFF;
-  align-self: flex-start;
-}
-
-.mensaje.usuario {
-  background: #FFD700;
-  color: #000000;
-  align-self: flex-end;
-  margin-left: auto;
-}
-
-.chat-input {
-  display: flex;
-  padding: 10px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.chat-input input {
-  flex: 1;
-  padding: 5px;
-  border: none;
-  border-radius: 5px;
-  margin-right: 10px;
-}
-
-.chat-input button {
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  background: #2595CD;
-  color: #FFFFFF;
-  cursor: pointer;
 }
 
 /* Pantalla de Bloqueo (Pantalla 4) - Estilo iPhone */
@@ -1148,19 +1006,11 @@ body {
   .action-btn { width: 45px; height: 45px; font-size: 20px; }
 }
 
-/* Animaciones */
-@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-@keyframes fade { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-
 /* Media Queries */
 @media (max-width: 480px) {
-  .emotion-sphere { width: 200px; height: 200px; }
-  .status-text { font-size: 18px; }
   .header { padding: 15px 10px; }
   .header-top { margin-bottom: 20px; }
   .logo { width: 120px; }
-  .logo-ia { width: 50px; }
   .header-bottom { gap: 50px; padding: 8px; }
   .header-bottom.expandido { height: 260px; }
   .quantum-dashboard { margin-top: 100px; padding: 15px; }
@@ -1173,15 +1023,14 @@ body {
     width: 100%;
     max-width: 300px;
     margin-top: 30px;
-    z-index: 900; /* Canvi: Assegurem que segueixi sota el header-bottom.expandido */
+    z-index: 900;
   }
   .contenido-pestanas {
     margin-top: 220px;
-    z-index: 800; /* Canvi: Assegurem que segueixi sota el header-bottom.expandido */
+    z-index: 800;
   }
-  /* Nova regla per a mòbils */
   .header-bottom.expandido ~ .contenido .pestanas,
   .header-bottom.expandido ~ .contenido .contenido-pestanas {
-    z-index: 850; /* Canvi: Assegurem que pestanas i contingut estiguin sota el header-bottom.expandido */
+    z-index: 850;
   }
 }
