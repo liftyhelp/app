@@ -2,14 +2,24 @@ body {
   font-family: 'Roboto', Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f5f5f5;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
 }
+
+.back-tareas{
+  background-color: white;
+  z-index: 9;
+} 
 
 .container {
   width: 414px;
   margin: 0 auto;
   padding: 15px;
   box-sizing: border-box;
+  
 }
 
 .volver {
@@ -281,6 +291,7 @@ h1 {
   .container {
     width: 100%;
     padding: 10px;
+    
   }
   h1 {
     font-size: 32px;
@@ -463,13 +474,13 @@ h1 {
 }
 
 .day-header {
-  background-color: #ffffff;
+  background-color: #313131;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 14px; /* Aumentado para mejor legibilidad */
   font-weight: 600;
-  color: #333;
+  color: #ffffff;
   border-bottom: 1px solid #e0e0e0;
   border-right: 1px solid #e0e0e0;
   height: 35px; /* Más alto para mejor visibilidad */
@@ -511,55 +522,55 @@ h1 {
 
 /* Colores suaves por materia y contraste de texto */
 .mate { 
-  background-color: #87CEEB; /* Azul claro */
+  background-image:linear-gradient(30deg, #00b7ff, white);
   color: #333; 
 }
 .lengua { 
-  background-color: #FF9999; /* Rosa claro */
+  background-image:linear-gradient(30deg, #ff0000, white);
   color: #333; 
 }
 .ciencias { 
-  background-color: #90EE90; /* Verde menta */
+  background-image:linear-gradient(30deg, #00ff00, white);
   color: #333; 
 }
 .historia { 
-  background-color: #FFCC99; /* Naranja claro */
+  background-image:linear-gradient(30deg, #ff8000, white);
   color: #333; 
 }
 .arte { 
-  background-color: #FFB6C1; /* Rosa pastel */
+  background-image:linear-gradient(30deg, #e50041, white);
   color: #333; 
 }
 .fisica { 
-  background-color: #DDA0DD; /* Lavanda */
+  background-image:linear-gradient(30deg, #7100fc, white);
   color: #333; 
 }
 .quimica { 
-  background-color: #A9A9A9; /* Gris claro */
+  background-image:linear-gradient(30deg, #404040, white);
   color: #333; 
 }
 .geo { 
-  background-color: #6495ED; /* Azul suave */
+  background-image:linear-gradient(30deg, #1164ff, white);
   color: #333; 
 }
 .edfi { 
-  background-color: #AFEEEE; /* Turquesa claro */
+  background-image:linear-gradient(30deg, #b108ff, white);
   color: #333; 
 }
 .ingles { 
-  background-color: #98FB98; /* Verde claro */
+  background-image:linear-gradient(30deg, #ffe600, white);
   color: #333; 
 }
 .tecnologia { 
-  background-color: #D2B48C; /* Marrón claro */
+  background-image:linear-gradient(30deg, #a24101, white);
   color: #333; 
 }
 .musica { 
-  background-color: #B0E0E6; /* Cian claro */
+  background-image:linear-gradient(30deg, #ffe1b3, white);
   color: #333; 
 }
 .recreo { 
-  background-color: #FFFACD; /* Amarillo pastel */
+  background-image:linear-gradient(30deg, #ffffff, white);
   color: #333; 
 }
 
@@ -991,7 +1002,7 @@ h1 {
 
   /* Ajustes para el Chat en responsive */
   .chat-container {
-    height: 700px; /* Ajustado para 896px de alto */
+    height: 600px; /* Ajustado para 896px de alto */
   }
 
   .message-content {
@@ -1029,8 +1040,6 @@ h1 {
 }
 
 /* Recursos academicos */
-
-/* Reset básico */
 * {
   margin: 0;
   padding: 0;
@@ -1039,8 +1048,8 @@ h1 {
 
 body {
   font-family: 'Comic Neue', sans-serif;
+  background-image: url('../../img/fondo3.svg');
   line-height: 1.6;
-  background-color: #e6f3ff;
   color: #2d2d2d;
   font-size: 1.3rem; /* Texto más grande */
 }
