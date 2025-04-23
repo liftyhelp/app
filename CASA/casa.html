@@ -91,7 +91,9 @@
       </div>
       <div class="corazon" id="corazon">
         <div class="icono-contenedor">
-          <img src="../img/corazonapp.svg" alt="Corazón Emocional" class="corazon-img">
+          <svg class="corazon-img" viewBox="0 0 100 100" width="50" height="50">
+            <path class="corazon-path" d="M50 88.87C17.73 70.47 10 52.67 10 37.5a20 20 0 0134.64-13.33L50 30.73l5.36-6.56A20 20 0 0190 37.5c0 15.17-7.73 32.97-40 51.37z" />
+          </svg>
           <span class="etiqueta">Nervis</span>
         </div>
         <div class="detalle-corazon">
@@ -215,6 +217,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("DOM cargado, inicializando scripts");
 
+  // Funcionalidad existente
   const headerBottom = document.getElementById("headerBottom");
   const corazonImg = document.querySelector(".corazon-img");
   headerBottom.addEventListener("click", () => {
@@ -223,7 +226,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   let emocionActual = "feliz";
-  corazonImg.classList.add(emocionActual);
+  if (corazonImg) {
+    corazonImg.classList.add(emocionActual);
+  } else {
+    console.error("No se encontró .corazon-img. Verifica el HTML.");
+  }
+
   const navItems = document.querySelectorAll(".nav-item");
   const liftyGuia = document.getElementById("liftyGuia");
 
@@ -243,10 +251,16 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(() => {
     const emociones = ["feliz", "ansioso", "triste", "enojado"];
     emocionActual = emociones[Math.floor(Math.random() * emociones.length)];
-    corazonImg.classList.remove("feliz", "ansioso", "triste", "enojado");
-    corazonImg.classList.add(emocionActual);
-    document.querySelector(".emotion-icon")?.classList.remove("feliz", "ansioso", "triste", "enojado");
-    document.querySelector(".emotion-icon")?.classList.add(emocionActual);
+    if (corazonImg) {
+      corazonImg.classList.remove("feliz", "ansioso", "triste", "enojado");
+      corazonImg.classList.add(emocionActual);
+      console.log(`Corazón cambiado a emoción: ${emocionActual}`);
+    }
+    const emotionIcon = document.querySelector(".emotion-icon");
+    if (emotionIcon) {
+      emotionIcon.classList.remove("feliz", "ansioso", "triste", "enojado");
+      emotionIcon.classList.add(emocionActual);
+    }
   }, 5000);
 
   const dias = document.querySelectorAll(".dia");
@@ -272,7 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const contenidos = document.querySelectorAll(".contenido-tab");
   const quantumDashboard = document.getElementById("quantumDashboard");
 
-  quantumDashboard.style.display = "block"; // Mostrar Quantum Dashboard por defecto
+  quantumDashboard.style.display = "block";
 
   pestanas.forEach(pestana => {
     pestana.addEventListener("click", () => {
@@ -302,7 +316,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Funcionalidad para Pantalla 2, 3 y 4
   const blackScreen = document.getElementById("blackScreen");
   const emotionScreen = document.getElementById("emotionScreen");
   const emotionSphere = document.getElementById("emotionSphere");
@@ -318,7 +331,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const emociones = ["alegria", "tristeza", "enfado", "calma"];
   let emotionIndex = 0;
 
-  // Mapa de imágenes para cada emoción
   const emotionImages = {
     alegria: "../img/alegre_emocion.svg",
     tristeza: "../img/triste_emocion.svg",
@@ -326,7 +338,6 @@ document.addEventListener("DOMContentLoaded", () => {
     calma: "../img/calma_emocion.svg"
   };
 
-  // Función para obtener la fecha y hora ajustada a CET/CEST
   function getCentralEuropeTime() {
     const now = new Date();
     const timeOptions = {
@@ -346,31 +357,25 @@ document.addEventListener("DOMContentLoaded", () => {
     return { time, date };
   }
 
-  // Actualizar la fecha y hora en la Pantalla 4
   function updateLockTime() {
     const { time, date } = getCentralEuropeTime();
     lockTime.textContent = time;
     lockDate.textContent = date.charAt(0).toUpperCase() + date.slice(1);
   }
 
-  // Depuración: Verificar si el logo se selecciona correctamente
   if (!logoLifty) {
     console.error("No se encontró el elemento con la clase 'logo'. Verifica el HTML.");
   } else {
     console.log("Logo encontrado:", logoLifty);
   }
 
-  // Mostrar pantalla negra al hacer clic en el logo
   logoLifty.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
     console.log("Clic en el logo detectado");
-    console.log("Estado actual de blackScreen:", blackScreen.classList);
     blackScreen.classList.add("active");
-    console.log("Estado de blackScreen después de añadir 'active':", blackScreen.classList);
   });
 
-  // Pantalla 2 → Pantalla 3
   blackScreen.addEventListener("click", () => {
     console.log("Clic en pantalla negra, mostrando Pantalla 3");
     blackScreen.classList.remove("active");
@@ -381,7 +386,6 @@ document.addEventListener("DOMContentLoaded", () => {
     emotionImage.src = emotionImages[emocionActual];
   });
 
-  // Pantalla 3 → Pantalla 4
   emotionSphere.addEventListener("click", () => {
     console.log("Clic en la esfera, mostrando Pantalla 4");
     emotionScreen.classList.remove("active");
@@ -412,7 +416,6 @@ document.addEventListener("DOMContentLoaded", () => {
     emotionIndex = (emotionIndex + 1) % emociones.length;
   });
 
-  // Volver a Pantalla 1 desde las notificaciones
   const notifications = document.querySelectorAll(".notification");
   notifications.forEach(notif => {
     notif.addEventListener("click", () => {
@@ -421,7 +424,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Funcionalidad para Contacte amb la família
   function contactFamily() {
     console.log("Clic en Contacte amb la família");
     blackScreen.classList.add("active");
@@ -438,18 +440,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   window.contactFamily = contactFamily;
 
-  // Nueva funcionalidad para la voz de Lifty y barras de sonido
+  // Funcionalidad para barras de sonido
   const liftyCircle = document.querySelector(".score-circle.lifty-circle");
-  let isListening = false;
+  let isActive = false;
 
-  // Depuración: Verificar si liftyCircle existe
   if (!liftyCircle) {
-    console.error("No se encontró el elemento .score-circle.lifty-circle. Verifica el HTML.");
+    console.error("No se encontró .score-circle.lifty-circle. Verifica el HTML.");
   } else {
     console.log("liftyCircle encontrado:", liftyCircle);
   }
 
-  // Crear contenedor para las barras de sonido
+  // Crear contenedor para barras de sonido
   const voiceWaves = document.createElement("div");
   voiceWaves.className = "voice-waves";
   for (let i = 0; i < 5; i++) {
@@ -458,123 +459,41 @@ document.addEventListener("DOMContentLoaded", () => {
     voiceWaves.appendChild(wave);
   }
   liftyCircle.appendChild(voiceWaves);
-  console.log("Barras de sonido creadas y añadidas al DOM:", voiceWaves);
-
-  // Verificar que las barras existen
+  console.log("Barras de sonido creadas:", voiceWaves);
   const waves = voiceWaves.querySelectorAll(".wave");
-  console.log("Número de barras creadas:", waves.length);
+  console.log("Número de barras:", waves.length);
 
-  // Función para hablar con síntesis de voz
-  function speak(text) {
-    if (!window.SpeechSynthesis) {
-      console.error("La API SpeechSynthesis no está soportada en este navegador.");
-      alert("Este navegador no soporta la síntesis de voz. Prueba con Chrome o Firefox.");
-      return;
-    }
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "ca-ES";
-    utterance.volume = 1;
-    utterance.rate = 1;
-    utterance.pitch = 1;
-
-    const voices = speechSynthesis.getVoices();
-    console.log("Voces disponibles al intentar hablar:", voices);
-    if (voices.length === 0) {
-      console.warn("No hay voces disponibles aún. Esperando carga de voces...");
-      speechSynthesis.onvoiceschanged = () => {
-        const loadedVoices = speechSynthesis.getVoices();
-        console.log("Voces cargadas:", loadedVoices);
-        const catalanVoice = loadedVoices.find(voice => voice.lang === "ca-ES") || loadedVoices.find(voice => voice.lang.includes("es")) || loadedVoices[0];
-        utterance.voice = catalanVoice;
-        try {
-          speechSynthesis.speak(utterance);
-          console.log("Reproduciendo voz con texto:", text);
-        } catch (error) {
-          console.error("Error al reproducir la voz después de cargar voces:", error);
-        }
-      };
-    } else {
-      const catalanVoice = voices.find(voice => voice.lang === "ca-ES") || voices.find(voice => voice.lang.includes("es")) || voices[0];
-      utterance.voice = catalanVoice;
-      try {
-        speechSynthesis.speak(utterance);
-        console.log("Reproduciendo voz con texto:", text);
-      } catch (error) {
-        console.error("Error al reproducir la voz:", error);
-      }
-    }
-
-    // Mostrar barras de sonido mientras habla
-    console.log("Añadiendo clase listening para mostrar barras");
-    liftyCircle.classList.add("listening");
-    waves.forEach((wave, index) => {
-      wave.classList.add("active");
-      console.log(`Barra ${index + 1} activada`);
-    });
-
-    utterance.onend = () => {
-      console.log("Voz terminada, simulando escucha");
-      liftyCircle.classList.remove("listening");
-      waves.forEach((wave, index) => {
-        wave.classList.remove("active");
-        console.log(`Barra ${index + 1} desactivada`);
-      });
-      setTimeout(() => {
-        console.log("Simulando fase de escucha");
-        liftyCircle.classList.add("listening");
-        waves.forEach((wave, index) => {
-          wave.classList.add("active");
-          console.log(`Barra ${index + 1} activada en fase de escucha`);
-        });
-        setTimeout(() => {
-          console.log("Finalizando fase de escucha");
-          liftyCircle.classList.remove("listening");
-          waves.forEach((wave, index) => {
-            wave.classList.remove("active");
-            console.log(`Barra ${index + 1} desactivada`);
-          });
-        }, 2000);
-      }, 500);
-    };
-
-    utterance.onerror = (event) => {
-      console.error("Error en la síntesis de voz:", event.error);
-    };
-  }
-
-  console.log("Voces disponibles al cargar la página:", speechSynthesis.getVoices());
-  speechSynthesis.onvoiceschanged = () => {
-    console.log("Voces disponibles actualizadas:", speechSynthesis.getVoices());
-  };
-
+  // Evento de clic para activar/desactivar barras
   if (liftyCircle) {
     liftyCircle.addEventListener("click", (e) => {
       e.stopPropagation();
-      console.log("Clic detectado en score-circle.lifty-circle", e.target);
+      console.log("Clic en lifty-circle:", e.target);
       liftyCircle.classList.add("clicked");
-      isListening = !isListening;
+      isActive = !isActive;
 
-      if (isListening) {
-        console.log("Iniciando conversación");
-        speak("Hola, sóc en Lifty, com et puc ajudar avui?");
+      if (isActive) {
+        console.log("Activando barras de sonido");
+        liftyCircle.classList.add("listening");
+        waves.forEach((wave, index) => {
+          wave.classList.add("active");
+          console.log(`Barra ${index + 1} activada`);
+        });
       } else {
-        console.log("Deteniendo conversación");
-        speechSynthesis.cancel();
+        console.log("Desactivando barras de sonido");
         liftyCircle.classList.remove("listening");
         waves.forEach((wave, index) => {
           wave.classList.remove("active");
-          console.log(`Barra ${index + 1} desactivada al detener`);
+          console.log(`Barra ${index + 1} desactivada`);
         });
       }
 
       setTimeout(() => {
         liftyCircle.classList.remove("clicked");
-      }, 1500);
+      }, 1000);
     });
-    console.log("Evento de clic asignado a score-circle.lifty-circle");
+    console.log("Evento clic asignado a lifty-circle");
   } else {
-    console.error("No se pudo asignar el evento de clic porque liftyCircle es null");
+    console.error("liftyCircle no encontrado");
   }
 });
   </script>

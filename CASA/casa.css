@@ -423,7 +423,7 @@ body {
 
 .score-section {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   position: relative;
 }
 
@@ -487,8 +487,6 @@ body {
   height: 70%;
   background: url('../img/lifty cara.svg') no-repeat center center;
   background-size: contain;
-  opacity: 0.5;
-  filter: blur(0px);
   z-index: 1;
 }
 
@@ -562,7 +560,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-top: 30px;
+  margin-top: 70px;
   gap: 15px;
 }
 
@@ -999,88 +997,255 @@ body {
 /* Estilos para las barras de sonido */
 .voice-waves {
   position: absolute;
-  bottom: -50px; /* Ajustado para asegurar visibilidad debajo del círculo */
+  bottom: -60px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 8px; /* Espacio entre barras */
-  z-index: 20; /* Alto z-index para evitar superposiciones */
+  gap: 10px;
+  z-index: 30;
   pointer-events: none;
-  align-items: flex-end; /* Alinear barras desde la parte inferior */
-  background: transparent; /* Fondo transparente para depuración */
+  align-items: flex-end;
+  padding: 5px;
 }
 
 .wave {
-  width: 10px; /* Ancho de cada barra */
-  height: 20px; /* Altura base */
-  background: #2595CD; /* Color azul sólido para mayor visibilidad */
+  width: 12px;
+  height: 20px;
+  background: #1E90FF;
+  border-radius: 4px;
   pointer-events: none;
-  border-radius: 3px; /* Bordes redondeados */
   transform-origin: bottom;
 }
 
 .wave.active {
-  animation: sound-bar 1s ease-in-out infinite; /* Animación repetitiva */
+  animation: sound-bar 0.8s ease-in-out infinite;
 }
 
-/* Retrasos para las barras */
-.lifty-circle.listening .voice-waves .wave.active:nth-child(2) { animation-delay: 0.2s; }
-.lifty-circle.listening .voice-waves .wave.active:nth-child(3) { animation-delay: 0.4s; }
-.lifty-circle.listening .voice-waves .wave.active:nth-child(4) { animation-delay: 0.6s; }
-.lifty-circle.listening .voice-waves .wave.active:nth-child(5) { animation-delay: 0.8s; }
-.lifty-circle.listening .voice-waves .wave.active:nth-child(6) { animation-delay: 0.10s; }
-.lifty-circle.listening .voice-waves .wave.active:nth-child(7) { animation-delay: 0.12s; }
-.lifty-circle.listening .voice-waves .wave.active:nth-child(8) { animation-delay: 0.14s; }
-.lifty-circle.listening .voice-waves .wave.active:nth-child(9) { animation-delay: 0.16s; }
+/* Retrasos para animación secuencial */
+.lifty-circle.listening .voice-waves .wave.active:nth-child(2) { animation-delay: 0.15s; }
+.lifty-circle.listening .voice-waves .wave.active:nth-child(3) { animation-delay: 0.3s; }
+.lifty-circle.listening .voice-waves .wave.active:nth-child(4) { animation-delay: 0.45s; }
+.lifty-circle.listening .voice-waves .wave.active:nth-child(5) { animation-delay: 0.6s; }
+
 /* Animación de barras */
 @keyframes sound-bar {
-  0%, 100% { height: 20px; } /* Altura mínima */
-  50% { height: 60px; } /* Altura máxima */
+  0%, 100% { height: 20px; }
+  50% { height: 70px; }
 }
 
 /* Asegurar interactividad del círculo */
 .score-circle.lifty-circle {
-  z-index: 10;
+  z-index: 100;
   position: relative;
-  overflow: visible; /* Evitar que las barras se corten */
+  overflow: visible;
   cursor: pointer;
 }
 
 .lifty-animation {
-  z-index: 5;
+  z-index: 50;
 }
 
 .lifty-animation::before,
 .lifty-animation::after,
 .lifty-circle::before,
 .lifty-circle::after {
-  pointer-events: none; /* Evitar que pseudo-elementos intercepten clics */
+  pointer-events: none;
 }
 
-/* Eliminar estilos de burbujas para evitar conflictos */
-.lifty-circle.clicked::after,
-.lifty-circle.clicked::before,
-.lifty-circle.clicked .lifty-animation::after {
-  display: none; /* Desactivar animaciones de burbujas */
+/* Eliminar estilos de burbujas */
+.score-circle.lifty-circle.clicked::before,
+.score-circle.lifty-circle.clicked::after,
+.lifty-animation.clicked::before,
+.lifty-animation.clicked::after {
+  display: none !important;
 }
 
-/* Asegurar visibilidad en pantallas pequeñas */
+/* Estilos para el corazón animado */
+.corazon-img {
+  display: block;
+  position: relative; /* Mantener posición original */
+  z-index: 10;
+  /* Ajusta width y height si el corazón original tiene otro tamaño */
+}
+
+/* Camino del corazón (forma) */
+.corazon-path {
+  fill: #ccc; /* Color por defecto */
+  stroke: #000000; /* Contorno negro */
+  stroke-width: 2; /* Grosor del contorno */
+  transition: fill 0.3s ease, stroke 0.3s ease;
+}
+
+/* Efecto de brillo */
+.corazon-img::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%; /* Más grande para sobresalir */
+  height: 150%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0); /* Brillo por defecto */
+  transition: box-shadow 0.3s ease;
+  z-index: 6; /* Detrás del corazón, encima del fondo */
+  /* Borde temporal para depuración (quitar después de probar) */
+  /* border: 1px solid yellow; */
+}
+
+/* Estilos por emoción */
+.corazon-img.feliz {
+  animation: beat-alegria 0.8s ease-in-out infinite;
+}
+.corazon-img.feliz .corazon-path {
+  fill: #F59C1A; /* Naranja para alegría */
+}
+.corazon-img.feliz::after {
+  box-shadow: 0 0 40px 20px rgba(255, 149, 0, 0.8); /* Brillo naranja intenso */
+}
+
+.corazon-img.ansioso {
+  animation: beat-calma 1.2s ease-in-out infinite;
+}
+.corazon-img.ansioso .corazon-path {
+  fill: #6AB42D; /* Verde para calma */
+}
+.corazon-img.ansioso::after {
+  box-shadow: 0 0 40px 20px rgba(0, 204, 0, 0.8); /* Brillo verde */
+}
+
+.corazon-img.triste {
+  animation: beat-tristeza 1.5s ease-in-out infinite;
+}
+.corazon-img.triste .corazon-path {
+  fill: #2495CE; /* Azul para tristeza */
+}
+.corazon-img.triste::after {
+  box-shadow: 0 0 40px 20px rgba(0, 102, 204, 0.8); /* Brillo azul */
+}
+
+.corazon-img.enojado {
+  animation: beat-enfado 0.5s ease-in-out infinite;
+}
+.corazon-img.enojado .corazon-path {
+  fill: #E22535; /* Rojo para enfado */
+}
+.corazon-img.enojado::after {
+  box-shadow: 0 0 40px 20px rgba(204, 0, 0, 0.8); /* Brillo rojo */
+}
+
+/* Animaciones de latido */
+@keyframes beat-alegria {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@keyframes beat-calma {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes beat-tristeza {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes beat-enfado {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  75% { transform: scale(1.1); } /* Doble pulso para agresividad */
+}
+
+/* Estilos para las barras de sonido (sin cambios) */
+.voice-waves {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 30;
+  pointer-events: none;
+  align-items: flex-end;
+  padding: 5px;
+}
+
+.wave {
+  width: 12px;
+  height: 20px;
+  background: #1E90FF;
+  border-radius: 4px;
+  pointer-events: none;
+  transform-origin: bottom;
+}
+
+.wave.active {
+  animation: sound-bar 0.8s ease-in-out infinite;
+}
+
+.lifty-circle.listening .voice-waves .wave.active:nth-child(2) { animation-delay: 0.15s; }
+.lifty-circle.listening .voice-waves .wave.active:nth-child(3) { animation-delay: 0.3s; }
+.lifty-circle.listening .voice-waves .wave.active:nth-child(4) { animation-delay: 0.45s; }
+.lifty-circle.listening .voice-waves .wave.active:nth-child(5) { animation-delay: 0.6s; }
+
+@keyframes sound-bar {
+  0%, 100% { height: 20px; }
+  50% { height: 70px; }
+}
+
+.score-circle.lifty-circle {
+  z-index: 100;
+  position: relative;
+  overflow: visible;
+  cursor: pointer;
+}
+
+.lifty-animation {
+  z-index: 50;
+}
+
+.lifty-animation::before,
+.lifty-animation::after,
+.lifty-circle::before,
+.lifty-circle::after {
+  pointer-events: none;
+}
+
+.score-circle.lifty-circle.clicked::before,
+.score-circle.lifty-circle.clicked::after,
+.lifty-animation.clicked::before,
+.lifty-animation.clicked::after {
+  display: none !important;
+}
+
 @media (max-width: 480px) {
   .voice-waves {
-    bottom: -40px;
-    gap: 6px;
+    bottom: -50px;
+    gap: 8px;
   }
   .wave {
-    width: 8px;
+    width: 10px;
     height: 15px;
   }
   @keyframes sound-bar {
     0%, 100% { height: 15px; }
-    50% { height: 45px; }
+    50% { height: 50px; }
   }
-  .score-circle.lifty-circle {
-    width: 150px;
-    height: 150px;
+}
+
+/* Responsividad */
+@media (max-width: 480px) {
+  .voice-waves {
+    bottom: -50px;
+    gap: 8px;
+  }
+  .wave {
+    width: 10px;
+    height: 15px;
+  }
+  @keyframes sound-bar {
+    0%, 100% { height: 15px; }
+    50% { height: 50px; }
   }
 }
 

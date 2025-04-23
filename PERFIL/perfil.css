@@ -62,97 +62,97 @@
   }
   
   /* Header */
-  .header {
-    width: 100%;
-    padding: 20px;
-    background: #2595CD;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
-  }
-  
-  .header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-  }
-  
-  .logo {
-    width: 150px;
-    height: auto;
-    animation: brillo-logo 3s infinite ease-in-out;
-  }
-  
-  .logo-ia {
-    width: 70px;
-    height: auto;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  
-  .logo-ia:hover {
-    transform: scale(1.1);
-  }
-  
-  @keyframes brillo-logo {
-    0%, 100% { filter: brightness(1); }
-    50% { filter: brightness(1.5); }
-  }
-  
-  .header-bottom {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 100px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    padding: 10px;
-    cursor: pointer;
-    transition: height 0.3s ease, transform 0.3s ease;
-  }
-  
-  .header-bottom.expandido {
-    flex-direction: column;
-    height: 290px;
-    gap: 10px;
-    animation: clicar 0.3s ease forwards;
-    width: 100%;
-    margin: 0 auto;
-  }
-  
-  @keyframes clicar {
-    0% { transform: scale(0.95); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-  }
-  
-  .header-bottom .detalle-progreso,
-  .header-bottom .detalle-corazon,
-  .header-bottom .etiqueta {
-    display: none;
-  }
-  
-  .header-bottom.expandido .progreso,
-  .header-bottom.expandido .corazon {
-    width: 100%;
-    height: 130px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    flex-direction: row;
-    margin: 0;
-    box-sizing: border-box;
-  }
-  
-  .header-bottom.expandido .detalle-progreso,
-  .header-bottom.expandido .detalle-corazon,
-  .header-bottom.expandido .etiqueta {
-    display: block;
-  }
+.header {
+  width: 100%;
+  padding: 20px 20px;
+  background: #2595CD;
+  position: fixed;
+  top: 0;
+  z-index: 1200;
+}
+
+.header-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  width: 150px;
+  height: auto;
+  animation: brillo-logo 3s infinite ease-in-out;
+  cursor: pointer;
+  z-index: 1100;
+  position: relative;
+}
+
+@keyframes brillo-logo {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.5); }
+}
+
+.header-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 10px;
+  cursor: pointer;
+  transition: height 0.3s ease, transform 0.3s ease;
+  position: relative;
+  z-index: 1100;
+}
+
+.header-bottom.expandido {
+  flex-direction: column;
+  height: 290px;
+  gap: 10px;
+  animation: clicar 0.3s ease forwards;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 1150;
+}
+
+.header-bottom.expandido ~ .contenido .pestanas,
+.header-bottom.expandido ~ .contenido .contenido-pestanas {
+  z-index: 850;
+}
+
+@keyframes clicar {
+  0% { transform: scale(0.95); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.header-bottom .detalle-progreso,
+.header-bottom .detalle-corazon,
+.header-bottom .etiqueta {
+  display: none;
+}
+
+.header-bottom.expandido .progreso,
+.header-bottom.expandido .corazon {
+  width: 100%;
+  height: 130px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  flex-direction: row;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.header-bottom.expandido .detalle-progreso,
+.header-bottom.expandido .detalle-corazon,
+.header-bottom.expandido .etiqueta {
+  display: block;
+}
   
   .icono-contenedor {
     display: flex;
@@ -289,41 +289,127 @@
     100% { transform: translateY(0); }
   }
   
+  .corazon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
   .corazon-img {
     width: 30px;
     height: 30px;
+    display: block;
+    position: relative;
+    z-index: 10;
   }
   
-  .corazon-img.feliz { animation: latido-feliz 1s infinite ease-in-out; }
-  .corazon-img.ansioso { animation: latido-ansioso 0.5s infinite ease-in-out; }
-  .corazon-img.triste { animation: latido-triste 1.5s infinite ease-in-out; }
-  .corazon-img.enojado { animation: latido-enojado 0.8s infinite ease-in-out; }
+  .corazon-img.feliz { animation: beat-alegria 0.8s infinite ease-in-out; }
+  .corazon-img.ansioso { animation: beat-calma 0.5s infinite ease-in-out; }
+  .corazon-img.triste { animation: beat-tristeza 1.5s infinite ease-in-out; }
+  .corazon-img.enojado { animation: beat-enfado 0.8s infinite ease-in-out; }
   
-  @keyframes latido-feliz {
-    0%, 100% { transform: scale(1); filter: brightness(1); }
-    50% { transform: scale(1.2); filter: brightness(1.5) drop-shadow(0 0 5px #FFD700); }
+  /* Camino del corazón (forma) */
+  .corazon-path {
+    fill: #ccc;
+    stroke: #000000;
+    stroke-width: 2;
+    transition: fill 0.3s ease, stroke 0.3s ease;
   }
   
-  @keyframes latido-ansioso {
-    0%, 100% { transform: scale(1); filter: brightness(1); }
-    50% { transform: scale(1.1); filter: brightness(1.3) drop-shadow(0 0 5px #4682B4); }
+  /* Efecto de brillo */
+  .corazon-img::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0);
+    transition: box-shadow 0.3s ease;
+    z-index: 6;
   }
   
-  @keyframes latido-triste {
-    0%, 100% { transform: scale(1); filter: brightness(1); }
-    50% { transform: scale(1.1); filter: brightness(0.8) drop-shadow(0 0 5px #A9A9A9); }
+  /* Estilos por emoción */
+  .corazon-img.feliz {
+    animation: beat-alegria 0.8s ease-in-out infinite;
+  }
+  .corazon-img.feliz .corazon-path {
+    fill: #F59C1A;
+  }
+  .corazon-img.feliz::after {
+    box-shadow: 0 0 40px 20px rgba(255, 149, 0, 0.8);
   }
   
-  @keyframes latido-enojado {
-    0%, 100% { transform: scale(1); filter: brightness(1); }
-    50% { transform: scale(1.2); filter: brightness(1.5) drop-shadow(0 0 5px #FF4500); }
+  .corazon-img.ansioso {
+    animation: beat-calma 1.2s ease-in-out infinite;
+  }
+  .corazon-img.ansioso .corazon-path {
+    fill: #6AB42D;
+  }
+  .corazon-img.ansioso::after {
+    box-shadow: 0 0 40px 20px rgba(0, 204, 0, 0.8);
+  }
+  
+  .corazon-img.triste {
+    animation: beat-tristeza 1.5s ease-in-out infinite;
+  }
+  .corazon-img.triste .corazon-path {
+    fill: #2495CE;
+  }
+  .corazon-img.triste::after {
+    box-shadow: 0 0 40px 20px rgba(0, 102, 204, 0.8);
+  }
+  
+  .corazon-img.enojado {
+    animation: beat-enfado 0.5s ease-in-out infinite;
+  }
+  .corazon-img.enojado .corazon-path {
+    fill: #E22535;
+  }
+  .corazon-img.enojado::after {
+    box-shadow: 0 0 40px 20px rgba(204, 0, 0, 0.8);
+  }
+  
+  /* Animaciones de latido */
+  @keyframes beat-alegria {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+  
+  @keyframes beat-calma {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+  
+  @keyframes beat-tristeza {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  
+  @keyframes beat-enfado {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    75% { transform: scale(1.1); }
+  }
+  
+  /* Media Queries */
+  @media (max-width: 480px) {
+    .header { padding: 15px 10px; }
+    .header-top { margin-bottom: 20px; }
+    .logo { width: 120px; }
+    .header-bottom { gap: 50px; padding: 8px; }
+    .header-bottom.expandido { height: 260px; }
   }
   
   /* Contenido */
   .contenido {
-    top: 90px;
+    top: 20px;
     flex: 1;
-    padding: 250px 20px 100px;
+    padding: 200px 20px 100px;
     background: transparent;
     position: relative;
     z-index: 1;

@@ -97,7 +97,7 @@ h1 {
 }
 
 /* Colores por materia */
-.mate { background-color: #ffcccb; }
+.mate { background-color: #1E90FF; }
 .lengua { background-color: #90ee90; }
 .ciencias { background-color: #87ceeb; }
 .historia { background-color: #ffd700; }
@@ -454,61 +454,145 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   flex: 1;
+  gap: 5px; /* Más espacio entre bloques */
 }
 
 .day-block {
   flex: 1;
+  min-width: 100px; /* Evita que los bloques sean demasiado estrechos */
 }
 
 .day-header {
-  background-color: #f0eceb;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 14px; /* Aumentado para mejor legibilidad */
   font-weight: 600;
   color: #333;
   border-bottom: 1px solid #e0e0e0;
   border-right: 1px solid #e0e0e0;
-  height: 30px;
+  height: 35px; /* Más alto para mejor visibilidad */
+  text-transform: uppercase; /* Para claridad */
 }
 
 .class-block {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid #333;
-  border-radius: 8px;
-  margin: 3px;
-  font-size: 10px;
-  font-weight: 600;
-  color: #333;
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  border: 1px solid #333; /* Borde fino para definición */
+  border-radius: 10px; /* Bordes suaves */
+  margin: 5px; /* Más margen */
+  font-size: 12px; /* Aumentado para legibilidad */
+  font-weight: 700; /* Énfasis en el texto */
   text-align: center;
-  padding: 5px;
+  padding: 8px;
   box-sizing: border-box;
-  height: 50px;
+  height: 60px; /* Más alto para comodidad */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: transform 0.2s ease; /* Animación al interactuar */
+}
+
+.class-block:hover {
+  transform: scale(1.05); /* Efecto visual para interacción */
 }
 
 .class-block i {
-  font-size: 14px;
-  margin-bottom: 3px;
+  font-size: 16px; /* Ícono más grande */
+  margin-bottom: 4px;
 }
 
-/* Colores por materia */
-.mate { background-color: #ffcccb; }
-.lengua { background-color: #90ee90; }
-.ciencias { background-color: #87ceeb; }
-.historia { background-color: #ffd700; }
-.arte { background-color: #dda0dd; }
-.fisica { background-color: #87ceeb; }
-.quimica { background-color: #87ceeb; }
-.geo { background-color: #ffd700; }
-.edfi { background-color: #90ee90; }
-.ingles { background-color: #90ee90; }
-.tecnologia { background-color: #87ceeb; }
-.musica { background-color: #dda0dd; }
-.recreo { background-color: #d3d3d3; font-style: italic; }
+/* Estilo especial para Recreo */
+.recreo {
+  font-style: italic;
+  border: 2px dashed #333; /* Borde punteado para destacar */
+}
+
+/* Colores suaves por materia y contraste de texto */
+.mate { 
+  background-color: #87CEEB; /* Azul claro */
+  color: #333; 
+}
+.lengua { 
+  background-color: #FF9999; /* Rosa claro */
+  color: #333; 
+}
+.ciencias { 
+  background-color: #90EE90; /* Verde menta */
+  color: #333; 
+}
+.historia { 
+  background-color: #FFCC99; /* Naranja claro */
+  color: #333; 
+}
+.arte { 
+  background-color: #FFB6C1; /* Rosa pastel */
+  color: #333; 
+}
+.fisica { 
+  background-color: #DDA0DD; /* Lavanda */
+  color: #333; 
+}
+.quimica { 
+  background-color: #A9A9A9; /* Gris claro */
+  color: #333; 
+}
+.geo { 
+  background-color: #6495ED; /* Azul suave */
+  color: #333; 
+}
+.edfi { 
+  background-color: #AFEEEE; /* Turquesa claro */
+  color: #333; 
+}
+.ingles { 
+  background-color: #98FB98; /* Verde claro */
+  color: #333; 
+}
+.tecnologia { 
+  background-color: #D2B48C; /* Marrón claro */
+  color: #333; 
+}
+.musica { 
+  background-color: #B0E0E6; /* Cian claro */
+  color: #333; 
+}
+.recreo { 
+  background-color: #FFFACD; /* Amarillo pastel */
+  color: #333; 
+}
+
+/* Aplicar el mismo color al ícono */
+.mate i, .lengua i, .ciencias i, .historia i, .arte i, .fisica i, .quimica i, .geo i, .edfi i, .ingles i, .tecnologia i, .musica i, .recreo i { 
+  color: #333; /* Íconos oscuros para todos los fondos pastel */
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+  .days-grid {
+    flex-direction: column; /* Apila los días verticalmente */
+  }
+
+  .day-block {
+    min-width: 100%; /* Ocupa todo el ancho */
+  }
+
+  .day-header {
+    font-size: 12px;
+    height: 30px;
+  }
+
+  .class-block {
+    font-size: 11px;
+    height: 55px;
+    margin: 4px;
+  }
+
+  .class-block i {
+    font-size: 14px;
+  }
+}
 
 /* Sección de Recordatorios */
 .reminders {
