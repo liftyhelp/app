@@ -1,25 +1,31 @@
+/* Recursos académicos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Agenda y Horario */
 body {
   font-family: 'Roboto', Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: #e6f3ff; /* Azul claro */
   min-height: 100vh;
   display: flex;
 }
 
-.back-tareas{
+.back-tareas {
   background-color: white;
   z-index: 9;
-} 
+}
 
 .container {
   width: 414px;
   margin: 0 auto;
   padding: 15px;
   box-sizing: border-box;
-  
+  background-color: transparent; /* Asegura que el contenedor no sobrescriba */
 }
 
 .volver {
@@ -45,7 +51,7 @@ body {
 
 h1 {
   font-family: 'Shadows Into Light', cursive;
-  color: #2c3e50;
+  color: #2595CD; /* Color azul para los títulos */
   text-align: center;
   font-size: 36px;
   margin: 5px 0 20px;
@@ -291,7 +297,6 @@ h1 {
   .container {
     width: 100%;
     padding: 10px;
-    
   }
   h1 {
     font-size: 32px;
@@ -406,12 +411,11 @@ h1 {
 }
 
 /* Ayuda Lifty */
-
 body {
   font-family: 'Poppins', Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f5f5f5;
+  background-color: #e6f3ff; /* Azul claro */
 }
 
 .container {
@@ -419,6 +423,7 @@ body {
   margin: 0 auto;
   padding: 15px;
   box-sizing: border-box;
+  background-color: transparent; /* Asegura que el contenedor no sobrescriba */
 }
 
 .volver {
@@ -444,7 +449,7 @@ body {
 
 h1 {
   font-family: 'Poppins', sans-serif;
-  color: #343541;
+  color: #2595CD; /* Color azul para el título */
   text-align: center;
   font-size: 36px;
   font-weight: 600;
@@ -522,55 +527,55 @@ h1 {
 
 /* Colores suaves por materia y contraste de texto */
 .mate { 
-  background-image:linear-gradient(30deg, #00b7ff, white);
+  background-image: linear-gradient(30deg, #00b7ff, white);
   color: #333; 
 }
 .lengua { 
-  background-image:linear-gradient(30deg, #ff0000, white);
+  background-image: linear-gradient(30deg, #ff0000, white);
   color: #333; 
 }
 .ciencias { 
-  background-image:linear-gradient(30deg, #00ff00, white);
+  background-image: linear-gradient(30deg, #00ff00, white);
   color: #333; 
 }
 .historia { 
-  background-image:linear-gradient(30deg, #ff8000, white);
+  background-image: linear-gradient(30deg, #ff8000, white);
   color: #333; 
 }
 .arte { 
-  background-image:linear-gradient(30deg, #e50041, white);
+  background-image: linear-gradient(30deg, #e50041, white);
   color: #333; 
 }
 .fisica { 
-  background-image:linear-gradient(30deg, #7100fc, white);
+  background-image: linear-gradient(30deg, #7100fc, white);
   color: #333; 
 }
 .quimica { 
-  background-image:linear-gradient(30deg, #404040, white);
+  background-image: linear-gradient(30deg, #404040, white);
   color: #333; 
 }
 .geo { 
-  background-image:linear-gradient(30deg, #1164ff, white);
+  background-image: linear-gradient(30deg, #1164ff, white);
   color: #333; 
 }
 .edfi { 
-  background-image:linear-gradient(30deg, #b108ff, white);
+  background-image: linear-gradient(30deg, #b108ff, white);
   color: #333; 
 }
 .ingles { 
-  background-image:linear-gradient(30deg, #ffe600, white);
+  background-image: linear-gradient(30deg, #ffe600, white);
   color: #333; 
 }
 .tecnologia { 
-  background-image:linear-gradient(30deg, #a24101, white);
+  background-image: linear-gradient(30deg, #a24101, white);
   color: #333; 
 }
 .musica { 
-  background-image:linear-gradient(30deg, #ffe1b3, white);
+  background-image: linear-gradient(30deg, #ffe1b3, white);
   color: #333; 
 }
 .recreo { 
-  background-image:linear-gradient(30deg, #ffffff, white);
+  background-image: linear-gradient(30deg, #ffffff, white);
   color: #333; 
 }
 
@@ -669,7 +674,9 @@ h1 {
 }
 
 .day-btn {
-  flex: 1;
+  flex
+        
+    : 1;
   padding: 10px;
   background-color: #f0eceb;
   border: 2px solid #333;
@@ -775,7 +782,7 @@ h1 {
   display: flex;
   flex-direction: column;
   height: 600px; /* Ajustado para 896px de alto */
-  background-color: #f7f7f8; /* Fondo claro estilo ChatGPT */
+  background-color: #ffffff; /* Azul claro */
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -784,7 +791,7 @@ h1 {
   flex: 1;
   padding: 20px;
   overflow-y: auto;
-  background-color: #f7f7f8;
+  background-color: #ffffff; /* Azul claro */
 }
 
 .message {
@@ -810,12 +817,12 @@ h1 {
 }
 
 .lifty-message .message-content {
-  background-color: #177ec3; /* Verde oscuro estilo ChatGPT */
+  background-color: #2595CD; /* Verde oscuro estilo ChatGPT */
   color: #ececf1;
 }
 
 .user-message .message-content {
-  background-color: #98cdff; /* Gris oscuro para el usuario */
+  background-color: #7dc1e2; /* Gris oscuro para el usuario */
   color: #ececf1;
 }
 
@@ -882,7 +889,7 @@ h1 {
   outline: none;
 }
 
-.send-btn {
+.send露營車.send-btn {
   padding: 10px;
   background-color: #0b141a; /* Verde oscuro */
   border: none;
@@ -1039,19 +1046,13 @@ h1 {
   }
 }
 
-/* Recursos academicos */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* Recursos académicos */
 body {
   font-family: 'Comic Neue', sans-serif;
-  background-image: url('../../img/fondo3.svg');
+  background-color: #e6f3ff; /* Azul claro */
   line-height: 1.6;
   color: #2d2d2d;
-  font-size: 1.3rem; /* Texto más grande */
+  font-size: 1.3rem;
 }
 
 /* Header */
@@ -1232,51 +1233,50 @@ body {
 /* Accesibilidad */
 @media (prefers-reduced-motion: reduce) {
   .resource-card, .back-button, .back-link {
-      transition: none;
+    transition: none;
   }
 }
 
 @media (max-width: 600px) {
   body {
-      font-size: 1.1rem;
+    font-size: 1.1rem;
   }
 
   .header h1 {
-      font-size: 2.2rem;
+    font-size: 2.2rem;
   }
 
   .header p {
-      font-size: 1.2rem;
+    font-size: 1.2rem;
   }
 
   .resources h2 {
-      font-size: 2rem;
+    font-size: 2rem;
   }
 
   .resource-card {
-      padding: 1.5rem;
+    padding: 1.5rem;
   }
 
   .resource-card h3 {
-      font-size: 1.5rem;
+    font-size: 1.5rem;
   }
 
   .resource-card p {
-      font-size: 1rem;
+    font-size: 1rem;
   }
 
   .resource-icon {
-      width: 80px;
-      height: 80px;
+    width: 80px;
+    height: 80px;
   }
 
   .back-link, .back-button {
-      font-size: 1.1rem;
-      padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
   }
 
   .resource-detail h2 {
-      font-size: 2rem;
+    font-size: 2rem;
   }
 }
-

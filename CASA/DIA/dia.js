@@ -1,4 +1,4 @@
-/* Recordatorios diarios */
+/* Recordatorios diarios y Tasques de la llar */
 
 document.addEventListener('DOMContentLoaded', () => {
     const reminderItems = document.querySelectorAll('.reminder-item');
@@ -6,27 +6,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressFill = document.querySelector('.progress-fill');
     const completionMessage = document.querySelector('.completion-message');
     const totalTasks = reminderItems.length;
+    const pageTitle = document.querySelector('h1').textContent.toLowerCase();
+    const isTasksPage = pageTitle.includes('tasques');
 
     // Depuración: Verificar el número de tareas y completadas al cargar
-    console.log(`Total de tasques: ${totalTasks}, Completades inicialment: ${document.querySelectorAll('.reminder-item.completed').length}`);
+    console.log(`Total de tasques: ${totalTasks}, Completades inicialment: ${document.querySelectorAll('.reminder-item.completed').length}, Página: ${isTasksPage ? 'Tasques' : 'Recordatoris'}`);
 
     // Función para actualizar el progreso
     function updateProgress() {
         const completedTasks = document.querySelectorAll('.reminder-item.completed').length;
         const progressPercentage = (completedTasks / totalTasks) * 100;
         
-        progressText.textContent = `${completedTasks} de ${totalTasks} tasques fetes`;
+        progressText.textContent = `${completedTasks} de ${totalTasks} ${isTasksPage ? 'tasques' : 'recordatoris'} fetes`;
         progressFill.style.width = `${progressPercentage}%`;
 
-        // Mostrar mensaje solo cuando todas las tareas estén completadas
+        // Mostrar mensaje y aplicar desenfoque cuando todas las tareas estén completadas
         if (completedTasks === totalTasks) {
             completionMessage.style.display = 'block';
+            document.body.classList.add('completion-active');
         } else {
             completionMessage.style.display = 'none';
+            document.body.classList.remove('completion-active');
         }
     }
 
-    // Evento para cada recordatorio
+    // Evento para cada recordatorio/tarea
     reminderItems.forEach(item => {
         item.addEventListener('click', () => {
             item.classList.toggle('completed');
@@ -64,24 +68,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const conversationFlow = {
         happy: [
-            "¡Qué bueno! Estás feliz 😊. Me alegra verte así.",
-            "¿Qué te hace feliz hoy? Puedes decirlo o pensarlo.",
-            "¡Genial! Sigue haciendo cosas que te hagan sonreír."
+            "Que bo! Estàs feliç 😊. M'alegra veure't així.",
+            "Què et fa feliç avui? Pots dir-ho o pensar-ho.",
+            "Genial! Continua fent coses que et facin somriure."
         ],
         sad: [
-            "Está bien estar triste 😢. A veces pasa.",
-            "¿Quieres respirar hondo 3 veces conmigo?",
-            "Respira conmigo: 1, 2, 3. ¿Te sientes un poquito mejor?"
+            "Està bé estar trist 😢. A vegades passa.",
+            "Vols respirar profund 3 vegades amb mi?",
+            "Respira amb mi: 1, 2, 3. Et sents una miqueta millor?"
         ],
         angry: [
-            "Si estás enojado 😡, no pasa nada. Todos sentimos eso.",
-            "¿Quieres pisar fuerte 5 veces para sacarlo?",
-            "¡Bien! Pisa: 1, 2, 3, 4, 5. ¿Estás más tranquilo ahora?"
+            "Si estàs enutjat 😡, no passa res. Tots sentim això.",
+            "Vols trepitjar fort 5 vegades per a treure-ho?",
+            "Bé! Pisa: 1, 2, 3, 4, 5. Estàs més tranquil ara?"
         ],
         scared: [
-            "No pasa nada si tienes miedo 😨. Estoy contigo.",
-            "¿Quieres pensar en algo bonito, como un perrito?",
-            "Piensa en algo lindo. ¿Te sientes más valiente?"
+            "No passa res si tens por 😨. Estic amb tu.",
+            "Vols pensar en una cosa bonica, com un gosset?",
+            "Pensa en una cosa bufona. Et sents més valent?"
         ]
     };
 
@@ -99,42 +103,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
         recognition.onstart = () => {
             micBtn.classList.add('listening');
-            micStatus.textContent = 'Escuchando...';
+            micStatus.textContent = 'Escoltant...';
         };
 
         recognition.onresult = (event) => {
             const transcript = event.results[0][0].transcript.toLowerCase();
-            micStatus.textContent = `Dijiste: "${transcript}"`;
+            micStatus.textContent = `Has dit: "${transcript}"`;
             processSpeech(transcript);
         };
 
         recognition.onend = () => {
             micBtn.classList.remove('listening');
-            micStatus.textContent = 'Toca para hablar';
+            micStatus.textContent = 'Toca per parlar';
         };
 
         recognition.onerror = (event) => {
-            micStatus.textContent = 'No te escuché bien. Toca otra vez.';
-            console.error('Error de reconocimiento de voz:', event.error);
+            micStatus.textContent = 'No et vaig escoltar bé. Toca una altra vegada.';
+            console.error('Error de reconeixement de veu:', event.error);
         };
     } else {
         micBtn.style.display = 'none';
         fallbackOptions.style.display = 'block';
-        micStatus.textContent = 'Micrófono no disponible.';
+        micStatus.textContent = 'Micròfon no disponible.';
     }
 
     function processSpeech(transcript) {
         if (step === 0) {
-            if (transcript.includes('feliz')) {
+            if (transcript.includes('feliç')) {
                 currentEmotion = 'happy';
-            } else if (transcript.includes('triste')) {
+            } else if (transcript.includes('tris')) {
                 currentEmotion = 'sad';
-            } else if (transcript.includes('enojado') || transcript.includes('enfadado')) {
+            } else if (transcript.includes('enfadat') || transcript.includes('enfadado')) {
                 currentEmotion = 'angry';
-            } else if (transcript.includes('miedo') || transcript.includes('asustado')) {
+            } else if (transcript.includes('por') || transcript.includes('asustado')) {
                 currentEmotion = 'scared';
             } else {
-                liftyMessage.textContent = "No entendí cómo te sientes. ¿Puedes decir 'feliz', 'triste', 'enojado' o 'miedo'?";
+                liftyMessage.textContent = "No he entès com et sents. Pots dir 'feliç', 'trist', 'enfadat' o 'por'?";
                 return;
             }
             step = 1;
@@ -143,15 +147,15 @@ document.addEventListener('DOMContentLoaded', () => {
             step = 2;
             liftyMessage.textContent = conversationFlow[currentEmotion][step - 1];
         } else if (step === 2) {
-            if (transcript.includes('sí') || transcript.includes('si')) {
+            if (transcript.includes('si') || transcript.includes('sí')) {
                 liftyMessage.textContent = conversationFlow[currentEmotion][step];
             } else {
-                liftyMessage.textContent = "Está bien. Podemos hablar de otra cosa si quieres.";
+                liftyMessage.textContent = "Està bé. Podem parlar d'una altra cosa si vols.";
             }
             step = 0;
             currentEmotion = null;
             setTimeout(() => {
-                liftyMessage.textContent = "¡Hola! Soy Lifty. ¿Cómo te sientes hoy?";
+                liftyMessage.textContent = "Hola! Sóc Lifty. Com et sents avui?";
             }, 2000);
         }
     }
@@ -188,60 +192,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-});
-
-/* Tasques de la llar */
-
-document.addEventListener('DOMContentLoaded', () => {
-    const taskItems = document.querySelectorAll('.task-item');
-    const progressText = document.querySelector('.progress-text');
-    const progressFill = document.querySelector('.progress-fill');
-    const completionMessage = document.querySelector('.completion-message');
-    const totalTasks = taskItems.length;
-
-    // Depuración: Verificar el número de tareas y completadas al cargar
-    console.log(`Total de tasques: ${totalTasks}, Completades inicialment: ${document.querySelectorAll('.task-item.completed').length}`);
-
-    // Función para actualizar el progreso
-    function updateProgress() {
-        const completedTasks = document.querySelectorAll('.task-item.completed').length;
-        const progressPercentage = (completedTasks / totalTasks) * 100;
-        
-        progressText.textContent = `${completedTasks} de ${totalTasks} tasques fetes`;
-        progressFill.style.width = `${progressPercentage}%`;
-
-        // Mostrar mensaje solo cuando todas las tareas estén completadas
-        if (completedTasks === totalTasks) {
-            completionMessage.style.display = 'block';
-        } else {
-            completionMessage.style.display = 'none';
-        }
-    }
-
-    // Evento para cada tarea
-    taskItems.forEach(item => {
-        item.addEventListener('click', () => {
-            item.classList.toggle('completed');
-            // Actualizar aria-label
-            const task = item.querySelector('.task-name').textContent;
-            const isCompleted = item.classList.contains('completed');
-            item.setAttribute('aria-label', 
-                isCompleted 
-                    ? `${item.getAttribute('aria-label')} (fet)`
-                    : item.getAttribute('aria-label').replace(' (fet)', '')
-            );
-            updateProgress();
-        });
-
-        // Soporte para teclado
-        item.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                item.click();
-            }
-        });
-    });
-
-    // Inicializar progreso
-    updateProgress();
 });

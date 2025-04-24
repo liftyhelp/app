@@ -247,19 +247,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   setInterval(() => {
-    const emociones = ["feliz", "ansioso", "triste", "enojado"];
-    emocionActual = emociones[Math.floor(Math.random() * emociones.length)];
-    if (corazonImg) {
-      corazonImg.classList.remove("feliz", "ansioso", "triste", "enojado");
-      corazonImg.classList.add(emocionActual);
-      console.log(`Corazón cambiado a emoción: ${emocionActual}`);
-    }
-    const emotionIcon = document.querySelector(".emotion-icon");
-    if (emotionIcon) {
-      emotionIcon.classList.remove("feliz", "ansioso", "triste", "enojado");
-      emotionIcon.classList.add(emocionActual);
-    }
-  }, 5000);
+  const emociones = ["feliz", "ansioso", "triste", "enojado"];
+  emocionActual = emociones[Math.floor(Math.random() * emociones.length)];
+  if (corazonImg) {
+    corazonImg.classList.remove("feliz", "ansioso", "triste", "enojado");
+    corazonImg.classList.add(emocionActual);
+    console.log(`Corazón cambiado a emoción: ${emocionActual}`);
+  }
+}, 5000);
 
   const dias = document.querySelectorAll(".dia");
   dias.forEach(dia => {
@@ -394,7 +389,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const emocionActual = emociones[emotionIndex];
     switch (emocionActual) {
       case "alegria":
-        notif1.textContent = "Estàs brillant avui! Vols compartir-ho amb Lifty?";
+        notif1.textContent = "Estàs brillant avui!\nVols compartir-ho amb Lifty?";
         notif2.textContent = "Aprofita la teva energia completant tasques diàries!";
         break;
       case "tristeza":
@@ -448,18 +443,18 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("liftyCircle encontrado:", liftyCircle);
   }
 
-  // Crear contenedor para barras de sonido
-  const voiceWaves = document.createElement("div");
-  voiceWaves.className = "voice-waves";
-  for (let i = 0; i < 5; i++) {
-    const wave = document.createElement("div");
-    wave.className = "wave";
-    voiceWaves.appendChild(wave);
-  }
-  liftyCircle.appendChild(voiceWaves);
-  console.log("Barras de sonido creadas:", voiceWaves);
-  const waves = voiceWaves.querySelectorAll(".wave");
-  console.log("Número de barras:", waves.length);
+// Crear contenedor para barras de sonido
+const voiceWaves = document.createElement("div");
+voiceWaves.className = "voice-waves";
+for (let i = 0; i < 10; i++) { // Cambiado de 5 a 7 barras
+  const wave = document.createElement("div");
+  wave.className = "wave";
+  voiceWaves.appendChild(wave);
+}
+liftyCircle.appendChild(voiceWaves);
+console.log("Barras de sonido creadas:", voiceWaves);
+const waves = voiceWaves.querySelectorAll(".wave");
+console.log("Número de barras:", waves.length);
 
   // Evento de clic para activar/desactivar barras
   if (liftyCircle) {
