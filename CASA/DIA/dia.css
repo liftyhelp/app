@@ -33,10 +33,9 @@ body {
     border: 0;
 }
 
-/* Header */
 .header {
     background-color: #f0eceb;
-    padding: 12px;
+    padding: 24px 12px 12px 12px; /* Aumentamos el padding-top a 24px */
     text-align: center;
     border-bottom: 2px solid #333;
     position: relative;
@@ -49,6 +48,7 @@ body {
     font-size: 32px;
     font-weight: 600;
     color: #333;
+    margin-top: 50px; /* Añadimos margen superior */
     margin-bottom: 6px;
 }
 
@@ -211,22 +211,26 @@ body {
     justify-content: center;
 }
 
-/* Mensaje de finalización */
 .completion-message {
-    width: 100%;
-    max-width: 376px;
-    margin: 15px auto;
-    padding: 12px;
+    width: 250px; /* Contenedor más pequeño */
+    height: 60px; /* Altura reducida */
+    position: fixed; /* Fijo en la parte inferior de la pantalla */
+    bottom: 20px; /* Margen desde el borde inferior */
+    left: 50%; /* Centrado horizontal */
+    transform: translateX(-50%); /* Ajuste para centrar */
     text-align: center;
     background-color: #e0f7e0;
     border: 2px solid #333;
     border-radius: 10px;
+    display: none; /* Mantenemos oculto por defecto */
+    padding: 10px; /* Padding más pequeño para el contenido */
 }
 
 .completion-message p {
-    font-size: 14px;
+    font-size: 10px; /* Mantenemos el tamaño pequeño */
     font-weight: 600;
     color: #228b22;
+    line-height: 1.4; /* Mejor legibilidad */
 }
 
 /* Media query para 376px */
@@ -286,14 +290,20 @@ body {
         font-size: 18px;
     }
 
-    .completion-message p {
-        font-size: 13px;
+    @media (max-width: 376px) {
+        .completion-message {
+            width: 200px; /* Aún más pequeño en pantallas pequeñas */
+            height: 50px;
+            padding: 8px;
+        }
+    
+        .completion-message p {
+            font-size: 9px; /* Ligeramente más pequeño */
+        }
     }
 }
 
 /* Apoyo emocional */
-
-/* Reset básico */
 * {
     margin: 0;
     padding: 0;
@@ -579,8 +589,6 @@ body::before, body::after {
     }
 }
 
-/* Tareas hogar */
-
 /* Reset básico */
 * {
     margin: 0;
@@ -588,12 +596,20 @@ body::before, body::after {
     box-sizing: border-box;
 }
 
+/* Estilos generales */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
+    background-image: url('../img/fondo3.svg');
     line-height: 1.6;
-    background-color: #f5f5f7;
-    color: #1d1d1f;
-    font-size: 1.4rem;
+    color: #333;
+    font-size: 16px;
+    width: 100%;
+}
+
+/* Contenedor principal para forzar scroll */
+.main-container {
+    width: 100%;
+    padding-bottom: 150px; /* Espacio extra para scroll en 776px */
 }
 
 /* Clase para ocultar visualmente pero mantener para lectores de pantalla */
@@ -610,104 +626,110 @@ body {
 
 /* Header */
 .header {
-    background-color: #ffffff;
-    padding: 1.5rem 1rem;
+    background-color: #f0eceb;
+    padding: 12px;
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-bottom: 2px solid #333;
     position: relative;
+    width: 100%;
+    max-width: 376px;
+    margin: 0 auto;
 }
 
 .header h1 {
-    font-size: 2.5rem;
+    font-size: 32px;
     font-weight: 600;
-    color: #1d1d1f;
-    margin-bottom: 0.5rem;
+    color: #333;
+    margin-top: 50px; /* Cambio solicitado */
+    margin-bottom: 6px;
 }
 
 .header p {
-    font-size: 1.2rem;
-    color: #6e6e73;
+    font-size: 14px;
+    color: #333;
 }
 
 .back-link {
     position: absolute;
-    top: 1.5rem;
-    left: 1rem;
+    top: 12px;
+    left: 12px;
     display: inline-flex;
     align-items: center;
-    color: #007aff;
+    color: #d3a29d;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 14px;
     font-weight: 600;
-    padding: 0.5rem 1rem;
-    border-radius: 12px;
-    transition: background-color 0.2s, transform 0.2s;
+    padding: 6px 12px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
 }
 
 .back-link:hover, .back-link:focus {
-    background-color: #e7f1ff;
-    transform: scale(1.05);
-    outline: 3px solid #007aff;
+    background-color: #e0dcdc;
+    color: #333;
 }
 
 .back-icon {
-    width: 20px;
-    height: 20px;
-    fill: #007aff;
-    margin-right: 0.3rem;
+    width: 18px;
+    height: 18px;
+    fill: #d3a29d;
+    margin-right: 5px;
 }
 
 .progress-container {
-    margin-top: 1rem;
-    max-width: 400px;
+    margin-top: 10px;
+    max-width: 376px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .progress-text {
-    font-size: 1.1rem;
-    color: #6e6e73;
-    margin-bottom: 0.5rem;
+    font-size: 12px;
+    color: #333;
+    margin-bottom: 5px;
 }
 
 .progress-bar {
-    background-color: #e8e8ed;
-    height: 8px;
+    background-color: #fff;
+    height: 6px;
+    border: 2px solid #333;
     border-radius: 4px;
     overflow: hidden;
 }
 
 .progress-fill {
-    background-color: #007aff;
+    background-color: #d3a29d;
     height: 100%;
-    transition: width 0.3s ease-in-out;
+    transition: width 0.3s ease;
 }
 
 /* Sección de tareas */
 .tasks {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+    width: 100%;
+    max-width: 376px;
+    margin: 15px auto;
+    padding: 0 12px;
 }
 
 .task-list {
     list-style: none;
-    background-color: #ffffff;
-    border-radius: 18px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    background-color: #fff;
+    border: 2px solid #333;
+    border-radius: 10px;
+    width: 100%;
 }
 
 .task-item {
     display: flex;
     align-items: flex-start;
-    padding: 1.5rem;
-    border-bottom: 1px solid #e8e8ed;
+    padding: 12px;
+    border-bottom: 1px solid #f0eceb;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s;
-    border-radius: 12px;
-    margin: 0.5rem;
-    background-color: #fafafa;
+    transition: background-color 0.3s ease;
+    border-radius: 8px;
+    margin: 5px;
+    background-color: #f0eceb;
 }
 
 .task-item:last-child {
@@ -715,41 +737,39 @@ body {
 }
 
 .task-item:hover, .task-item:focus {
-    background-color: #e8e8ed;
-    transform: scale(1.02);
-    outline: 3px solid #007aff;
+    background-color: #e0dcdc;
 }
 
 .task-item.completed {
-    background-color: #e6ffe6;
-    transform: scale(1);
+    background-color: #e0f7e0;
 }
 
 .task-item.completed:hover, .task-item.completed:focus {
-    background-color: #d9ffd9;
-    outline: 3px solid #2e7d32;
+    background-color: #d0e7d0;
 }
 
 .task-item.completed .task-icon {
-    opacity: 0.7;
+    color: #228b22;
+    opacity: 0.8;
 }
 
 .task-item.completed .task-text p {
-    color: #2e7d32;
+    color: #228b22;
     text-decoration: line-through;
 }
 
 .task-item.completed .check-icon::before {
     content: '✓';
-    font-size: 2rem;
-    color: #2e7d32;
+    font-size: 20px;
+    color: #228b22;
     font-weight: 600;
 }
 
 .task-icon {
-    font-size: 2.5rem;
-    margin-right: 1.2rem;
+    font-size: 28px;
+    margin-right: 10px;
     line-height: 1;
+    color: #ff4500;
 }
 
 .task-text {
@@ -757,27 +777,27 @@ body {
 }
 
 .task-time {
-    font-size: 1.1rem;
-    color: #6e6e73;
+    font-size: 12px;
+    color: #333;
     font-weight: 600;
-    margin-bottom: 0.2rem;
+    margin-bottom: 3px;
 }
 
 .task-name {
-    font-size: 1.4rem;
+    font-size: 14px;
     font-weight: 600;
-    color: #1d1d1f;
-    margin-bottom: 0.2rem;
+    color: #333;
+    margin-bottom: 3px;
 }
 
 .task-detail {
-    font-size: 1.2rem;
-    color: #3c3c43;
+    font-size: 12px;
+    color: #333;
 }
 
 .check-icon {
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -785,29 +805,96 @@ body {
 
 /* Mensaje de finalización */
 .completion-message {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1.5rem;
+    width: 250px;
+    height: 60px;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
-    background-color: #e6ffe6;
-    border-radius: 18px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #e0f7e0;
+    border: 2px solid #333;
+    border-radius: 10px;
+    display: none;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .completion-message p {
-    font-size: 1.6rem;
+    font-size: 10px;
     font-weight: 600;
-    color: #2e7d32;
+    color: #228b22;
+    line-height: 1.4;
+    margin: 0;
 }
 
-/* Footer */
-.footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: #ffffff;
-    color: #6e6e73;
-    font-size: 1rem;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+/* Media query para 376px */
+@media (max-width: 376px) {
+    body {
+        font-size: 16px;
+    }
+
+    .header h1 {
+        font-size: 30px;
+        margin-top: 50px;
+    }
+
+    .header p {
+        font-size: 13px;
+    }
+
+    .back-link {
+        font-size: 13px;
+        padding: 5px 10px;
+    }
+
+    .progress-text {
+        font-size: 11px;
+    }
+
+    .progress-bar {
+        height: 5px;
+    }
+
+    .task-item {
+        padding: 10px;
+    }
+
+    .task-icon {
+        font-size: 26px;
+        margin-right: 8px;
+    }
+
+    .task-time {
+        font-size: 11px;
+    }
+
+    .task-name {
+        font-size: 13px;
+    }
+
+    .task-detail {
+        font-size: 11px;
+    }
+
+    .check-icon {
+        width: 22px;
+        height: 22px;
+    }
+
+    .check-icon::before {
+        font-size: 18px;
+    }
+
+    .completion-message {
+        width: 200px;
+        height: 50px;
+        padding: 8px;
+    }
+
+    .completion-message p {
+        font-size: 9px;
+    }
 }
 
 /* Accesibilidad */
@@ -815,61 +902,5 @@ body {
     .back-link, .task-item, .progress-fill {
         transition: none;
     }
-}
 
-@media (max-width: 600px) {
-    body {
-        font-size: 1.2rem;
-    }
-
-    .header h1 {
-        font-size: 2rem;
-    }
-
-    .header p {
-        font-size: 1rem;
-    }
-
-    .back-link {
-        font-size: 1rem;
-        padding: 0.4rem 0.8rem;
-    }
-
-    .progress-text {
-        font-size: 1rem;
-    }
-
-    .task-item {
-        padding: 1.2rem;
-    }
-
-    .task-icon {
-        font-size: 2rem;
-        margin-right: 1rem;
-    }
-
-    .task-time {
-        font-size: 1rem;
-    }
-
-    .task-name {
-        font-size: 1.2rem;
-    }
-
-    .task-detail {
-        font-size: 1rem;
-    }
-
-    .check-icon {
-        width: 24px;
-        height: 24px;
-    }
-
-    .check-icon::before {
-        font-size: 1.6rem;
-    }
-
-    .completion-message p {
-        font-size: 1.4rem;
-    }
 }

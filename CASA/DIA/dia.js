@@ -1,4 +1,4 @@
-/* Recordatorios dirios */
+/* Recordatorios diarios */
 
 document.addEventListener('DOMContentLoaded', () => {
     const reminderItems = document.querySelectorAll('.reminder-item');
@@ -7,15 +7,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const completionMessage = document.querySelector('.completion-message');
     const totalTasks = reminderItems.length;
 
+    // Depuración: Verificar el número de tareas y completadas al cargar
+    console.log(`Total de tasques: ${totalTasks}, Completades inicialment: ${document.querySelectorAll('.reminder-item.completed').length}`);
+
     // Función para actualizar el progreso
     function updateProgress() {
         const completedTasks = document.querySelectorAll('.reminder-item.completed').length;
         const progressPercentage = (completedTasks / totalTasks) * 100;
         
-        progressText.textContent = `${completedTasks} de ${totalTasks} tareas hechas`;
+        progressText.textContent = `${completedTasks} de ${totalTasks} tasques fetes`;
         progressFill.style.width = `${progressPercentage}%`;
 
-        // Mostrar mensaje al completar todo
+        // Mostrar mensaje solo cuando todas las tareas estén completadas
         if (completedTasks === totalTasks) {
             completionMessage.style.display = 'block';
         } else {
@@ -32,8 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const isCompleted = item.classList.contains('completed');
             item.setAttribute('aria-label', 
                 isCompleted 
-                    ? `${item.getAttribute('aria-label')} (hecho)` 
-                    : item.getAttribute('aria-label').replace(' (hecho)', '')
+                    ? `${item.getAttribute('aria-label')} (fet)`
+                    : item.getAttribute('aria-label').replace(' (fet)', '')
             );
             updateProgress();
         });
@@ -50,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicializar progreso
     updateProgress();
 });
-
 
 /* Apoyo emocional */
 
@@ -188,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-/* tareas hogar */
+/* Tasques de la llar */
 
 document.addEventListener('DOMContentLoaded', () => {
     const taskItems = document.querySelectorAll('.task-item');
@@ -197,15 +199,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const completionMessage = document.querySelector('.completion-message');
     const totalTasks = taskItems.length;
 
+    // Depuración: Verificar el número de tareas y completadas al cargar
+    console.log(`Total de tasques: ${totalTasks}, Completades inicialment: ${document.querySelectorAll('.task-item.completed').length}`);
+
     // Función para actualizar el progreso
     function updateProgress() {
         const completedTasks = document.querySelectorAll('.task-item.completed').length;
         const progressPercentage = (completedTasks / totalTasks) * 100;
         
-        progressText.textContent = `${completedTasks} de ${totalTasks} tareas hechas`;
+        progressText.textContent = `${completedTasks} de ${totalTasks} tasques fetes`;
         progressFill.style.width = `${progressPercentage}%`;
 
-        // Mostrar mensaje al completar todo
+        // Mostrar mensaje solo cuando todas las tareas estén completadas
         if (completedTasks === totalTasks) {
             completionMessage.style.display = 'block';
         } else {
@@ -222,8 +227,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const isCompleted = item.classList.contains('completed');
             item.setAttribute('aria-label', 
                 isCompleted 
-                    ? `${item.getAttribute('aria-label')} (hecho)` 
-                    : item.getAttribute('aria-label').replace(' (hecho)', '')
+                    ? `${item.getAttribute('aria-label')} (fet)`
+                    : item.getAttribute('aria-label').replace(' (fet)', '')
             );
             updateProgress();
         });
@@ -240,6 +245,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicializar progreso
     updateProgress();
 });
-
-
-
