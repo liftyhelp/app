@@ -8,8 +8,8 @@
 /* Estilos generales */
 body {
     font-family: 'Roboto', Arial, sans-serif;
+    background-image: url('../img/fondo3.svg');
     line-height: 1.6;
-    background-color: #fff;
     color: #333;
     font-size: 16px;
     width: 100%;
