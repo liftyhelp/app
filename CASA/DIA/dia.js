@@ -1,26 +1,25 @@
-/* Recordatorios diarios y Tasques de la llar */
-
 document.addEventListener('DOMContentLoaded', () => {
-    const reminderItems = document.querySelectorAll('.reminder-item');
+    // Seleccionem tant els recordatoris com les tasques
+    const items = document.querySelectorAll('.reminder-item, .task-item');
     const progressText = document.querySelector('.progress-text');
     const progressFill = document.querySelector('.progress-fill');
     const completionMessage = document.querySelector('.completion-message');
-    const totalTasks = reminderItems.length;
+    const totalTasks = items.length;
     const pageTitle = document.querySelector('h1').textContent.toLowerCase();
     const isTasksPage = pageTitle.includes('tasques');
 
-    // Depuración: Verificar el número de tareas y completadas al cargar
-    console.log(`Total de tasques: ${totalTasks}, Completades inicialment: ${document.querySelectorAll('.reminder-item.completed').length}, Página: ${isTasksPage ? 'Tasques' : 'Recordatoris'}`);
+    // Depuración: Verificar el número de tasques i completades al cargar
+    console.log(`Total d'elements: ${totalTasks}, Completades inicialment: ${document.querySelectorAll('.reminder-item.completed, .task-item.completed').length}, Página: ${isTasksPage ? 'Tasques' : 'Recordatoris'}`);
 
-    // Función para actualizar el progreso
+    // Funció per actualitzar el progrés
     function updateProgress() {
-        const completedTasks = document.querySelectorAll('.reminder-item.completed').length;
+        const completedTasks = document.querySelectorAll('.reminder-item.completed, .task-item.completed').length;
         const progressPercentage = (completedTasks / totalTasks) * 100;
         
         progressText.textContent = `${completedTasks} de ${totalTasks} ${isTasksPage ? 'tasques' : 'recordatoris'} fetes`;
         progressFill.style.width = `${progressPercentage}%`;
 
-        // Mostrar mensaje y aplicar desenfoque cuando todas las tareas estén completadas
+        // Mostrar missatge i aplicar desenfoc quan totes les tasques estiguin completades
         if (completedTasks === totalTasks) {
             completionMessage.style.display = 'block';
             document.body.classList.add('completion-active');
@@ -30,12 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Evento para cada recordatorio/tarea
-    reminderItems.forEach(item => {
+    // Evento per a cada recordatori/tasca
+    items.forEach(item => {
         item.addEventListener('click', () => {
             item.classList.toggle('completed');
-            // Actualizar aria-label
-            const task = item.querySelector('.reminder-task').textContent;
+            // Actualitzar aria-label
+            const task = item.querySelector('.reminder-task, .task-name').textContent;
             const isCompleted = item.classList.contains('completed');
             item.setAttribute('aria-label', 
                 isCompleted 
@@ -45,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             updateProgress();
         });
 
-        // Soporte para teclado
+        // Suport per a teclat
         item.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -54,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Inicializar progreso
+    // Inicialitzar progrés
     updateProgress();
 });
 
