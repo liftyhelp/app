@@ -939,7 +939,7 @@ body {
   gap: 10px;
   width: 90%;
   max-width: 500px;
-  margin-top: 180px;
+  margin-top: 90px; /* Reducido de 180px a 100px para subir las notificaciones */
 }
 
 .notification {
@@ -956,9 +956,14 @@ body {
 }
 
 .notification::before {
-  content: "📱";
+  content: "";
   margin-right: 10px;
-  font-size: 20px;
+  font-size: 20px; /* Mantener tamaño original */
+  width: 85px; /* Tamaño exacto del emoji */
+  height: 85px;
+  background: url('../img/favilifty.svg') no-repeat center center;
+  background-size: contain;
+  display: inline-block; /* Asegura que se comporte como el emoji */
 }
 
 .notification:hover {
@@ -1063,9 +1068,11 @@ body {
 /* Estilos para el corazón animado */
 .corazon-img {
   display: block;
-  position: relative; /* Mantener posición original */
-  z-index: 10;
-  /* Ajusta width y height si el corazón original tiene otro tamaño */
+  position: relative;
+  z-index: 10; /* Asegura que el corazón esté encima del brillo */
+  width: 30px;
+  height: 30px;
+  overflow: visible; /* Evita que el brillo se corte */
 }
 
 /* Camino del corazón (forma) */
@@ -1076,21 +1083,19 @@ body {
   transition: fill 0.3s ease, stroke 0.3s ease;
 }
 
-/* Efecto de brillo */
+/* Efecto de luz difuminada */
 .corazon-img::after {
   content: "";
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 150%; /* Más grande para sobresalir */
-  height: 150%;
+  width: 250%; /* Aumentado para un brillo más amplio */
+  height: 250%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0); /* Brillo por defecto */
+  box-shadow: 0 0 60px 30px rgba(0, 0, 0, 0); /* Brillo por defecto */
   transition: box-shadow 0.3s ease;
-  z-index: 6; /* Detrás del corazón, encima del fondo */
-  /* Borde temporal para depuración (quitar después de probar) */
-  /* border: 1px solid yellow; */
+  z-index: 1; /* Detrás del corazón, pero encima de otros elementos */
 }
 
 /* Estilos por emoción */
@@ -1101,7 +1106,7 @@ body {
   fill: #F59C1A; /* Naranja para alegría */
 }
 .corazon-img.feliz::after {
-  box-shadow: 0 0 40px 20px rgba(255, 149, 0, 0.8); /* Brillo naranja intenso */
+  box-shadow: 0 0 60px 30px rgba(245, 156, 26, 0.4); /* Brillo naranja difuminado */
 }
 
 .corazon-img.ansioso {
@@ -1111,7 +1116,7 @@ body {
   fill: #6AB42D; /* Verde para calma */
 }
 .corazon-img.ansioso::after {
-  box-shadow: 0 0 40px 20px rgba(0, 204, 0, 0.8); /* Brillo verde */
+  box-shadow: 0 0 60px 30px rgba(106, 180, 45, 0.4); /* Brillo verde difuminado */
 }
 
 .corazon-img.triste {
@@ -1121,7 +1126,7 @@ body {
   fill: #2495CE; /* Azul para tristeza */
 }
 .corazon-img.triste::after {
-  box-shadow: 0 0 40px 20px rgba(0, 102, 204, 0.8); /* Brillo azul */
+  box-shadow: 0 0 60px 30px rgba(36, 149, 206, 0.4); /* Brillo azul difuminado */
 }
 
 .corazon-img.enojado {
@@ -1131,7 +1136,7 @@ body {
   fill: #E22535; /* Rojo para enfado */
 }
 .corazon-img.enojado::after {
-  box-shadow: 0 0 40px 20px rgba(204, 0, 0, 0.8); /* Brillo rojo */
+  box-shadow: 0 0 60px 30px rgba(226, 37, 53, 0.4); /* Brillo rojo difuminado */
 }
 
 /* Animaciones de latido */
@@ -1156,14 +1161,14 @@ body {
   75% { transform: scale(1.1); } /* Doble pulso para agresividad */
 }
 
-/* Estilos para las barras de sonido (sin cambios) */
+/* Estilos para las barras de sonido */
 .voice-waves {
   position: absolute;
   bottom: -60px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 10px;
+  gap: 8px; /* Reducido ligeramente para acomodar más barras */
   z-index: 30;
   pointer-events: none;
   align-items: flex-end;
@@ -1171,9 +1176,9 @@ body {
 }
 
 .wave {
-  width: 12px;
+  width: 10px; /* Ajustado para que 7 barras quepan bien */
   height: 20px;
-  background: #1E90FF;
+  background: #2595CD; /* Nuevo color */
   border-radius: 4px;
   pointer-events: none;
   transform-origin: bottom;
@@ -1183,16 +1188,22 @@ body {
   animation: sound-bar 0.8s ease-in-out infinite;
 }
 
-.lifty-circle.listening .voice-waves .wave.active:nth-child(2) { animation-delay: 0.15s; }
-.lifty-circle.listening .voice-waves .wave.active:nth-child(3) { animation-delay: 0.3s; }
-.lifty-circle.listening .voice-waves .wave.active:nth-child(4) { animation-delay: 0.45s; }
-.lifty-circle.listening .voice-waves .wave.active:nth-child(5) { animation-delay: 0.6s; }
+/* Retrasos para animación secuencial (7 barras) */
+.lifty-circle.listening .voice-waves .wave.active:nth-child(1) { animation-delay: 0s; }
+.lifty-circle.listening .voice-waves .wave.active:nth-child(2) { animation-delay: 0.1s; }
+.lifty-circle.listening .voice-waves .wave.active:nth-child(3) { animation-delay: 0.2s; }
+.lifty-circle.listening .voice-waves .wave.active:nth-child(4) { animation-delay: 0.3s; }
+.lifty-circle.listening .voice-waves .wave.active:nth-child(5) { animation-delay: 0.4s; }
+.lifty-circle.listening .voice-waves .wave.active:nth-child(6) { animation-delay: 0.5s; }
+.lifty-circle.listening .voice-waves .wave.active:nth-child(7) { animation-delay: 0.6s; }
 
+/* Animación de barras */
 @keyframes sound-bar {
   0%, 100% { height: 20px; }
   50% { height: 70px; }
 }
 
+/* Asegurar interactividad del círculo */
 .score-circle.lifty-circle {
   z-index: 100;
   position: relative;
@@ -1218,29 +1229,14 @@ body {
   display: none !important;
 }
 
+/* Media query para pantallas pequeñas */
 @media (max-width: 480px) {
   .voice-waves {
     bottom: -50px;
-    gap: 8px;
+    gap: 6px; /* Ajustado para pantallas pequeñas */
   }
   .wave {
-    width: 10px;
-    height: 15px;
-  }
-  @keyframes sound-bar {
-    0%, 100% { height: 15px; }
-    50% { height: 50px; }
-  }
-}
-
-/* Responsividad */
-@media (max-width: 480px) {
-  .voice-waves {
-    bottom: -50px;
-    gap: 8px;
-  }
-  .wave {
-    width: 10px;
+    width: 8px; /* Más delgadas para que quepan 7 barras */
     height: 15px;
   }
   @keyframes sound-bar {

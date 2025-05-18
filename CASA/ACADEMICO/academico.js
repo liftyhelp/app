@@ -53,30 +53,30 @@
       userMessage = userMessage.toLowerCase();
       if (userMessage.includes('matemáticas') || userMessage.includes('sumas')) {
         return `
-          <p>¡Entiendo! Vamos con las sumas. <i class="fas fa-calculator"></i></p>
-          <p>Ejemplo: 2 + 3 = 5</p>
-          <p><i class="fas fa-apple-alt"></i> <i class="fas fa-apple-alt"></i> + <i class="fas fa-apple-alt"></i> <i class="fas fa-apple-alt"></i> <i class="fas fa-apple-alt"></i> = 5 manzanas</p>
-          <p>¿Quieres practicar más? Escribe un problema, por ejemplo: "2 + 4".</p>
+          <p>Entenc! Anem amb les sumes. <i class="fas fa-calculator"></i></p>
+          <p>Exemple: 2 + 3 = 5</p>
+          <p><i class="fas fa-apple-alt"></i> <i class="fas fa-apple-alt"></i> + <i class="fas fa-apple-alt"></i> <i class="fas fa-apple-alt"></i> <i class="fas fa-apple-alt"></i> = 5 pomes</p>
+          <p>Vols practicar més? Escriu un problema, per exemple: "2 + 4".</p>
         `;
       } else if (userMessage.includes('lengua') || userMessage.includes('cuento')) {
         return `
-          <p>¡Hacer un cuento es divertido! <i class="fas fa-book"></i></p>
-          <p>Piensa en: <i class="fas fa-user"></i> ¿Quién? (Ejemplo: Un perro)</p>
-          <p><i class="fas fa-map"></i> ¿Dónde? (Ejemplo: En el parque)</p>
-          <p><i class="fas fa-question"></i> ¿Qué pasa? (Ejemplo: Encuentra un amigo)</p>
-          <p>Escribe tu idea y te ayudo.</p>
+          <p>Fer un conte és divertit! <i class="fas fa-book"></i></p>
+          <p>Pensa en: <i class="fas fa-user"></i> Qui? (Exemple: Un gos)</p>
+          <p><i class="fas fa-map"></i> On? (Exemple: Al parc)</p>
+          <p><i class="fas fa-question"></i> Què passa? (Exemple: Troba un amic)</p>
+          <p>Escriu la teva idea i t'ajudo.</p>
         `;
       } else if (userMessage.includes('foto')) {
         return `
-          <p>¡Gracias por la foto! <i class="fas fa-camera"></i></p>
-          <p>Veo que es un ejercicio. ¿Es de Matemáticas? <i class="fas fa-calculator"></i></p>
-          <p>Escribe el problema para ayudarte, por ejemplo: "3 + 5".</p>
+          <p>Gràcies per la foto! <i class="fas fa-camera"></i></p>
+          <p>Veig que és un exercici. És de Matemàtiques? <i class="fas fa-calculator"></i></p>
+          <p>Escriu el problema per ajudar-te, per exemple: "3 + 5".</p>
         `;
       } else {
         return `
-          <p>No entiendo bien tu duda. <i class="fas fa-question"></i></p>
-          <p>¿Es sobre Matemáticas, Lengua u otra clase? <i class="fas fa-book"></i></p>
-          <p>Escribe más o usa el micrófono. <i class="fas fa-microphone"></i></p>
+          <p>No entenc bé el teu dubte.</p>
+          <p>És sobre matemàtiques, llengua o una altra classe? <i class="fas fa-book"></i></p>
+          <p>Escriu més o usa el micròfon. <i class="fas fa-microphone"></i></p>
         `;
       }
     }
@@ -101,7 +101,7 @@
 
     // Simular entrada de voz (en un entorno real, usarías la API de reconocimiento de voz)
     voiceBtn.addEventListener('click', () => {
-      const simulatedVoiceMessage = "No entiendo las sumas de Matemáticas";
+      const simulatedVoiceMessage = "No entenc les sumes de Matemàtiques";
       addMessage(`<p><i class="fas fa-microphone"></i> ${simulatedVoiceMessage}</p>`, true);
       const liftyResponse = getLiftyResponse(simulatedVoiceMessage);
       setTimeout(() => addMessage(liftyResponse), 1000);
