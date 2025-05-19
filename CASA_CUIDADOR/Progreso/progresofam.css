@@ -381,8 +381,7 @@
   }
   
   .progreso-container {
-    width: 100%;
-    max-width: 360px;
+    width: 370px;
     margin: 0 auto;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 12px;
@@ -394,7 +393,7 @@
     font-family: 'Omnes SemiBold', sans-serif;
     font-size: 18px;
     color: #2595CD;
-    margin-bottom: 15px;
+    margin: 40px 40px;
     text-align: center;
   }
   
@@ -457,6 +456,7 @@
   
   .porcentaje {
     position: absolute;
+    top: 70px;
     font-family: 'Omnes SemiBold', sans-serif;
     font-size: 20px;
     font-weight: 600;
@@ -471,7 +471,7 @@
     display: flex;
     justify-content: center;
     gap: 8px;
-    margin-bottom: 12px;
+    margin: 62px;
     flex-wrap: wrap;
   }
   
